@@ -1,0 +1,32 @@
+.main_btn {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+  color: white;
+  background-color: #464646;
+  border-radius: 10px;
+  transition:all 0.3s ease;
+  &:hover {
+    background-color: #5D0097;
+    color: white;
+    text-decoration: none;
+  }
+}
+.sec_btn {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+  color: white;
+  background-color: #5D0097;
+  border-radius: 10px;
+  transition:all 0.3s ease;
+  &:hover {
+    background-color: #464646;
+    color: white;
+    text-decoration: none;
+  }
+}
