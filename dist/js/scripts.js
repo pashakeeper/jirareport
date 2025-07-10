@@ -60,13 +60,36 @@ $(document).ready(function () {
 
 
     const swiper2 = new Swiper(".logos-slider", {
-        slidesPerView: 'auto',
-        loop: true,
-        speed: 3000, // чем больше, тем медленнее
+        speed: 6000,
         autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
+            delay: 1,
         },
-        allowTouchMove: false, // отключить прокрутку пользователем
+        loop: true,
+        slidesPerView:'auto',
+        allowTouchMove: false,
+        disableOnInteraction: false,
+        spaceBetween: 0,
+        centeredSlides: true,
+    });
+
+    $('.video_box .play').on('click', function (e) {
+        e.preventDefault();
+        const $box = $(this).closest('.video_box');
+        const $iframe = $box.find('iframe');
+        const videoSrc = $iframe.data('src');
+
+        // Скрываем плейсхолдер и кнопку
+        $box.find('.video_placeholder, .play').hide();
+
+        // Подставляем src и показываем iframe
+        $iframe.attr('src', videoSrc).show();
+    });
+
+    $(window).on('scroll', function() {
+        if ($(this).scrollTop() > 90) {
+            $('.header').addClass('scrolled');
+        } else {
+            $('.header').removeClass('scrolled');
+        }
     });
 });
