@@ -92,4 +92,35 @@ $(document).ready(function () {
             $('.header').removeClass('scrolled');
         }
     });
+    const swiper3 = new Swiper(".review_slider", {
+        direction: "horizontal",        // или 'vertical'
+        slidesPerView: "auto",
+        centeredSlides: true,
+        loop: true,
+        spaceBetween: 40,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+    $('.faq-question').on('click', function() {
+                const $faqItem = $(this).closest('.faq-item');
+                const $answer = $faqItem.find('.faq-answer');
+                
+                // Если текущий элемент уже активен
+                if ($faqItem.hasClass('active')) {
+                    // Закрываем его
+                    $faqItem.removeClass('active');
+                    $answer.slideUp(300);
+                } else {
+                    // Закрываем все остальные
+                    $('.faq-item.active').removeClass('active');
+                    $('.faq-answer').slideUp(300);
+                    
+                    // Открываем текущий
+                    $faqItem.addClass('active');
+                    $answer.slideDown(300);
+                }
+            });
+    $('.faq-item:first-child .faq-question').trigger('click');
 });
