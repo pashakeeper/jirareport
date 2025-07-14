@@ -525,15 +525,12 @@ h2 {
 }
 .contact-form {
   border-radius: 16px;
-  padding: 40px;
   width: 100%;
 }
 
 .contact-form h2 {
   font-weight: 600;
-  font-style: Semi Bold;
   font-size: 30px;
-  leading-trim: NONE;
   line-height: 100%;
   letter-spacing: -2%;
   text-align: center;
@@ -626,4 +623,10 @@ h2 {
   .contact-form h2 {
     font-size: 22px;
   }
+}
+.form_box {
+  background: url("../img/bg-form.png");
+  padding: 100px 125px;
+  border-radius: 60px;
+  backdrop-filter: blur(15px);
 }
