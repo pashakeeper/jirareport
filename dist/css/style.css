@@ -543,6 +543,7 @@ h2 {
   color: #8a9ba8;
   font-size: 14px;
   padding: 0.75rem 0.75rem;
+  background: transparent;
 }
 
 .form-floating > .form-control {
@@ -554,6 +555,10 @@ h2 {
   padding: 0.75rem;
   height: auto;
   min-height: 48px;
+}
+
+.form-floating > textarea:focus ~ label::after, .form-floating > textarea:not(:placeholder-shown) ~ label::after {
+  background: transparent;
 }
 
 .form-floating > .form-control:focus {
@@ -580,6 +585,10 @@ h2 {
   resize: vertical;
 }
 
+.form-floating textarea.form-control::placeholder {
+  background: transparent;
+}
+
 .btn-submit {
   background: linear-gradient(135deg, #8A2BE2, #A855F7);
   border: none;
@@ -603,11 +612,10 @@ h2 {
   transform: translateY(0);
 }
 
-.row {
+.contact-form .row {
   margin-bottom: 20px;
 }
-
-.row:last-of-type {
+.contact-form .row:last-of-type {
   margin-bottom: 0;
 }
 
