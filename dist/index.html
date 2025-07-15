@@ -494,46 +494,48 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-11 mx-auto d-flex flex-wrap form_box">
-                <div class="col-lg-6">
-                    <div class="contact-form">
-                        <h2>Leave your details and we will contact you as soon as possible</h2>
-                        <form id="contactForm">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
-                                        <label for="firstName">First Name</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="contact-form">
+                            <h2>Leave your details and we will contact you as soon as possible</h2>
+                            <form id="contactForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
+                                            <label for="firstName">First Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
+                                            <label for="lastName">Last Name</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
-                                        <label for="lastName">Last Name</label>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                            <label for="email">Email</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 mb-3">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-                                        <label for="email">Email</label>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="message" name="message" placeholder="Message" required></textarea>
+                                            <label for="message">Message</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 mb-3">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" id="message" name="message" placeholder="Message" required></textarea>
-                                        <label for="message">Message</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-submit">Submit</button>
-                        </form>
+                                <button type="submit" class="btn btn-submit">Submit</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <img src="img/form-image.svg" alt="" class="form_img">
+                    <div class="col-lg-6">
+                        <img src="img/form-image.svg" alt="" class="form_img">
+                    </div>
                 </div>
             </div>
         </div>
@@ -541,14 +543,35 @@
 </section>
 <footer class="footer" id="footer">
     <div class="container pre_footer">
-        <div class="row">
-
-        </div>
-    </div>
-    <div class="footer_footer">
-        <div class="container">
-            <div class="row">
-
+        <div class="row align-items-center">
+            <div class="col-lg-2">
+                <div class="footer_logo">
+                    <a href="#">
+                        <img src="img/footer_logo.svg" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <ul class="nav footer_list">
+                    <li><a href="#">Report Hub</a></li>
+                    <li><a href="#">Professional Services</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+                <div class="row align-items-center">
+                    <div class="copyright">© 2025 Grandia Solutions. All rights reserved</div>
+                    <a href="#" class="privacy">Terms of Use & Privacy Policy</a>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <ul class="nav social_list">
+                    <li><a href="#"><i class="fab fa-atlassian"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                </ul>
             </div>
         </div>
     </div>

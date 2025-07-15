@@ -46,7 +46,7 @@ $(document).ready(function () {
         grabCursor: true,
         centeredSlides: false,
         breakpoints: {
-            640: {
+            0: {
                 slidesPerView: 1,
             },
             768: {

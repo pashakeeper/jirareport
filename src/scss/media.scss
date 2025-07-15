@@ -1,0 +1,114 @@
+@media (max-width: 1168px) {
+	.partner_logo {
+		margin-left: 50px;
+	}
+}
+@media (max-width: 991px) {
+	.section_01 {
+		height: auto;
+	}
+	.partner_logo {
+		margin-left: auto;
+	}
+	.menu_box {
+		position: fixed;
+		width: 45%;
+		left: -110%;
+		top: 0;
+		background: #121314;
+		height: 100%;
+		box-shadow: 10px 0 25px #121314;
+		transition: all .4s ease-in-out;
+		opacity: 0;
+		visibility: hidden;
+		&.active {
+			left: 0;
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+	.burger {
+		display: flex;
+		flex-direction: column;
+		width: 35px;
+		height: 25px;
+		justify-content: space-between;
+		cursor: pointer;
+		margin-left: auto;
+		margin-right: 40px;
+
+		span {
+			height: 2px;
+			width: 100%;
+			background: white;
+			transition: all .5s ease;
+			display: block;
+			position: relative;
+		}
+		&.active {
+			span:first-child {
+				transform: rotate(45deg);
+				bottom: -15px;
+			}
+			span:nth-child(2) {
+				width: 0%;
+			}
+			span:last-child {
+				transform: rotate(-45deg);
+				top: -8px;
+			}
+		}
+	}
+	.header {
+		.main_btn {
+			margin-left: auto;
+		}
+	}
+	.main_menu {
+		display: block;
+		padding-left: 30px;
+		padding-top: 50px;
+		li {
+			margin-bottom: 30px;
+		}
+	}
+	.footer_logo {
+		margin-bottom: 20px;
+	}
+	.social_list {
+		margin-top: 40px;
+	}
+	.section_04 .video_box .play {
+		max-width: 100px;
+	}
+	.section_05 .number_list {
+		justify-content: center;
+		li {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+	.section_05 .number {
+		text-align: center;
+	}
+	.review_box {
+		max-width: 100%;
+	}
+	.review_slider .swiper-slide {
+		width: 100%;
+	}
+	.review_slider::before, .review_slider::after {
+		display: none;
+	}
+	.section_06,.section_08, .section_07 {
+		padding: 50px 0;
+	}
+	.section_07 {
+		.sec_btn,.main_btn {
+			font-size: 12px;
+		}
+	}
+	.ready_box p {
+		font-size: 18px;
+	}
+}

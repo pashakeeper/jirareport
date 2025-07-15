@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .main_btn {
   height: 50px;
   display: flex;
@@ -587,7 +588,7 @@ h2 {
 }
 
 .btn-submit {
-  background: linear-gradient(135deg, #8A2BE2, #A855F7);
+  background: linear-gradient(135deg, #5D0097, #5D0097);
   border: none;
   border-radius: 8px;
   color: white;
@@ -625,8 +626,65 @@ h2 {
   }
 }
 .form_box {
-  background: url("../img/bg-form.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bg-form.png") center/cover no-repeat;
   padding: 100px 125px;
   border-radius: 60px;
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* Safari поддержка */
+  color: #fff; /* если нужен белый текст на тёмном фоне */
+}
+
+.form_img {
+  width: 100%;
+}
+
+.footer {
+  margin-top: 175px;
+  padding: 15.98px 0;
+  background: rgb(28, 28, 28);
+}
+.footer a {
+  color: white;
+}
+.footer ul li a {
+  color: white;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.footer .nav {
+  justify-content: center;
+  column-gap: 20px;
+}
+.footer .copyright, .footer .privacy {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+.footer .social_list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  width: 47.6px;
+  height: 47.6px;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+.footer .social_list a:hover {
+  box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+}
+.footer .social_list a i {
+  font-size: 20px;
+  color: rgb(28, 28, 28);
+}
+
+.footer_logo a img {
+  width: 100%;
+  max-width: 209px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
