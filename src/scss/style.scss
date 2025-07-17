@@ -870,31 +870,41 @@ h2 {
 .video_tab {
   padding: 12px 24px;
   border: none;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.1);
   color: #aaa;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-}
+  font-weight: 900;
+  font-style: Black;
+  font-size: 24px;
+  leading-trim: NONE;
+  line-height: 58px;
+  letter-spacing: 0%;
+  text-align: center;
 
+
+}
+.video_tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 40px;
+}
 .video_tab:hover {
   color: white;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(148, 59, 204, 0.43);
 }
 
 .video_tab.active {
-  background: #8A2BE2;
   color: white;
+  background: rgba(148, 59, 204, 0.43);
   box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
 }
 
 .video_content {
   display: none;
   text-align: center;
-  max-width: 800px;
   width: 100%;
 }
 
@@ -915,19 +925,20 @@ h2 {
 }
 
 .video_description {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #ccc;
-  margin-bottom: 30px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  font-weight: 300;
+  font-style: Light;
+  font-size: 32px;
+  leading-trim: NONE;
+  line-height: 150%;
+  letter-spacing: 0%;
+  text-align: center;
+  margin: 60px 0;
+
 }
 
 .video_player {
   position: relative;
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
   border-radius: 16px;
   overflow: hidden;
