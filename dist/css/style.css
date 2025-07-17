@@ -33,6 +33,24 @@
   text-decoration: none;
 }
 
+.bordered_btn {
+  height: 50px;
+  display: flex;
+  border: 1px solid white;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+  color: white;
+  background-color: transparent;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+.bordered_btn:hover {
+  background-color: #5D0097;
+  color: white;
+  text-decoration: none;
+}
+
 body {
   font-family: "Inter", sans-serif;
   background-color: #121314;
@@ -46,6 +64,10 @@ a {
 
 .container {
   max-width: 1747px;
+}
+
+h2 {
+  margin-bottom: 60px;
 }
 
 .header {
@@ -231,13 +253,14 @@ h2 {
 .section_04 p {
   font-size: clamp(20px, 5vw, 40px);
 }
-.section_04 .video_box {
+
+.video_box {
   position: relative;
 }
-.section_04 .video_box .video_placeholder {
+.video_box .video_placeholder {
   width: 100%;
 }
-.section_04 .video_box .play {
+.video_box .play {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -249,13 +272,13 @@ h2 {
   align-items: center;
   justify-content: center;
 }
-.section_04 .video_box .play:hover {
+.video_box .play:hover {
   transform: translate(-50%, -50%) scale(0.9);
 }
-.section_04 .video_box .play img {
+.video_box .play img {
   width: 100%;
 }
-.section_04 .video_box iframe {
+.video_box iframe {
   width: 100%;
   height: 90vh;
 }
@@ -681,4 +704,174 @@ h2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.report_section01 {
+  background: url("../img/report-bg2.png") no-repeat center center, url("../img/report-bg1.png") no-repeat center center;
+  padding-bottom: 300px;
+  height: auto;
+}
+
+.colored_btn {
+  border-color: #D48BFF;
+}
+.colored_btn:hover {
+  background: #D48BFF;
+}
+
+.report_section02 {
+  margin-top: -100px;
+  font-size: clamp(18px, 5vw, 36px);
+  font-weight: 300;
+  padding-bottom: 160px;
+}
+.report_section02 p {
+  margin-bottom: 60px;
+}
+
+.report_card {
+  border-radius: 60px;
+  background: linear-gradient(77deg, rgba(95, 95, 95, 0.05) 3.93%, rgba(255, 255, 255, 0.05) 89.88%);
+  backdrop-filter: blur(7.5px);
+  max-width: 441px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 329px;
+  padding: 41px 16px;
+  margin-bottom: 60px;
+}
+.report_card img {
+  margin-bottom: 42px;
+}
+.report_card h3 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 900;
+}
+.report_card p {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.report_section03 {
+  padding-bottom: 160px;
+}
+.report_section03 p {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%;
+  text-align: center;
+}
+.report_section03 .video_row {
+  margin-bottom: 120px;
+}
+.report_section03 .video_row:last-child {
+  margin-bottom: 0;
+}
+.report_section03 .video_box .play img {
+  max-width: 193px;
+}
+.report_section03 .video_box iframe {
+  height: 479px;
+}
+
+.report_section04_card {
+  max-width: 506px;
+  width: 100%;
+  padding: 41px 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 60px;
+  background: linear-gradient(77deg, rgba(95, 95, 95, 0.13) 3.93%, rgba(153, 153, 153, 0.13) 89.88%);
+  backdrop-filter: blur(7.5px);
+  min-height: 357px;
+  display: flex;
+  flex-direction: column;
+}
+.report_section04_card h3 {
+  margin-bottom: 60px;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+.report_section04_card h3 span {
+  color: #9200EC;
+}
+.report_section04_card p {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 200;
+  text-align: center;
+}
+
+.video_tab {
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  color: #aaa;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.video_tab:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.video_tab.active {
+  background: #8A2BE2;
+  color: white;
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+}
+
+.video_content {
+  display: none;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+.video_content.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.video_description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video_player {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #2a2a2a;
+  aspect-ratio: 16/9;
 }

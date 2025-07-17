@@ -30,3 +30,20 @@
     text-decoration: none;
   }
 }
+.bordered_btn {
+  height: 50px;
+  display: flex;
+  border: 1px solid white;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+  color: white;
+  background-color: transparent;
+  border-radius: 10px;
+  transition:all 0.3s ease;
+  &:hover {
+    background-color: #5D0097;
+    color: white;
+    text-decoration: none;
+  }
+}

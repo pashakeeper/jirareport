@@ -123,4 +123,13 @@ $(document).ready(function () {
                 }
             });
     $('.faq-item:first-child .faq-question').trigger('click');
+
+    // Обработчик клика на табы
+    $('.video_tab').on('click', function() {
+        const tab_id = $(this).data('tab');
+        $('.video_tab').removeClass('active');
+        $(this).addClass('active');
+        $('.video_content').removeClass('active');
+        $('#' + tab_id).addClass('active');
+    });
 });
