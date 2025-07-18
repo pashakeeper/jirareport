@@ -885,3 +885,29 @@ h2 {
   background: #2a2a2a;
   aspect-ratio: 16/9;
 }
+
+.try_box {
+  margin-top: 160px;
+  background: linear-gradient(76.75deg, rgba(229, 201, 246, 0.13) 3.93%, rgba(153, 153, 153, 0.13) 89.88%);
+  backdrop-filter: blur(15px);
+  border-radius: 60px;
+  padding: 67px 16px;
+}
+.try_box h3 {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 150%;
+  text-align: center;
+}
+.try_box p {
+  font-weight: 300;
+  font-size: 32px;
+  text-align: center;
+}
+
+.jira_cloud {
+  padding-top: 349px;
+  padding-bottom: 136px;
+  margin-top: -150px;
+  background: url("../img/cloud-bg.png") center top no-repeat;
+}
