@@ -8,7 +8,7 @@
 		height: auto;
 	}
 	.partner_logo {
-		margin-left: auto;
+		display: none;
 	}
 	.menu_box {
 		position: fixed;
@@ -110,5 +110,43 @@
 	}
 	.ready_box p {
 		font-size: 18px;
+	}
+	.report_section01 {
+		.btn_group {
+			flex-wrap: wrap;
+			.main_btn,.sec_btn,.bordered_btn,.bordered_btn {
+				width: 100%;
+				margin-bottom: 20px;
+			}
+		}
+	}
+	.report_section03 .video_box .play img {
+		max-width: 100px;
+	}
+	.report_section03 {
+		.video_box {
+			margin-bottom: 30px;
+		}
+	}
+	.report_section04_card {
+		margin-bottom: 40px;
+	}
+	.video_tabs {
+		flex-wrap: wrap;
+		button {
+			margin-bottom: 20px;
+		}
+	}
+	.video_box .play img {
+		max-width: 100px;
+	}
+	.pricing_box {
+		padding: 30px;
+	}
+	.pricing_box .btn_group {
+		margin-bottom: 20px;
+	}
+	.form_box {
+		padding: 40px;
 	}
 }

@@ -5,6 +5,7 @@ body {
   background-color: #121314;
   color: white;
   font-size: clamp(14px, 2vw, 16px);
+  overflow-x: hidden;
 }
 
 a {
@@ -876,11 +877,8 @@ h2 {
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 900;
-  font-style: Black;
   font-size: 24px;
-  leading-trim: NONE;
   line-height: 58px;
-  letter-spacing: 0%;
   text-align: center;
 
 
@@ -968,4 +966,125 @@ h2 {
   padding-bottom: 136px;
   margin-top: -150px;
   background: url('../img/cloud-bg.png') center top no-repeat;
+}
+
+.cloud_box {
+  background: linear-gradient(94.02deg, rgba(25, 25, 25, 0.5) 8.24%, rgba(33, 3, 52, 0.5) 91.22%);
+  text-align: center;
+  padding: 24px 27px;
+  border-radius: 20px;
+  min-height: 358px;
+  max-width: 564px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 76px;
+  img {
+    width: 52px;
+    margin-bottom: 24px;  
+  }
+  h3 {
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 125%;
+    text-align: center;
+  }
+  p {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 125%;
+    text-align: center;
+  }
+}
+.trust_row {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  align-items: center;
+  scrollbar-width: thin; /* Для Firefox */
+  scrollbar-color: #fff transparent; /* Для Firefox */
+  .col:first-child {
+    img {
+      max-width: 170px;
+    }
+  }
+  .col:nth-child(2) {
+    img {
+      max-width: 383px;
+    }
+  }
+  .col:nth-child(3) {
+    img {
+      max-width: 288px;
+    }
+  }
+  .col:nth-child(4) {
+    img {
+      max-width: 478px;
+    }
+  }
+  .col:last-child {
+    img {
+      max-width: 184px;
+    }
+  }
+}
+.trust_signals {
+  .col-lg-6.text-center {
+    img {
+      max-width: 390px;
+      width: 100%;
+    }
+  }
+}
+.pricing_box {
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(76.75deg, rgba(148, 59, 204, 0.13) 3.93%, rgba(153, 153, 153, 0.13) 89.88%);
+  padding: 67px 110px;
+  align-items: center;
+  margin-top: 160px;
+  border-radius: 60px;
+  .btn_group {
+    justify-content: flex-start;
+  }
+  h3 {
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 150%;
+  }
+  p {
+    font-size: 32px;
+    line-height: 150%;
+  }
+}
+.services_provide {
+  background: url('../img/faq-bg.png') center center no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  .col-lg-8.mx-auto,.col-lg-12 {
+    position: relative;
+    z-index: 3;
+  }
+}
+.services_provide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 19, 20, .8);
+  z-index: 1;
+}
+.professional_03 {
+  padding-top: 120px;
+}
+.professional_01 {
+  background: rgb(20, 18, 41);
+}
+.professional_02 {
+  margin-top: 0;
 }
