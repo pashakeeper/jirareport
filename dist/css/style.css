@@ -1050,3 +1050,71 @@ h2 {
 .partners_02 .report_card p {
   font-size: 16px;
 }
+
+.partners_03 {
+  background: url("../img/step-bg.png") center right no-repeat;
+  padding: 160px 0;
+}
+
+.partner_list {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+}
+.partner_list li:nth-child(odd) {
+  border-radius: 12px;
+  background: rgba(72, 10, 111, 0.32);
+  padding: 32px;
+}
+.partner_list li:nth-child(odd) h3 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 43px;
+}
+.partner_list li:nth-child(odd) p {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 43px;
+}
+
+.section_manager {
+  padding: 160px 0;
+  background: url("../img/manager-bg.png") center center no-repeat;
+}
+
+.manager_box {
+  padding: 83px 16px 83px 16px;
+  border-radius: 60px;
+  backdrop-filter: blur(15px);
+  background: linear-gradient(41.78deg, rgba(229, 201, 246, 0.13) 2.225%, rgba(153, 153, 153, 0.13) 88.982%);
+}
+.manager_box h2 {
+  text-align: left;
+}
+.manager_box p {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 150%;
+}
+.manager_box .btn_group {
+  justify-content: flex-start;
+}
+.manager_box ul {
+  list-style: none;
+}
+.manager_box ul img {
+  margin-right: 18px;
+}
+.manager_box ul a {
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+}
+.manager_box ul li:first-child {
+  margin-bottom: 31px;
+}
+
+.manager_image {
+  max-width: 462px;
+  width: 100%;
+}
