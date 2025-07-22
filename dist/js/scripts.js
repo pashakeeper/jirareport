@@ -1,9 +1,21 @@
 $(document).ready(function () {
 
     // Бургер-меню
-    $(".burger").click(function () {
+    $(".burger").click(function (e) {
+        e.stopPropagation(); // чтобы не сработал общий клик по document
         $(".menu_box").toggleClass("active");
         $(this).toggleClass("active");
+    });
+
+// Закрытие при клике вне меню и бургера
+    $(document).click(function (e) {
+        if (
+            !$(e.target).closest(".menu_box").length &&
+            !$(e.target).closest(".burger").length
+        ) {
+            $(".menu_box").removeClass("active");
+            $(".burger").removeClass("active");
+        }
     });
 
     // Табы

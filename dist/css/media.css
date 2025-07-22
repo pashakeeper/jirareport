@@ -71,6 +71,9 @@
   .burger.active span {
     background: rgb(191, 114, 238);
   }
+  .header {
+    padding-top: 20px;
+  }
   .header .main_btn {
     margin-left: auto;
   }
