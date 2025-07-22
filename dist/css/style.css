@@ -235,7 +235,7 @@ h2 {
 .section_02 h2 {
   margin-bottom: 60px;
 }
-.section_02 .swiper-button-next::before, .section_02 .swiper-button-prev::after {
+.section_02 .swiper-button-next::after, .section_02 .swiper-button-prev::after {
   display: none;
 }
 

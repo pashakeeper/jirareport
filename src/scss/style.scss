@@ -205,7 +205,7 @@ h2 {
     margin-bottom: 60px;
   }
 
-  .swiper-button-next::before, .swiper-button-prev::after {
+  .swiper-button-next::after, .swiper-button-prev::after {
     display: none;
   }
 }
