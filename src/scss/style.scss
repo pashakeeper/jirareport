@@ -1088,3 +1088,30 @@ h2 {
 .professional_02 {
   margin-top: 0;
 }
+
+.partners_01 {
+  background: url("../img/partner-bg.png") center center no-repeat;
+  height: auto;
+}
+.hands {
+  max-width: 515px;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.partners_02 {
+  margin-top: 0px;
+  padding-top: 160px;
+  .report_card {
+    h3 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}
+
