@@ -9,8 +9,8 @@
   border-radius: 10px;
   transition:all 0.3s ease;
   &:hover {
-    background-color: #5D0097;
-    color: white;
+    background-color: #6E6E6E;
+    color: #C4C4C4;
     text-decoration: none;
   }
 }
@@ -21,11 +21,11 @@
   justify-content: center;
   padding: 0 30px;
   color: white;
-  background-color: #5D0097;
+  background-color: #7F34AD;
   border-radius: 10px;
   transition:all 0.3s ease;
   &:hover {
-    background-color: #464646;
+    background-color: rgba(148, 59, 204, 0.26);
     color: white;
     text-decoration: none;
   }

@@ -11,8 +11,8 @@
   transition: all 0.3s ease;
 }
 .main_btn:hover {
-  background-color: #5D0097;
-  color: white;
+  background-color: #6E6E6E;
+  color: #C4C4C4;
   text-decoration: none;
 }
 
@@ -23,12 +23,12 @@
   justify-content: center;
   padding: 0 30px;
   color: white;
-  background-color: #5D0097;
+  background-color: #7F34AD;
   border-radius: 10px;
   transition: all 0.3s ease;
 }
 .sec_btn:hover {
-  background-color: #464646;
+  background-color: rgba(148, 59, 204, 0.26);
   color: white;
   text-decoration: none;
 }
@@ -138,7 +138,7 @@ h2 {
   padding-top: 220px;
   background: url("../img/bg.png") center top no-repeat;
   background-size: 100%;
-  height: 100vh;
+  padding-bottom: 160px;
 }
 .section_01 p {
   font-size: clamp(18px, 5vw, 36px);
@@ -180,6 +180,11 @@ h1 span {
   font-size: clamp(16px, 3vw, 20px);
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
+}
+.services_slider a span, .services_slider a img {
+  position: relative;
+  z-index: 1;
 }
 .services_slider a:after {
   content: "";
@@ -193,12 +198,24 @@ h1 span {
   top: 19px;
   transition: all 0.5s ease;
 }
+.services_slider a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(132.02deg, rgb(37, 37, 37) 12.983%, rgb(86, 4, 138) 111.857%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 0;
+}
+.services_slider a > * {
+  position: relative;
+  z-index: 1;
+}
 .services_slider a:hover {
-  transform: translate(-4px);
   text-decoration: none;
 }
-.services_slider a:hover:after {
-  transform: rotate(45deg);
+.services_slider a:hover:before {
+  opacity: 1;
 }
 .services_slider a img {
   width: 100%;
@@ -221,13 +238,33 @@ h2 {
 .section_02 .swiper-button-next::before, .section_02 .swiper-button-prev::after {
   display: none;
 }
-.section_02 .swiper-button-next {
+
+.swiper-button-next {
   top: 45%;
   right: 0;
+  color: white;
+  transition: all 0.5s ease;
 }
-.section_02 .swiper-button-prev {
+.swiper-button-next i {
+  transition: all 0.5s ease;
+  font-size: 40px;
+}
+.swiper-button-next:hover i {
+  color: #743A99;
+}
+
+.swiper-button-prev {
   top: 45%;
   left: 0;
+  color: white;
+  transition: all 0.5s ease;
+}
+.swiper-button-prev i {
+  transition: all 0.5s ease;
+  font-size: 40px;
+}
+.swiper-button-prev:hover i {
+  color: #743A99;
 }
 
 .logos-slider {
@@ -388,6 +425,12 @@ h2 {
   text-align: center;
   max-width: 808px;
   width: 100%;
+  transition: all 0.5s ease-in-out;
+}
+.review_box:hover {
+  border-radius: 24px;
+  backdrop-filter: blur(14px);
+  background: rgb(46, 37, 52);
 }
 
 .name {
@@ -549,6 +592,12 @@ h2 {
   animation: fadeInUp 0.3s ease;
 }
 
+.faq-toggle:hover {
+  border-radius: 0px 8px 8px 0px;
+  backdrop-filter: blur(15px);
+  background: rgba(201, 115, 255, 0.25) !important;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -681,7 +730,7 @@ h2 {
   }
 }
 .form_box {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bg-form.png") center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/contact-form-bg.png") center/cover no-repeat;
   padding: 100px 125px;
   border-radius: 60px;
   backdrop-filter: blur(15px);
