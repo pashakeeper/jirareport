@@ -1120,8 +1120,9 @@ h2 {
 }
 
 .blog_01 {
-  background: transparent;
+  background: url("../img/blog1-bg.png") center left no-repeat;
   height: auto;
+  padding-bottom: 600px;
 }
 
 .categories_list {
@@ -1228,6 +1229,9 @@ h2 {
   background: rgb(229, 237, 255);
 }
 
+.content_blog_01 {
+  margin-top: -550px;
+}
 .content_blog_01 h1 {
   font-size: clamp(28px, 5vw, 56px);
 }
@@ -1274,4 +1278,15 @@ h2 {
 }
 .article_card h3 a {
   color: white;
+}
+
+.comment_section .try_box {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-bottom: 160px;
+}
+
+.blog_02 {
+  background: transparent;
+  height: auto;
 }
