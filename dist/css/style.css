@@ -90,11 +90,48 @@ h2 {
   margin-left: 88px;
 }
 
-.menu_box ul li a {
+.menu_box .main_menu li a {
   color: white;
+  transition: all 0.5s ease;
 }
-.menu_box ul {
+.menu_box .main_menu li a:hover {
+  color: rgb(199, 109, 255);
+}
+.menu_box .main_menu {
   justify-content: space-between;
+}
+.menu_box .main_menu li {
+  position: relative;
+}
+.menu_box .main_menu li.active a {
+  background: rgba(97, 94, 99, 0.24);
+  padding: 10.5px 15px;
+  border-radius: 12px;
+}
+.menu_box .main_menu li:hover .sub-menu {
+  visibility: visible;
+  opacity: 1;
+}
+.menu_box .sub-menu {
+  background: linear-gradient(76.75deg, rgba(250, 243, 255, 0.05) 3.93%, rgba(187, 78, 255, 0.05) 89.88%);
+  list-style: none;
+  text-align: right;
+  position: absolute;
+  padding: 14px 24px;
+  border-radius: 20px;
+  min-width: 165px;
+  right: -24px;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.menu_box .sub-menu li {
+  padding-bottom: 13px;
+  margin-bottom: 13px;
+  border-bottom: 1px solid rgb(71, 71, 71);
+}
+.menu_box .sub-menu li:last-child {
+  margin-bottom: 0;
 }
 
 .section_01 {

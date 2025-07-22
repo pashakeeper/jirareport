@@ -41,13 +41,56 @@ h2 {
 }
 
 .menu_box {
-  ul li a {
+  .main_menu li a {
     color: white;
+    transition: all .5s ease;
+    &:hover {
+      color: rgba(199, 109, 255, 1);
+    }
   }
 
-  ul {
+
+  .main_menu {
     justify-content: space-between;
+    li {
+      position: relative;
+      &.active {
+        a {
+          background: rgba(97, 94, 99, 0.24);
+          padding: 10.5px 15px;
+          border-radius: 12px;
+        }
+      }
+      &:hover {
+        .sub-menu {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
   }
+  .sub-menu {
+    background: linear-gradient(76.75deg, rgba(250, 243, 255, 0.05) 3.93%, rgba(187, 78, 255, 0.05) 89.88%);
+    list-style: none;
+    text-align: right;
+    position: absolute;
+    padding: 14px 24px;
+    border-radius: 20px;
+    min-width: 165px;
+    right: -24px;
+    transition: all .5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    li {
+      padding-bottom: 13px;
+      margin-bottom: 13px;
+      border-bottom: 1px solid rgba(71, 71, 71, 1);
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
 }
 
 .section_01 {
