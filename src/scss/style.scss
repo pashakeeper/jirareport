@@ -1181,3 +1181,21 @@ h2 {
   max-width: 462px;
   width: 100%;
 }
+
+.blog_01 {
+  background: transparent;
+}
+.categories_list {
+  li {
+    a {
+      padding: 15px 33px 15px 33px;
+      border-radius: 12px;
+      background: rgba(163, 155, 168, 0.24);
+      color: rgb(178, 178, 178);
+      transition: all .5s ease;
+      &:hover {
+        background: #5D0097;
+      }
+    }
+  }
+}
