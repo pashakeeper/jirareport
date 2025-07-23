@@ -59,7 +59,8 @@ $(document).ready(function () {
         centeredSlides: false,
         breakpoints: {
             0: {
-                slidesPerView: 1,
+                slidesPerView: 2,
+                spaceBetween: 17
             },
             768: {
                 slidesPerView: 2,

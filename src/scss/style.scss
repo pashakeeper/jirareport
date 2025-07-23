@@ -727,7 +727,7 @@ h2 {
 }
 
 .btn-submit {
-  background: linear-gradient(135deg, #5D0097, #5D0097);
+  background-color: #7F34AD;
   border: none;
   border-radius: 8px;
   color: white;
@@ -740,9 +740,7 @@ h2 {
 }
 
 .btn-submit:hover {
-  background: linear-gradient(135deg, #7B1FA2, #9333EA);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+  background-color: rgba(148, 59, 204, 0.26);
 }
 
 .btn-submit:active {
@@ -825,6 +823,7 @@ h2 {
 
       &:hover {
         box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+        background: #C76DFF;
       }
 
       i {
