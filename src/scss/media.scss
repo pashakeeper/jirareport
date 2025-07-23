@@ -288,6 +288,16 @@
 	.form_img {
 		display: none;
 	}
+	.services_slider a img {
+		margin-bottom: 27px;
+	}
+	.services_slider a:after {
+		display: none;
+	}
+	.services_slider a {
+		height: 160px;
+	}
+
 }
 @media (max-width: 500px) {
 	.services_slider a {
@@ -295,5 +305,8 @@
 	}
 	.burger {
 		margin-right: 0;
+	}
+	.services_slider a img {
+		width: 27px;
 	}
 }
