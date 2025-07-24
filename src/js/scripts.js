@@ -75,7 +75,7 @@ $(document).ready(function () {
     const swiper2 = new Swiper(".logos-slider", {
         speed: 6000,
         autoplay: {
-            delay: 1,
+            delay: 0,
         },
         loop: true,
         slidesPerView:'auto',

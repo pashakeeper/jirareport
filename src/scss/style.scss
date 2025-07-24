@@ -4,7 +4,7 @@ body {
   font-family: "Inter", sans-serif;
   background-color: #121314;
   color: white;
-  font-size: clamp(14px, 2vw, 16px);
+  font-size: clamp(12px, 1.5vw, 14px);
   overflow-x: hidden;
 }
 
@@ -14,6 +14,7 @@ a {
 
 .container {
   max-width: 1747px;
+  width: 100%;
 }
 
 h2 {
@@ -100,13 +101,13 @@ h2 {
   //min-height: 100vh;
   padding-bottom: 160px;
   p {
-    font-size: clamp(18px, 5vw, 36px);
+    font-size: clamp(16px, 4vw, 28px);
     font-weight: 300;
   }
 }
 
 h1 {
-  font-size: clamp(36px, 10vw, 96px);
+  font-size: clamp(36px, 6vw, 96px);
   font-weight: 600;
   margin-bottom: 40px;
 
@@ -124,6 +125,9 @@ h1 {
 }
 
 .services_slider {
+  .swiper-slide {
+    width: fit-content;
+  }
   a {
     background: linear-gradient(135deg, rgba(15, 15, 15, 0.6), rgba(40, 40, 40, 0.6));
     border-radius: 16px;
@@ -139,7 +143,7 @@ h1 {
     padding: 21px;
     position: relative;
     transition: all .5s ease;
-    font-size: clamp(16px, 3vw, 20px);
+    font-size: clamp(14px, 1.5vw, 16px);
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
@@ -194,7 +198,7 @@ h1 {
 
 h2 {
   font-weight: 300;
-  font-size: clamp(28px, 6vw, 48px);
+  font-size: clamp(24px, 4.5vw, 40px);
   text-align: center;
 }
 
@@ -211,7 +215,7 @@ h2 {
 }
 .swiper-button-next {
   top: 45%;
-  right: 0;
+  right: -20px;
   color: white;
   transition: all .5s ease;
   i {
@@ -227,7 +231,7 @@ h2 {
 
 .swiper-button-prev {
   top: 45%;
-  left: 0;
+  left: -20px;
   color: white;
   transition: all .5s ease;
   i {
@@ -382,11 +386,23 @@ h2 {
 }
 
 .section_06 {
-  padding-bottom: 200px;
+  padding-bottom: 80px;
   padding-top: 160px;
+  .swiper-button-prev, .swiper-button-next {
+    z-index: 4;
 
+    &::after {
+      display: none;
+    }
+  }
   h2 {
     margin-bottom: 60px;
+  }
+  .swiper-button-prev {
+    left: 30px;
+  }
+  .swiper-button-next {
+    right: 30px;
   }
 }
 
@@ -395,13 +411,8 @@ h2 {
     width: fit-content;
   }
 
-  .swiper-button-prev, .swiper-button-next {
-    z-index: 4;
 
-    &:after {
-      display: none;
-    }
-  }
+
 }
 
 .review_slider::before,
@@ -472,7 +483,7 @@ h2 {
 }
 
 .section_08, .section_07 {
-  padding: 160px 0;
+  padding: 80px 0;
 }
 
 .ready_box {
@@ -1446,3 +1457,4 @@ h2 {
   background: transparent;
   height: auto;
 }
+

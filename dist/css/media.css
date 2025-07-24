@@ -4,6 +4,22 @@
     margin-left: 50px;
   }
 }
+@media (max-width: 1600px) {
+  .container {
+    max-width: 1400px;
+  }
+  h1 {
+    font-size: clamp(36px, 6vw, 96px);
+  }
+  .section_01 {
+    padding-bottom: 300px;
+    margin-bottom: -220px;
+    background-size: cover;
+  }
+  .section_06 {
+    padding-bottom: 80px;
+  }
+}
 @media (max-width: 991px) {
   .section_01 {
     height: auto;
@@ -284,5 +300,45 @@
   }
   .services_slider a img {
     width: 27px;
+  }
+}
+@media (max-width: 1600px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+/* До 1440px — 1600x900 ноуты с 125% */
+@media (max-width: 1440px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+/* До 1280px — ещё меньше: старые ноуты, масштаб 125% */
+@media (max-width: 1280px) {
+  .container {
+    padding: 0 20px;
+    font-size: 0.95em;
+  }
+}
+/* До 1024px — планшеты и маленькие экраны */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 15px;
+    font-size: 0.9em;
+  }
+}
+/* До 768px — мобильные устройства */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+    font-size: 0.85em;
+    flex-direction: column; /* для flex-обёрток */
+  }
+}
+/* До 480px — маленькие телефоны */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 5px;
+    font-size: 0.8em;
   }
 }
