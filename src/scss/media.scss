@@ -27,6 +27,15 @@
       min-height: 600px;
     }
   }
+  .report_section01 {
+    .col-lg-11.mx-auto.text-center {
+      .btn_group {
+        &:last-child {
+          justify-content: space-between;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 991px) {

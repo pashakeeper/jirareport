@@ -899,14 +899,6 @@ h2 {
   padding-bottom: 300px;
   height: auto;
 
-  .col-lg-11.mx-auto.text-center {
-    .btn_group {
-      &:last-child {
-        justify-content: space-between;
-      }
-    }
-  }
-
 }
 
 .colored_btn {
@@ -1273,7 +1265,7 @@ h2 {
 }
 
 .professional_01 {
-  background: rgb(20, 18, 41);
+  background: url("../img/proffesional-bg.png") center center no-repeat;
 }
 
 .professional_02 {
