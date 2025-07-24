@@ -116,25 +116,20 @@ $(document).ready(function () {
             prevEl: ".swiper-button-prev",
         },
     });
-    $('.faq-question').on('click', function() {
-                const $faqItem = $(this).closest('.faq-item');
-                const $answer = $faqItem.find('.faq-answer');
-                
-                // Если текущий элемент уже активен
-                if ($faqItem.hasClass('active')) {
-                    // Закрываем его
-                    $faqItem.removeClass('active');
-                    $answer.slideUp(300);
-                } else {
-                    // Закрываем все остальные
-                    $('.faq-item.active').removeClass('active');
-                    $('.faq-answer').slideUp(300);
-                    
-                    // Открываем текущий
-                    $faqItem.addClass('active');
-                    $answer.slideDown(300);
-                }
-            });
+    $('.faq-question').on('click', function () {
+        const $faqItem = $(this).closest('.faq-item');
+        const $answer = $faqItem.find('.faq-answer');
+
+        if ($faqItem.hasClass('active')) {
+            // Если уже открыт — закрываем
+            $faqItem.removeClass('active');
+            $answer.slideUp(300);
+        } else {
+            // Если закрыт — открываем
+            $faqItem.addClass('active');
+            $answer.slideDown(300);
+        }
+    });
     $('.faq-item:first-child .faq-question').trigger('click');
 
     // Обработчик клика на табы
