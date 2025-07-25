@@ -1166,42 +1166,7 @@ h2 {
   }
 }
 
-.trust_row {
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  align-items: center;
-  scrollbar-width: thin; /* Для Firefox */
-  scrollbar-color: #fff transparent; /* Для Firefox */
-  .col:first-child {
-    img {
-      max-width: 170px;
-    }
-  }
 
-  .col:nth-child(2) {
-    img {
-      max-width: 383px;
-    }
-  }
-
-  .col:nth-child(3) {
-    img {
-      max-width: 288px;
-    }
-  }
-
-  .col:nth-child(4) {
-    img {
-      max-width: 478px;
-    }
-  }
-
-  .col:last-child {
-    img {
-      max-width: 184px;
-    }
-  }
-}
 
 .trust_signals {
   .col-lg-6.text-center {

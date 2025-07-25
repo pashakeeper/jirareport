@@ -30,6 +30,9 @@
   }
 }
 @media (max-width: 991px) {
+  .trust_row img:first-child {
+    display: none;
+  }
   .section_01 {
     height: auto;
   }
@@ -271,8 +274,12 @@
   .pricing_box {
     padding: 30px;
   }
+  .pricing_box .col-lg-6.text-center img {
+    display: none;
+  }
   .pricing_box .btn_group {
     margin-bottom: 20px;
+    flex-wrap: wrap;
   }
   .form_box {
     padding: 37px 16px;
@@ -456,9 +463,6 @@
   }
   .pricing_box .btn_group a:first-child {
     margin-bottom: 20px;
-  }
-  .pricing_box .col-lg-6.text-center img {
-    display: none;
   }
   .footer .copyright, .footer .privacy {
     margin-left: auto;
