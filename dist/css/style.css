@@ -300,6 +300,9 @@ h2 {
 .section_03 h2 {
   margin-bottom: 60px;
 }
+.section_03 .w-100.d-sm-none.d-md-block {
+  margin-bottom: 160px;
+}
 
 .platforms_list {
   justify-content: space-between;
@@ -808,7 +811,7 @@ h2 {
 }
 
 .report_section01 {
-  background: url("../img/report-bg2.png") no-repeat center center, url("../img/report-bg1.png") no-repeat center center;
+  background: url("../img/report-bg2.png") center 1px no-repeat, url("../img/report-bg1.png") center 1px no-repeat;
   padding-bottom: 300px;
   height: auto;
 }
@@ -898,9 +901,10 @@ h2 {
 }
 
 .report_section04_card {
+  font-family: "Roboto", sans-serif;
   max-width: 506px;
   width: 100%;
-  padding: 41px 16px;
+  padding: 41px 64px;
   justify-content: center;
   align-items: center;
   border-radius: 60px;
@@ -931,14 +935,14 @@ h2 {
 .video_tab {
   padding: 12px 24px;
   border: none;
+  height: 58px;
   background: rgba(255, 255, 255, 0.1);
-  color: #aaa;
+  color: #B2B2B2;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 900;
   font-size: 24px;
-  line-height: 58px;
   text-align: center;
 }
 
@@ -955,7 +959,7 @@ h2 {
 }
 
 .video_tab.active {
-  color: white;
+  color: #B2B2B2;
   background: rgba(148, 59, 204, 0.431372549);
 }
 
@@ -980,10 +984,14 @@ h2 {
     transform: translateY(0);
   }
 }
+.report_section06 {
+  padding-top: 0;
+}
+
 .video_description {
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 32px;
-  line-height: 150%;
   text-align: center;
   margin: 60px 0;
 }
@@ -1004,6 +1012,7 @@ h2 {
   backdrop-filter: blur(15px);
   border-radius: 60px;
   padding: 67px 16px;
+  font-family: "Roboto", sans-serif;
 }
 .try_box h3 {
   font-weight: 800;
@@ -1043,7 +1052,7 @@ h2 {
   margin-bottom: 24px;
 }
 .cloud_box h3 {
-  font-weight: 900;
+  font-weight: 700;
   font-size: 36px;
   line-height: 125%;
   text-align: center;
@@ -1083,7 +1092,7 @@ h2 {
 }
 
 .services_provide {
-  background: url("../img/faq-bg.png") center center no-repeat;
+  background: url("../img/provide-bg.png") center center no-repeat;
   background-size: cover;
   position: relative;
   z-index: 1;
@@ -1091,17 +1100,6 @@ h2 {
 .services_provide .col-lg-8.mx-auto, .services_provide .col-lg-12 {
   position: relative;
   z-index: 3;
-}
-
-.services_provide::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(18, 19, 20, 0.8);
-  z-index: 1;
 }
 
 .professional_03 {
@@ -1113,7 +1111,8 @@ h2 {
 }
 
 .professional_02 {
-  margin-top: 0;
+  margin-top: 60px;
+  margin-bottom: 0;
 }
 
 .partners_01 {

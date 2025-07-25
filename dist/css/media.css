@@ -20,16 +20,112 @@
     padding-bottom: 80px;
   }
   .ready_box p {
-    font-size: 25px;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
   }
   .report_section05 .video_box {
     min-height: 600px;
   }
+  .report_section01 h1 {
+    font-size: clamp(36px, 5vw, 96px);
+  }
   .report_section01 .col-lg-11.mx-auto.text-center .btn_group:last-child {
     justify-content: space-between;
   }
+  .main_btn, .sec_btn, .bordered_btn {
+    height: 40px;
+  }
+  .ready_box h2 {
+    font-size: 40px;
+  }
+  .colored_btn {
+    font-size: 20px;
+    height: 45px;
+  }
+  .report_section02 p {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 32px;
+    text-align: center;
+  }
+  .report_card {
+    max-width: 90%;
+    min-height: 300px;
+    height: auto;
+  }
+  .report_card img {
+    width: 70px;
+  }
+  .report_card h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .report_card p {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+  .report_section03 p {
+    font-size: 26px;
+  }
+  .report_section04_card {
+    max-width: 90%;
+    padding: 20px 40px;
+  }
+  .report_section04_card h3 {
+    font-size: 25px;
+  }
+  .report_section04_card p {
+    font-size: 19px;
+  }
+  .video_tab {
+    font-size: 20px;
+    height: 70px;
+  }
+  .cloud_box {
+    max-width: 90%;
+  }
+  .cloud_box h3 {
+    font-size: 30px;
+  }
+  .cloud_box p {
+    font-size: 20px;
+  }
+  .pricing_box h3 {
+    font-family: "Roboto", sans-serif;
+    font-size: 38px;
+  }
+  .pricing_box p {
+    font-size: 30px;
+    font-weight: 300;
+  }
+  .professional_01 {
+    background: url(../img/proffesional-bg.png) center -116px no-repeat;
+    background-size: cover;
+  }
+  .professional_01 h1 {
+    font-size: clamp(36px, 5vw, 96px);
+  }
+  .professional_03 .w-100.d-sm-none.d-md-block {
+    margin-bottom: 0;
+  }
+  .ready_box {
+    padding: 74px 58px;
+  }
+  .services_provide {
+    padding-top: 160px;
+    padding-bottom: 160px;
+  }
+  .professional_03 {
+    padding-top: 0;
+  }
 }
 @media (max-width: 991px) {
+  .section_03 .w-100.d-sm-none.d-md-block {
+    display: none;
+  }
+  .section_03 .w-100.d-sm-block.d-lg-none {
+    margin-bottom: 80px;
+  }
   .trust_row img:first-child {
     display: none;
   }
