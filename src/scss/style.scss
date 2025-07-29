@@ -1046,8 +1046,6 @@ h2 {
   font-weight: 900;
   font-size: 24px;
   text-align: center;
-
-
 }
 
 .video_tabs {
@@ -1359,17 +1357,25 @@ h2 {
 
   li {
     a {
-      padding: 15px 33px 15px 33px;
-      border-radius: 12px;
-      background: rgba(163, 155, 168, 0.24);
-      color: rgb(178, 178, 178);
-      transition: all .5s ease;
-      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #B2B2B2;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
       font-weight: 900;
-      line-height: 58px;
-
+      font-size: 16px;
+      text-align: center;
       &:hover {
-        background: #5D0097;
+        color: white;
+        background: #A172C03D;
+      }
+
+      &.active {
+        color: #B2B2B2;
+        background: #943BCC6E;
       }
     }
   }
@@ -1543,3 +1549,111 @@ h2 {
   height: auto;
 }
 
+.cards_article_content {
+  margin-top: -300px;
+}
+.content_blog_01 {
+  margin-top: -320px;
+}
+.content_blog_3 {
+  margin-top: -300px;
+  .blog_1_card {
+    background: url("../img/post-3-bg.png") center center no-repeat;
+  }
+}
+.back {
+  font-size: 24px;
+  color: white;
+  display: block;
+  margin-top: -93px;
+  width: fit-content;
+
+}
+.blog_03_page {
+  background: url("../img/blog-3-bg.png") center left no-repeat;
+}
+.content_blog_content {
+  p {
+    font-weight: 300;
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+    span {
+    color: #DFACFF;
+  }
+  ul {
+    font-size: 24px;
+    li {
+      margin-bottom: 10px;
+    }
+  }
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+}
+.about_section {
+  background: url("../img/about-bg.png") center center no-repeat;
+}
+.about_section__box {
+  padding: 58px 16px;
+  background: linear-gradient(76.75deg, rgba(250, 243, 255, 0.05) 3.93%, rgba(187, 78, 255, 0.05) 89.88%);
+  backdrop-filter: blur(15px);
+  border-radius:44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 100%;
+    text-align: center;
+
+  }
+}
+.section_what_we_do {
+  .report_card {
+    font-family: "Roboto", sans-serif;
+    h3 {
+      font-size: 24px;
+      font-weight: 900;
+    }
+    p {
+      font-size: 20px;
+      font-weight: 400;
+    }
+    img {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
+}
+.about_section_03 {
+  background: url("../img/about-bg-2.png") center -1px no-repeat;
+  background-size: cover;
+  padding-top: 100px;
+  padding-bottom: 160px;
+  margin-bottom: -160px;
+  ul {
+    list-style: none;
+    column-count: 2;
+    li {
+      display: flex;
+      height: fit-content;
+      margin-bottom: 120px;
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 42px;
+    }
+    span  {
+      font-family: "Times New Roman";
+      font-weight: 400;
+      margin-right: 40px;
+      font-size: 140px;
+      line-height: 100px;
+      color: #F2DEFF;
+    }
+  }
+}

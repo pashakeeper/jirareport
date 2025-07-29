@@ -136,6 +136,41 @@
   .professional_03 {
     padding-top: 0;
   }
+  .manager_box p {
+    font-size: 24px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    margin-bottom: 60px;
+  }
+
+  .categories_list {
+    width: 100%;
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
+  .more_article .try_box h3,.comment_section .try_box h3 {
+    font-weight: 300;
+    font-size: 48px;
+  }
+  .search_form {
+    height: 40px;
+  }
+  .content_blog_content {
+    p {
+      font-size: 20px;
+    }
+    ul {
+      font-size: 20px;
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .about_section__box {
+    p {
+      font-size: 28px;
+    }
+  }
 }
 
 @media (max-width: 991px) {
