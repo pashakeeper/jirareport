@@ -302,6 +302,7 @@ h2 {
   h2 {
     margin-bottom: 60px;
   }
+
   .w-100.d-sm-none.d-md-block {
     margin-bottom: 160px;
   }
@@ -310,6 +311,7 @@ h2 {
 .platforms_list {
   justify-content: space-between;
   width: 100%;
+
   li {
     flex: 0 0 calc(20% - 16px);
     display: flex;
@@ -830,6 +832,7 @@ h2 {
     font-weight: 400;
     line-height: normal;
     transition: all .5s ease;
+
     &:hover {
       color: rgb(199, 109, 255);
     }
@@ -854,27 +857,27 @@ h2 {
   .privacy {
     margin-left: 10px;
   }
+}
 
-  .social_list {
-    a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: white;
-      width: 47.6px;
-      height: 47.6px;
-      border-radius: 50%;
-      transition: all .5s ease;
+.social_list {
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    width: 47.6px;
+    height: 47.6px;
+    border-radius: 50%;
+    transition: all .5s ease;
 
-      &:hover {
-        box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
-        background: #C76DFF;
-      }
+    &:hover {
+      box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+      background: #C76DFF;
+    }
 
-      i {
-        font-size: 20px;
-        color: rgba(28, 28, 28, 1);
-      }
+    i {
+      font-size: 20px;
+      color: rgba(28, 28, 28, 1);
     }
   }
 }
@@ -897,8 +900,8 @@ h2 {
 //font-size: clamp(36px, 10vw, 96px);
 //Report hub
 .report_section01 {
-  background: url("../img/report-bg2.png")  center 1px no-repeat,
-  url("../img/report-bg1.png")  center 1px no-repeat;
+  background: url("../img/report-bg2.png") center 1px no-repeat,
+  url("../img/report-bg1.png") center 1px no-repeat;
   padding-bottom: 300px;
   height: auto;
 
@@ -906,9 +909,11 @@ h2 {
 
 .colored_btn {
   border-color: #D48BFF;
+
   span {
     font-weight: 900;
   }
+
   &:hover {
     background: transparent;
     cursor: inherit;
@@ -925,8 +930,10 @@ h2 {
     margin-bottom: 60px;
   }
 }
+
 .report_section05 {
   padding-top: 80px;
+
   .video_box {
     background: #252525;
     min-height: 808px;
@@ -947,9 +954,11 @@ h2 {
   padding: 41px 16px;
   margin-bottom: 60px;
   transition: background 0.6s ease;
+
   &:hover {
     background: linear-gradient(76.75deg, rgba(37, 37, 37, 0.29) 3.93%, rgba(86, 4, 138, 0.29) 89.88%);
   }
+
   img {
     margin-bottom: 42px;
   }
@@ -1086,6 +1095,7 @@ h2 {
     transform: translateY(0);
   }
 }
+
 .report_section06 {
   padding-top: 0;
 }
@@ -1171,7 +1181,6 @@ h2 {
     text-align: center;
   }
 }
-
 
 
 .trust_signals {
@@ -1368,6 +1377,7 @@ h2 {
       font-weight: 900;
       font-size: 16px;
       text-align: center;
+
       &:hover {
         color: white;
         background: #A172C03D;
@@ -1552,15 +1562,19 @@ h2 {
 .cards_article_content {
   margin-top: -300px;
 }
+
 .content_blog_01 {
   margin-top: -320px;
 }
+
 .content_blog_3 {
   margin-top: -300px;
+
   .blog_1_card {
     background: url("../img/post-3-bg.png") center center no-repeat;
   }
 }
+
 .back {
   font-size: 24px;
   color: white;
@@ -1569,41 +1583,51 @@ h2 {
   width: fit-content;
 
 }
+
 .blog_03_page {
   background: url("../img/blog-3-bg.png") center left no-repeat;
 }
+
 .content_blog_content {
   p {
     font-weight: 300;
     font-size: 24px;
     margin-bottom: 0;
   }
-    span {
+
+  span {
     color: #DFACFF;
   }
+
   ul {
     font-size: 24px;
+
     li {
       margin-bottom: 10px;
     }
   }
+
   a {
     color: white;
     text-decoration: underline;
   }
 }
+
 .about_section {
   background: url("../img/about-bg.png") center center no-repeat;
 }
+
 .about_section__box {
   padding: 58px 16px;
   background: linear-gradient(76.75deg, rgba(250, 243, 255, 0.05) 3.93%, rgba(187, 78, 255, 0.05) 89.88%);
   backdrop-filter: blur(15px);
-  border-radius:44px;
+  border-radius: 44px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 160px;
+
   p {
     font-weight: 300;
     font-size: 30px;
@@ -1612,17 +1636,21 @@ h2 {
 
   }
 }
+
 .section_what_we_do {
   .report_card {
     font-family: "Roboto", sans-serif;
+
     h3 {
       font-size: 24px;
       font-weight: 900;
     }
+
     p {
       font-size: 20px;
       font-weight: 400;
     }
+
     img {
       margin-left: auto;
       margin-right: auto;
@@ -1630,15 +1658,18 @@ h2 {
     }
   }
 }
+
 .about_section_03 {
   background: url("../img/about-bg-2.png") center -1px no-repeat;
   background-size: cover;
   padding-top: 100px;
   padding-bottom: 160px;
   margin-bottom: -160px;
+
   ul {
     list-style: none;
     column-count: 2;
+
     li {
       display: flex;
       height: fit-content;
@@ -1647,7 +1678,8 @@ h2 {
       font-size: 24px;
       line-height: 42px;
     }
-    span  {
+
+    span {
       font-family: "Times New Roman";
       font-weight: 400;
       margin-right: 40px;
@@ -1655,5 +1687,66 @@ h2 {
       line-height: 100px;
       color: #F2DEFF;
     }
+  }
+}
+
+.about_section_04 {
+  margin-bottom: 160px;
+}
+.section_10 {
+  padding-top: 160px;
+  p {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 42px;
+    text-align: center;
+
+  }
+  .social_list {
+    column-gap: 38px;
+    margin-top: 80px;
+  }
+}
+
+.strategic_01 {
+  background: url("../img/strategic-bg-1.png") center top no-repeat;
+  height: auto;
+}
+.strategic_card_section {
+  margin-bottom: 160px;
+  margin-top: 60px;
+}
+.strategic_card {
+  background: linear-gradient(76.75deg, rgba(250, 243, 255, 0.05) 3.93%, rgba(187, 78, 255, 0.05) 89.88%);
+  backdrop-filter: blur(15px);
+  border-radius: 60px;
+  padding: 41px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 575px;
+  a {
+    font-family: "Roboto",sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    color:white;
+    i {
+      font-size: 30px;
+    }
+  }
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 85%;
+    width: 100%;
   }
 }

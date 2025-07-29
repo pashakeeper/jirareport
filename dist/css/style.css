@@ -783,7 +783,8 @@ h2 {
 .footer .privacy {
   margin-left: 10px;
 }
-.footer .social_list a {
+
+.social_list a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -793,11 +794,11 @@ h2 {
   border-radius: 50%;
   transition: all 0.5s ease;
 }
-.footer .social_list a:hover {
+.social_list a:hover {
   box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
   background: #C76DFF;
 }
-.footer .social_list a i {
+.social_list a i {
   font-size: 20px;
   color: rgb(28, 28, 28);
 }
@@ -1448,6 +1449,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 160px;
 }
 .about_section__box p {
   font-weight: 300;
@@ -1499,4 +1501,67 @@ h2 {
   font-size: 140px;
   line-height: 100px;
   color: #F2DEFF;
+}
+
+.about_section_04 {
+  margin-bottom: 160px;
+}
+
+.section_10 {
+  padding-top: 160px;
+}
+.section_10 p {
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 42px;
+  text-align: center;
+}
+.section_10 .social_list {
+  column-gap: 38px;
+  margin-top: 80px;
+}
+
+.strategic_01 {
+  background: url("../img/strategic-bg-1.png") center top no-repeat;
+  height: auto;
+}
+
+.strategic_card_section {
+  margin-bottom: 160px;
+  margin-top: 60px;
+}
+
+.strategic_card {
+  background: linear-gradient(76.75deg, rgba(250, 243, 255, 0.05) 3.93%, rgba(187, 78, 255, 0.05) 89.88%);
+  backdrop-filter: blur(15px);
+  border-radius: 60px;
+  padding: 41px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 575px;
+}
+.strategic_card a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.strategic_card a i {
+  font-size: 30px;
+}
+.strategic_card img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 85%;
+  width: 100%;
 }

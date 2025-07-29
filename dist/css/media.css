@@ -148,6 +148,9 @@
   .about_section__box p {
     font-size: 28px;
   }
+  .strategic_card a {
+    font-size: 19px;
+  }
 }
 @media (max-width: 991px) {
   .section_03 .w-100.d-sm-none.d-md-block {
