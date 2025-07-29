@@ -140,4 +140,115 @@ $(document).ready(function () {
         $('.video_content').removeClass('active');
         $('#' + tab_id).addClass('active');
     });
+    // Клик по карточке
+    $('.strategic_card').on('click', function (e) {
+        e.stopPropagation(); // предотвращаем всплытие, чтобы клик вне работал отдельно
+
+        const $clickedCard = $(this);
+        const $clickedContainer = $clickedCard.parent();
+
+        // Если карточка уже активна, не делаем ничего
+        if ($clickedCard.hasClass('active')) {
+            return;
+        }
+
+        // Убираем классы у всех
+        $('.strategic_card').removeClass('active');
+        $('.strategic_card').parent().removeClass('active col-lg-12');
+
+        // Добавляем классы текущей
+        $clickedCard.addClass('active');
+        $clickedContainer.addClass('active col-lg-12');
+
+        // Ждем завершения CSS анимации (если есть), затем прокручиваем
+        setTimeout(function() {
+            // Вычисляем позицию активной карточки
+            const cardOffset = $clickedContainer.offset().top;
+            const windowHeight = $(window).height();
+            const cardHeight = $clickedContainer.outerHeight();
+
+            // Вычисляем оптимальную позицию для прокрутки
+            // Размещаем карточку в верхней трети экрана
+            const targetScroll = cardOffset - (windowHeight * 0.2);
+
+            // Альтернативный вариант: центрируем карточку на экране
+            // const targetScroll = cardOffset - (windowHeight / 2) + (cardHeight / 2);
+
+            $('html, body').animate({
+                scrollTop: Math.max(0, targetScroll) // не позволяем прокрутить выше начала страницы
+            }, {
+                duration: 600,
+                easing: 'swing' // можно заменить на 'linear' или использовать jQuery UI easing
+            });
+        }, 100); // небольшая задержка для завершения DOM изменений
+    });
+
+// Клик вне карточек
+    $(document).on('click', function (e) {
+        // Проверяем, что клик произошел не внутри карточки или связанных элементов
+        if (!$(e.target).closest('.strategic_card, .right_side').length) {
+            $('.strategic_card').removeClass('active');
+            $('.strategic_card').parent().removeClass('active col-lg-12');
+        }
+    });
+
+// Дополнительно: обработка нажатия Escape для сброса активного состояния
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            $('.strategic_card').removeClass('active');
+            $('.strategic_card').parent().removeClass('active col-lg-12');
+        }
+    });
+
+// Альтернативный вариант с более плавной прокруткой и проверкой видимости
+    /*
+    $('.strategic_card').on('click', function (e) {
+        e.stopPropagation();
+
+        const $clickedCard = $(this);
+        const $clickedContainer = $clickedCard.parent();
+
+        if ($clickedCard.hasClass('active')) {
+            return;
+        }
+
+        $('.strategic_card').removeClass('active');
+        $('.strategic_card').parent().removeClass('active col-lg-12');
+
+        $clickedCard.addClass('active');
+        $clickedContainer.addClass('active col-lg-12');
+
+        setTimeout(function() {
+            const cardOffset = $clickedContainer.offset().top;
+            const cardHeight = $clickedContainer.outerHeight();
+            const windowHeight = $(window).height();
+            const currentScroll = $(window).scrollTop();
+
+            // Проверяем, виден ли весь элемент на экране
+            const cardBottom = cardOffset + cardHeight;
+            const viewportBottom = currentScroll + windowHeight;
+
+            let targetScroll;
+
+            if (cardOffset < currentScroll) {
+                // Карточка выше видимой области - прокручиваем к верху карточки
+                targetScroll = cardOffset - 100;
+            } else if (cardBottom > viewportBottom) {
+                // Карточка ниже видимой области - прокручиваем так, чтобы она была видна
+                targetScroll = cardBottom - windowHeight + 100;
+            } else {
+                // Карточка уже видна, но можем улучшить позицию
+                targetScroll = cardOffset - (windowHeight * 0.2);
+            }
+
+            $('html, body').animate({
+                scrollTop: Math.max(0, targetScroll)
+            }, {
+                duration: 800,
+                easing: 'swing'
+            });
+        }, 150);
+    });
+    */
+
 });

@@ -1522,13 +1522,24 @@ h2 {
 }
 
 .strategic_01 {
-  background: url("../img/strategic-bg-1.png") center top no-repeat;
+  background: url("../img/strategic-bg-1.png") center bottom no-repeat;
   height: auto;
 }
 
 .strategic_card_section {
   margin-bottom: 160px;
   margin-top: 60px;
+}
+.strategic_card_section .col-lg-4 {
+  order: 0;
+  transition: all 0.5s ease;
+}
+.strategic_card_section .col-lg-4.col-lg-12 {
+  order: -1;
+  background: linear-gradient(76.75deg, rgba(250, 243, 255, 0.05) 3.93%, rgba(187, 78, 255, 0.05) 89.88%);
+  backdrop-filter: blur(15px);
+  border-radius: 60px;
+  margin-bottom: 160px;
 }
 
 .strategic_card {
@@ -1545,6 +1556,11 @@ h2 {
   margin-left: auto;
   margin-right: auto;
   max-height: 575px;
+  min-height: 574px;
+  cursor: pointer;
+}
+.strategic_card .strategic_card_content {
+  display: none;
 }
 .strategic_card a {
   font-family: "Roboto", sans-serif;
@@ -1557,11 +1573,241 @@ h2 {
 }
 .strategic_card a i {
   font-size: 30px;
+  transition: all 0.5s ease;
+  display: block;
+  width: 70px;
+  margin-left: 40px;
 }
 .strategic_card img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 85%;
+  max-width: 310px;
   width: 100%;
+  margin-bottom: 42px;
+  max-height: 367px;
+}
+.strategic_card .right_side {
+  display: none;
+}
+.strategic_card.active {
+  height: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-height: unset;
+  padding-left: 124px;
+  padding-right: 124px;
+  background: transparent;
+  backdrop-filter: unset;
+  max-width: 80%;
+}
+.strategic_card.active .right_side {
+  display: block;
+  max-width: 505px;
+  padding: 40px;
+  margin-left: auto;
+  /* Анимация загрузки */
+  /* Адаптивность */
+  /* Валидация */
+}
+.strategic_card.active .right_side .form-container {
+  background-color: #3a3a3a;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid #4a4a4a;
+}
+.strategic_card.active .right_side .form-title {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #ffffff;
+  line-height: 1.3;
+}
+.strategic_card.active .right_side .form-group {
+  margin-bottom: 14px;
+}
+.strategic_card.active .right_side .form-row {
+  display: flex;
+  gap: 15px;
+}
+.strategic_card.active .right_side .form-row .form-group {
+  flex: 1;
+}
+.strategic_card.active .right_side .form-input {
+  width: 100%;
+  padding: 18px 20px;
+  background-color: #2a2a2a;
+  border: 2px solid #4a4a4a;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  outline: none;
+  height: 42px;
+}
+.strategic_card.active .right_side .form-input::placeholder {
+  color: #888;
+  font-size: 16px;
+}
+.strategic_card.active .right_side .form-input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  background-color: #333;
+}
+.strategic_card.active .right_side .form-input:hover {
+  border-color: #6a6a6a;
+}
+.strategic_card.active .right_side .submit-btn {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.strategic_card.active .right_side .submit-btn:hover {
+  background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
+}
+.strategic_card.active .right_side .submit-btn:active {
+  transform: translateY(0);
+}
+.strategic_card.active .right_side .submit-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3);
+}
+.strategic_card.active .right_side .submit-btn.loading {
+  background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
+  cursor: not-allowed;
+  position: relative;
+}
+.strategic_card.active .right_side .submit-btn.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+.strategic_card.active .right_side .submit-btn.loading span {
+  opacity: 0;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 600px) {
+  .strategic_card.active .right_side .form-container {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  .strategic_card.active .right_side .form-title {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+  .strategic_card.active .right_side .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .strategic_card.active .right_side .form-input {
+    padding: 16px 18px;
+    font-size: 16px;
+  }
+  .strategic_card.active .right_side .submit-btn {
+    padding: 16px;
+    font-size: 16px;
+  }
+}
+.strategic_card.active .right_side .form-input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+.strategic_card.active .right_side .form-input.success {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+.strategic_card.active .right_side .error-message {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 8px;
+  display: none;
+}
+.strategic_card.active .right_side .success-message {
+  background-color: #10b981;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  display: none;
+}
+.strategic_card.active a i {
+  transform: scaleY(-1);
+}
+.strategic_card.active img {
+  max-width: 300px;
+  margin-left: 0;
+  margin-bottom: 42px;
+}
+.strategic_card.active .strategic_card_content {
+  display: block;
+  width: 100%;
+  max-width: 90%;
+  font-size: 20px;
+  margin-top: 120px;
+}
+.strategic_card.active .strategic_card_content strong {
+  font-weight: 600;
+}
+.strategic_card.active .strategic_card_content .sec_btn {
+  font-size: 20px;
+  font-weight: 300;
+}
+.strategic_card.active .left_side {
+  width: 100%;
+  max-width: 447px;
+  margin-right: auto;
+}
+.strategic_card.active .right_side {
+  width: 45%;
+}
+
+body .section_404 {
+  background: #121314;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+body .section_404 p {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 100%;
+  text-align: center;
+}
+body .section_404 img {
+  max-width: 760px;
+  width: 100%;
+  margin-bottom: 40px;
 }

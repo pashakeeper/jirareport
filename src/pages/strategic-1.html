@@ -16,8 +16,6 @@
       </div>
    </div>
 </section>
-
-
 <!--strategic cards section-->
 <section class="strategic_card_section" id="strategic_card_section">
    <div class="container">
@@ -27,44 +25,537 @@
          </div>
          <div class="col-lg-4 col-6">
             <div class="strategic_card">
-               <img src="img/strat1.png" alt="">
-               <h3><a href="#">The Total Economic Impact™ of Atlassian Jira Service Management  <i class="fa fa-angle-down"></i></a></h3>
+               <div class="left_side">
+                  <img src="img/strat1.png" alt="">
+                  <h3><a href="#">The Total Economic Impact™ of Atlassian Jira Service Management <i
+                    class="fa fa-angle-down"></i></a></h3>
+               </div>
+               <div class="right_side">
+                  <h2 class="form-title">Fill out the form to download the guide</h2>
+                  <form id="downloadForm" novalidate>
+                     <div class="form-row">
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="firstName"
+                             name="firstName"
+                             placeholder="First Name"
+                             required
+                           >
+                           <div class="error-message" id="firstNameError">First Name is required</div>
+                        </div>
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="lastName"
+                             name="lastName"
+                             placeholder="Last Name"
+                             required
+                           >
+                           <div class="error-message" id="lastNameError">Last Name is required</div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="email"
+                          class="form-input"
+                          id="email"
+                          name="email"
+                          placeholder="Email"
+                          required
+                        >
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="company"
+                          name="company"
+                          placeholder="Company"
+                          required
+                        >
+                        <div class="error-message" id="companyError">Company is required</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="jobTitle"
+                          name="jobTitle"
+                          placeholder="Job title"
+                          required
+                        >
+                        <div class="error-message" id="jobTitleError">Job title is required</div>
+                     </div>
+                     <button type="submit" class="submit-btn" id="submitBtn">
+                        <span>Submit</span>
+                     </button>
+                  </form>
+               </div>
+               <div class="strategic_card_content">
+                  <p><strong>Key Findings</strong></p>
+                  <ul>
+                     <li>Return on Investment (ROI): 275% over three years</li>
+                     <li>Net Present Value (NPV): $6.97 million</li>
+                     <li>Payback Period: Less than 6 months</li>
+                  </ul>
+                  <p><strong>Business Benefits</strong></p>
+                  <ul>
+                     <li>Improved Support Team Productivity: 10% reduction in request volume and 15% faster resolution
+                        time led to over $1.4M in savings over three years.
+                     </li>
+                     <li>Increased End-User Efficiency: With faster ticket handling, users saved ~5 minutes per request
+                        — resulting in $408K in value.
+                     </li>
+                     <li>Optimized IT Operations: Improved cross-team collaboration and visibility saved 115
+                        hours/month, equaling $74K over three years.
+                     </li>
+                     <li>Cost Savings on Licensing and Maintenance: Switching from legacy systems saved up to $2M in
+                        licensing costs alone.
+                     </li>
+                  </ul>
+                  <p><strong>Additional Advantages</strong></p>
+                  <ul>
+                     <li>Cross-Team Collaboration: Seamless integration with Jira Software unifies IT, operations, and
+                        development workflows.
+                     </li>
+                     <li>Higher User Satisfaction: Thanks to faster resolutions and increased transparency.</li>
+                     <li>Flexibility & Scalability: Jira Service Management supports both IT and business teams on a
+                        single platform.
+                     </li>
+                  </ul>
+                  <div class="btn_group">
+                     <a href="#" class="sec_btn">Download</a>
+                  </div>
+               </div>
             </div>
          </div>
          <div class="col-lg-4 col-6">
             <div class="strategic_card">
-               <img src="img/strat2.png" alt="">
-               <h3><a href="#">THE FORRESTER WAVE™ Enterprise Service Management Q4 2023 <i class="fa fa-angle-down"></i></a></h3>
+               <div class="left_side">
+                  <img src="img/strat2.png" alt="">
+                  <h3><a href="#">THE FORRESTER WAVE™ Enterprise Service Management Q4 2023 <i
+                    class="fa fa-angle-down"></i></a></h3>
+               </div>
+               <div class="right_side">
+                  <h2 class="form-title">Fill out the form to download the guide</h2>
+                  <form id="downloadForm" novalidate>
+                     <div class="form-row">
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="firstName"
+                             name="firstName"
+                             placeholder="First Name"
+                             required
+                           >
+                           <div class="error-message" id="firstNameError">First Name is required</div>
+                        </div>
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="lastName"
+                             name="lastName"
+                             placeholder="Last Name"
+                             required
+                           >
+                           <div class="error-message" id="lastNameError">Last Name is required</div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="email"
+                          class="form-input"
+                          id="email"
+                          name="email"
+                          placeholder="Email"
+                          required
+                        >
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="company"
+                          name="company"
+                          placeholder="Company"
+                          required
+                        >
+                        <div class="error-message" id="companyError">Company is required</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="jobTitle"
+                          name="jobTitle"
+                          placeholder="Job title"
+                          required
+                        >
+                        <div class="error-message" id="jobTitleError">Job title is required</div>
+                     </div>
+                     <button type="submit" class="submit-btn" id="submitBtn">
+                        <span>Submit</span>
+                     </button>
+                  </form>
+               </div>
+               <div class="strategic_card_content">
+                  <p><strong>Key Findings</strong></p>
+                  <ul>
+                     <li>275% ROI over three years.</li>
+                     <li>$6.97 million NPV with payback in under 6 months.</li>
+                     <li>Major improvements in productivity, collaboration, and cost savings.</li>
+                  </ul>
+                  <p><strong>Business Benefits</strong></p>
+                  <ul>
+                     <li>$1.4M saved by increasing support team efficiency (10% fewer tickets, 15% faster resolution).
+                     </li>
+                     <li>$408K in value from end-user productivity gains (5 minutes saved per ticket).</li>
+                     <li>$74K saved in IT operations by reducing duplicated efforts and delays.</li>
+                     <li>$2M+ savings from switching away from legacy ITSM systems.</li>
+                  </ul>
+                  <p><strong>Additional Advantages</strong></p>
+                  <ul>
+                     <li>Seamless collaboration between IT, Ops, and Dev teams.</li>
+                     <li>Strong user satisfaction due to transparency and responsiveness.</li>
+                     <li>Scalable architecture supporting agile, cross-functional teams.</li>
+                     <li>Built on Atlassian Forge: zero data leakage and strong security posture.</li>
+                  </ul>
+                  <div class="btn_group">
+                     <a href="#" class="sec_btn">Download</a>
+                  </div>
+               </div>
             </div>
          </div>
          <div class="col-lg-4 col-6">
             <div class="strategic_card">
-               <img src="img/strat3.png" alt="">
-               <h3><a href="#">Enterprise Strategy Group: Modern ITSM Requires Autonomy With Alignment <i class="fa fa-angle-down"></i></a></h3>
+               <div class="left_side">
+                  <img src="img/strat3.png" alt="">
+                  <h3><a href="#">Enterprise Strategy Group: Modern ITSM Requires Autonomy With Alignment <i
+                    class="fa fa-angle-down"></i></a></h3>
+               </div>
+               <div class="right_side">
+                  <h2 class="form-title">Fill out the form to download the guide</h2>
+                  <form id="downloadForm" novalidate>
+                     <div class="form-row">
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="firstName"
+                             name="firstName"
+                             placeholder="First Name"
+                             required
+                           >
+                           <div class="error-message" id="firstNameError">First Name is required</div>
+                        </div>
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="lastName"
+                             name="lastName"
+                             placeholder="Last Name"
+                             required
+                           >
+                           <div class="error-message" id="lastNameError">Last Name is required</div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="email"
+                          class="form-input"
+                          id="email"
+                          name="email"
+                          placeholder="Email"
+                          required
+                        >
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="company"
+                          name="company"
+                          placeholder="Company"
+                          required
+                        >
+                        <div class="error-message" id="companyError">Company is required</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="jobTitle"
+                          name="jobTitle"
+                          placeholder="Job title"
+                          required
+                        >
+                        <div class="error-message" id="jobTitleError">Job title is required</div>
+                     </div>
+                     <button type="submit" class="submit-btn" id="submitBtn">
+                        <span>Submit</span>
+                     </button>
+                  </form>
+               </div>
+               <div class="strategic_card_content">
+                  <p><strong>Key Findings</strong></p>
+                  <ul>
+                     <li>Traditional ITSM tools hinder agility and decentralization.</li>
+                     <li>High-performing teams operate with local autonomy but remain aligned via shared practices.</li>
+                     <li>Atlassian’s approach to ITSM enables flexibility across business units.</li>
+                  </ul>
+                  <p><strong>Business Benefits</strong></p>
+                  <ul>
+                     <li>Enables faster delivery of services across IT and business teams.</li>
+                     <li>Reduces service bottlenecks through distributed ownership.</li>
+                     <li>Helps IT scale without introducing heavy processes.</li>
+                  </ul>
+                  <p><strong>Additional Advantages</strong></p>
+                  <ul>
+                     <li>Aligns Dev, Ops, and business through a unified platform.</li>
+                     <li>Supports rapid incident resolution through cross-team visibility.</li>
+                     <li>Empowers non-IT teams to manage services with structure.</li>
+                  </ul>
+                  <div class="btn_group">
+                     <a href="#" class="sec_btn">Download</a>
+                  </div>
+               </div>
             </div>
          </div>
          <div class="col-lg-4 col-6">
             <div class="strategic_card">
                <img src="img/strat4.png" alt="">
-               <h3><a href="#">Atlassian’s guide to Enterprise Service Management <i class="fa fa-angle-down"></i></a></h3>
+               <h3><a href="#">Atlassian’s guide to Enterprise Service Management <i class="fa fa-angle-down"></i></a>
+               </h3>
+               <div class="strategic_card_content">
+                  <p><strong>Key Findings</strong></p>
+                  <ul>
+                     <li>ESM extends ITSM principles to HR, legal, finance, facilities, and more.</li>
+                     <li>Many teams struggle with scattered request handling and lack of ownership.</li>
+                     <li>Jira Service Management supports enterprise-wide visibility and consistency.</li>
+                  </ul>
+                  <p><strong>Business Benefits</strong></p>
+                  <ul>
+                     <li>Standardizes request handling across all departments.</li>
+                     <li>Empowers teams to manage their own workflows without technical dependency.</li>
+                     <li>Eliminates tool sprawl and siloed service processes.</li>
+                  </ul>
+                  <p><strong>Additional Advantages</strong></p>
+                  <ul>
+                     <li>One platform for managing IT and non-IT services.</li>
+                     <li>Low-code/no-code setup allows rapid onboarding of new teams.</li>
+                     <li>Scales service delivery with reduced operational overhead.</li>
+                  </ul>
+                  <div class="btn_group">
+                     <a href="#" class="sec_btn">Download</a>
+                  </div>
+               </div>
             </div>
          </div>
          <div class="col-lg-4 col-6">
             <div class="strategic_card">
-               <img src="img/strat5.png" alt="">
-               <h3><a href="#">A guide to using Jira Service Management with other ITSM systems <i class="fa fa-angle-down"></i></a></h3>
+               <div class="left_side">
+                  <img src="img/strat5.png" alt="">
+                  <h3><a href="#">A guide to using Jira Service Management with other ITSM systems <i
+                    class="fa fa-angle-down"></i></a></h3>
+               </div>
+               <div class="right_side">
+                  <h2 class="form-title">Fill out the form to download the guide</h2>
+                  <form id="downloadForm" novalidate>
+                     <div class="form-row">
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="firstName"
+                             name="firstName"
+                             placeholder="First Name"
+                             required
+                           >
+                           <div class="error-message" id="firstNameError">First Name is required</div>
+                        </div>
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="lastName"
+                             name="lastName"
+                             placeholder="Last Name"
+                             required
+                           >
+                           <div class="error-message" id="lastNameError">Last Name is required</div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="email"
+                          class="form-input"
+                          id="email"
+                          name="email"
+                          placeholder="Email"
+                          required
+                        >
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="company"
+                          name="company"
+                          placeholder="Company"
+                          required
+                        >
+                        <div class="error-message" id="companyError">Company is required</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="jobTitle"
+                          name="jobTitle"
+                          placeholder="Job title"
+                          required
+                        >
+                        <div class="error-message" id="jobTitleError">Job title is required</div>
+                     </div>
+                     <button type="submit" class="submit-btn" id="submitBtn">
+                        <span>Submit</span>
+                     </button>
+                  </form>
+               </div>
+               <div class="strategic_card_content">
+                  <p><strong>Key Findings</strong></p>
+                  <ul>
+                     <li>Many enterprises operate hybrid ITSM landscapes.</li>
+                     <li>Integration with legacy or third-party tools is often a challenge.</li>
+                     <li>Jira Service Management can co-exist and streamline fragmented systems.</li>
+                  </ul>
+                  <p><strong>Business Benefits</strong></p>
+                  <ul>
+                     <li>Reduces cost by consolidating tools where possible.</li>
+                     <li>Allows gradual migration from legacy ITSM platforms.</li>
+                     <li>Connects teams through shared context and live data.</li>
+                  </ul>
+                  <p><strong>Additional Advantages</strong></p>
+                  <ul>
+                     <li>Centralized reporting across systems.</li>
+                     <li>Easy integration with APIs and connectors (e.g., Freshdesk, Cherwell).</li>
+                     <li>Flexibility to manage transitions without disrupting services.</li>
+                  </ul>
+                  <div class="btn_group">
+                     <a href="#" class="sec_btn">Download</a>
+                  </div>
+               </div>
             </div>
          </div>
          <div class="col-lg-4 col-6">
             <div class="strategic_card">
-               <img src="img/strat6.png" alt="">
-               <h3><a href="#">Atlassian’s guide to ITSM best practices <i class="fa fa-angle-down"></i></a></h3>
+               <div class="left_side">
+                  <img src="img/strat6.png" alt="">
+                  <h3><a href="#">Atlassian’s guide to ITSM best practices <i class="fa fa-angle-down"></i></a></h3>
+               </div>
+               <div class="right_side">
+                  <h2 class="form-title">Fill out the form to download the guide</h2>
+                  <form id="downloadForm" novalidate>
+                     <div class="form-row">
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="firstName"
+                             name="firstName"
+                             placeholder="First Name"
+                             required
+                           >
+                           <div class="error-message" id="firstNameError">First Name is required</div>
+                        </div>
+                        <div class="form-group">
+                           <input
+                             type="text"
+                             class="form-input"
+                             id="lastName"
+                             name="lastName"
+                             placeholder="Last Name"
+                             required
+                           >
+                           <div class="error-message" id="lastNameError">Last Name is required</div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="email"
+                          class="form-input"
+                          id="email"
+                          name="email"
+                          placeholder="Email"
+                          required
+                        >
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="company"
+                          name="company"
+                          placeholder="Company"
+                          required
+                        >
+                        <div class="error-message" id="companyError">Company is required</div>
+                     </div>
+                     <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-input"
+                          id="jobTitle"
+                          name="jobTitle"
+                          placeholder="Job title"
+                          required
+                        >
+                        <div class="error-message" id="jobTitleError">Job title is required</div>
+                     </div>
+                     <button type="submit" class="submit-btn" id="submitBtn">
+                        <span>Submit</span>
+                     </button>
+                  </form>
+               </div>
+               <div class="strategic_card_content">
+                  <p><strong>Key Findings</strong></p>
+                  <ul>
+                     <li>Agile and DevOps have changed how service management must operate.</li>
+                     <li>Static ITIL-only approaches are too slow for today’s business needs.</li>
+                     <li>Jira Service Management supports modern ITSM out-of-the-box.</li>
+                  </ul>
+                  <p><strong>Business Benefits</strong></p>
+                  <ul>
+                     <li>Brings agility to IT operations with sprint-based service management.</li>
+                     <li>Reduces incident resolution time with team-based ownership.</li>
+                     <li>Increases visibility into service health and work progress.</li>
+                  </ul>
+                  <p><strong>Additional Advantages</strong></p>
+                  <ul>
+                     <li>Templates and workflows for change, incident, and problem management.</li>
+                     <li>Deep integrations with Confluence, Bitbucket, and Jira Software.</li>
+                     <li>Guidance for adopting ITSM without excessive overhead or training.</li>
+                  </ul>
+                  <div class="btn_group">
+                     <a href="#" class="sec_btn">Download</a>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
    </div>
 </section>
-
 <section class="section_same_articles">
    <div class="container">
       <div class="row">
@@ -72,7 +563,8 @@
             <h2>Read more interesting articles</h2>
          </div>
          <div class="col-lg-4">
-            <div class="article_card" style="background: linear-gradient(180.00deg, rgba(0, 0, 0, 0.15),rgb(23, 21, 25) 100%),url('../img/article-img1.jpeg') center top no-repeat">
+            <div class="article_card"
+                 style="background: linear-gradient(180.00deg, rgba(0, 0, 0, 0.15),rgb(23, 21, 25) 100%),url('../img/article-img1.jpeg') center top no-repeat">
                <ul class="nav tags_list">
                   <li><a href="#">Tag1</a></li>
                   <li><a href="#">Tag2</a></li>
@@ -94,7 +586,8 @@
             </div>
          </div>
          <div class="col-lg-4">
-            <div class="article_card" style="background: linear-gradient(180.00deg, rgba(0, 0, 0, 0.15),rgb(23, 21, 25) 100%),url('../img/article-img1.jpeg') center top no-repeat">
+            <div class="article_card"
+                 style="background: linear-gradient(180.00deg, rgba(0, 0, 0, 0.15),rgb(23, 21, 25) 100%),url('../img/article-img1.jpeg') center top no-repeat">
                <ul class="nav tags_list">
                   <li><a href="#">Tag1</a></li>
                   <li><a href="#">Tag2</a></li>
@@ -116,7 +609,8 @@
             </div>
          </div>
          <div class="col-lg-4">
-            <div class="article_card" style="background: linear-gradient(180.00deg, rgba(0, 0, 0, 0.15),rgb(23, 21, 25) 100%),url('../img/article-img1.jpeg') center top no-repeat">
+            <div class="article_card"
+                 style="background: linear-gradient(180.00deg, rgba(0, 0, 0, 0.15),rgb(23, 21, 25) 100%),url('../img/article-img1.jpeg') center top no-repeat">
                <ul class="nav tags_list">
                   <li><a href="#">Tag1</a></li>
                   <li><a href="#">Tag2</a></li>
@@ -143,7 +637,6 @@
       </div>
    </div>
 </section>
-
 <!-- comment section -->
 <section class="comment_section">
    <div class="container">
@@ -151,7 +644,9 @@
          <div class="col-lg-12 mx-auto text-center">
             <div class="try_box">
                <h3>Ready to Elevate Your Jira Setup?</h3>
-               <p>Partner with Grandia Solutions to unlock expert configuration, reporting, and support services — tailored to your workflows.Whether you need custom dashboards, workflow automation, or long-term consulting, our team is here to make Jira work for you.</p>
+               <p>Partner with Grandia Solutions to unlock expert configuration, reporting, and support services —
+                  tailored to your workflows.Whether you need custom dashboards, workflow automation, or long-term
+                  consulting, our team is here to make Jira work for you.</p>
                <div class="btn_group">
                   <a href="#" class="sec_btn">Go to marketplace</a>
                   <a href="#" class="main_btn">Contact us</a>
@@ -161,7 +656,6 @@
       </div>
    </div>
 </section>
-
 <!-- section 9 -->
 <section class="section_09" id="section_09">
    <div class="container">
@@ -218,5 +712,4 @@
       </div>
    </div>
 </section>
-
 @@include('../partials/footer.html')
