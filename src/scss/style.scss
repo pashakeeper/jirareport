@@ -1418,6 +1418,8 @@ h2 {
 
   i {
     font-size: 25px;
+    margin-left: auto;
+    margin-right: 21px;
   }
 
   .fa-search {
@@ -1443,19 +1445,23 @@ h2 {
 .blog_1_card {
   border-radius: 20px;
   background: linear-gradient(180.00deg, rgba(0, 0, 0, 0), rgba(23, 21, 25, 0.89) 68.802%, rgb(23, 21, 25) 100%), url('../img/blog-article-bg.jpeg') center center no-repeat;
-  padding-top: 444px;
+  //padding-top: 444px;
   padding-bottom: 30px;
   padding-left: 63px;
   padding-right: 63px;
   overflow: hidden;
   background-size: cover;
   margin-bottom: 160px;
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
 
   .text {
     font-size: clamp(20px, 4vw, 36px);
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 39px;
+    margin-top: auto;
   }
 }
 
@@ -1513,7 +1519,8 @@ h2 {
 
 .more_article {
   padding-bottom: 160px;
-
+  background: url("../img/blog1-bg-2.png") center center no-repeat;
+  background-size: cover;
   .try_box {
     padding-left: 100px;
     padding-right: 100px;
@@ -1546,7 +1553,7 @@ h2 {
   }
 
   h3 {
-    font-size: 36px;
+    font-size: clamp(25px,2vw,36px);
     font-weight: 700;
     margin-bottom: 21px;
 
