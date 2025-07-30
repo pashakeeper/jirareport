@@ -1153,7 +1153,10 @@ h2 {
 
 .partners_03 {
   background: url("../img/step-bg.png") center right no-repeat;
-  padding: 160px 0;
+  padding-top: 387px;
+  margin-top: -387px;
+  padding-bottom: 387px;
+  margin-bottom: -387px;
 }
 
 .partner_list {
@@ -1178,7 +1181,10 @@ h2 {
 }
 
 .section_manager {
-  padding: 160px 0;
+  padding-top: 387px;
+  margin-top: -307px;
+  padding-bottom: 387px;
+  margin-bottom: -227px;
   background: url("../img/manager-bg.png") center center no-repeat;
 }
 
@@ -1222,7 +1228,7 @@ h2 {
 .blog_01 {
   background: url("../img/blog1-bg.png") center left no-repeat;
   height: auto;
-  padding-bottom: 600px;
+  padding-bottom: 320px;
 }
 
 .categories_list {
@@ -1302,6 +1308,9 @@ h2 {
   display: flex;
   flex-direction: column;
 }
+.blog_1_card h1 {
+  margin-top: auto;
+}
 .blog_1_card .text {
   font-size: clamp(20px, 4vw, 36px);
   font-weight: 600;
@@ -1326,6 +1335,7 @@ h2 {
   font-weight: 400;
   line-height: 30px;
   margin-bottom: 10px;
+  font-style: normal;
 }
 
 .tags_list {
@@ -1594,6 +1604,9 @@ h2 {
   width: 70px;
   margin-left: 40px;
 }
+.strategic_card a:hover i {
+  color: #743A99;
+}
 .strategic_card img {
   display: block;
   margin-left: auto;
@@ -1824,4 +1837,13 @@ body .section_404 img {
   max-width: 760px;
   width: 100%;
   margin-bottom: 40px;
+}
+
+.comment_section.strategic {
+  background: url("../img/strategic-bg-2.png") top center no-repeat;
+  padding-top: 387px;
+  padding-bottom: 387px;
+  margin-bottom: -387px;
+  margin-top: -387px;
+  background-size: 100%;
 }
