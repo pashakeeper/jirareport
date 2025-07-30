@@ -817,6 +817,18 @@ h2 {
   height: auto;
 }
 
+.report_section03 {
+  background: url("../img/report-bg3.png") left top no-repeat;
+  background-size: auto 100%;
+  margin-bottom: -360px;
+  padding-bottom: 300px;
+}
+
+.report_section04 {
+  padding-top: 160px;
+  margin-top: -160px;
+}
+
 .colored_btn {
   border-color: #D48BFF;
 }
@@ -878,9 +890,6 @@ h2 {
   font-weight: 400;
 }
 
-.report_section03 {
-  padding-bottom: 160px;
-}
 .report_section03 p {
   font-size: 32px;
   font-style: normal;
@@ -1605,7 +1614,6 @@ h2 {
   display: block;
   max-width: 505px;
   padding: 40px;
-  margin-left: auto;
   /* Анимация загрузки */
   /* Адаптивность */
   /* Валидация */
@@ -1788,8 +1796,7 @@ h2 {
 }
 .strategic_card.active .left_side {
   width: 100%;
-  max-width: 447px;
-  margin-right: auto;
+  max-width: 437px;
 }
 .strategic_card.active .right_side {
   width: 45%;

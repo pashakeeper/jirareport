@@ -171,6 +171,11 @@
       font-size: 28px;
     }
   }
+  .about_section {
+    h1 {
+      font-size: clamp(36px, 5vw, 96px);
+    }
+  }
   .strategic_card {
     a {
       font-size: 19px;
