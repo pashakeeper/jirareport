@@ -161,6 +161,9 @@ h1 {
       position: relative;
       z-index: 1;
     }
+    img {
+      height: 55px;
+    }
 
     &:after {
       content: "";
@@ -803,8 +806,7 @@ h2 {
 
 
 .form_box {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("../img/contact-form-bg.png") center/cover no-repeat;
+  background: url("../img/contact-form-bg.png") center/100% 100% no-repeat;
   padding: 100px 125px;
   border-radius: 60px;
   backdrop-filter: blur(15px);
@@ -1318,9 +1320,9 @@ h2 {
 .section_manager {
   padding-top: 387px;
   margin-top: -307px;
-  padding-bottom: 387px;
-  margin-bottom: -227px;
-  background: url('../img/manager-bg.png') center center no-repeat;
+  padding-bottom: 587px;
+  margin-bottom: -427px;
+  background: url('../img/manager-bg.png') center bottom no-repeat;
 }
 
 .manager_box {
@@ -1345,7 +1347,7 @@ h2 {
 
   ul {
     list-style: none;
-
+    padding-left: 0;
     img {
       margin-right: 18px;
     }
@@ -1416,12 +1418,26 @@ h2 {
   width: 100%;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #9747FF;
+  border: 1px solid transparent;
   height: 50px;
   display: flex;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
   align-items: center;
   margin-left: auto;
-
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px; /* толщина рамки */
+    border-radius: 12px;
+    background: linear-gradient(91.31deg, rgba(151, 71, 255, .6) 3.97%, rgba(187, 2, 220, .6) 99.78%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+  }
   i {
     font-size: 25px;
     margin-left: auto;
@@ -1529,7 +1545,7 @@ h2 {
 
 .more_article {
   padding-bottom: 160px;
-  background: url("../img/blog1-bg-2.png") center center no-repeat;
+  background: url("../img/blog1-bg-2.png") center left no-repeat;
   background-size: cover;
   .try_box {
     padding-left: 100px;
@@ -1596,7 +1612,9 @@ h2 {
 
 .content_blog_3 {
   margin-top: -300px;
-
+  background: url("../img/blog-3-bg-2.png") left bottom / 100%  no-repeat;
+  padding-bottom: 900px;
+  margin-bottom: -900px;
   .blog_1_card {
     background: url("../img/post-3-bg.png") center center no-repeat;
   }
@@ -1658,7 +1676,6 @@ h2 {
   p {
     font-weight: 300;
     font-size: 30px;
-    line-height: 100%;
     text-align: center;
 
   }
@@ -1811,8 +1828,6 @@ h2 {
     flex-direction: row;
     flex-wrap: wrap;
     max-height: unset;
-    padding-left: 124px;
-    padding-right: 124px;
     background: transparent;
     backdrop-filter: unset;
     max-width: 80%;
@@ -2015,6 +2030,7 @@ h2 {
       max-width: 90%;
       font-size: 20px;
       margin-top: 120px;
+      font-weight: 300;
       strong {
         font-weight: 600;
       }

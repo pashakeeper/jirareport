@@ -73,7 +73,7 @@ $(document).ready(function () {
 
 
     const swiper2 = new Swiper(".logos-slider", {
-        speed: 6000,
+        speed: 4000,
         autoplay: {
             delay: 0,
         },

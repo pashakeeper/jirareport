@@ -9,7 +9,7 @@
     max-width: 1400px;
   }
   h1 {
-    font-size: clamp(36px, 6vw, 96px);
+    font-size: clamp(36px, 4.5vw, 96px) !important;
   }
   .section_01 {
     padding-bottom: 300px;
@@ -48,24 +48,27 @@
     font-size: 32px;
     text-align: center;
   }
-  .report_card {
+  .partners_02 .report_card {
     max-width: 90%;
-    min-height: 300px;
+    min-height: 340px;
     height: auto;
   }
-  .report_card img {
+  .partners_02 .report_card img {
     width: 70px;
   }
-  .report_card h3 {
-    font-size: 28px;
+  .partners_02 .report_card h3 {
+    font-size: 19px;
     margin-bottom: 20px;
   }
-  .report_card p {
-    font-size: 20px;
+  .partners_02 .report_card p {
+    font-size: 14px;
     margin-bottom: 0;
   }
   .report_section03 p {
     font-size: 26px;
+  }
+  .report_section04 {
+    padding-top: 220px;
   }
   .report_section04_card {
     max-width: 90%;
@@ -165,6 +168,10 @@
   }
   .article_card .tags_list {
     margin-bottom: 171px;
+  }
+  .partners_01 {
+    background: url(../img/partner-bg.png) -20px top no-repeat;
+    background-size: 100%;
   }
   .partners_01 h1 {
     font-size: clamp(36px, 5vw, 96px);
@@ -516,7 +523,7 @@
   .colored_btn span {
     margin-right: 5px;
   }
-  .report_card h3 {
+  .partners_02 .report_card h3 {
     font-size: 20px;
     margin-bottom: 40px;
   }

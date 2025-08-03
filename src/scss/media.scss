@@ -9,7 +9,7 @@
     max-width: 1400px;
   }
   h1 {
-    font-size: clamp(36px, 6vw, 96px);
+    font-size: clamp(36px, 4.5vw, 96px) !important;
   }
   .section_01 {
     padding-bottom: 300px;
@@ -32,9 +32,11 @@
     h1 {
       font-size: clamp(36px, 5vw, 96px);
     }
+
     p {
 
     }
+
     .col-lg-11.mx-auto.text-center {
       .btn_group {
         &:last-child {
@@ -43,7 +45,7 @@
       }
     }
   }
-  .main_btn,.sec_btn,.bordered_btn {
+  .main_btn, .sec_btn, .bordered_btn {
     height: 40px;
   }
   .ready_box h2 {
@@ -61,31 +63,42 @@
       text-align: center;
     }
   }
-  .report_card {
-    max-width: 90%;
-    min-height: 300px;
-    height: auto;
-    img {
-      width: 70px;
-    }
-    h3 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 20px;
-      margin-bottom: 0;
+  .partners_02 {
+
+    .report_card {
+      max-width: 90%;
+      min-height: 340px;
+      height: auto;
+
+      img {
+        width: 70px;
+      }
+
+      h3 {
+        font-size: 19px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 14px;
+        margin-bottom: 0;
+      }
     }
   }
   .report_section03 p {
     font-size: 26px;
   }
+  .report_section04 {
+    padding-top: 220px;
+  }
   .report_section04_card {
     max-width: 90%;
     padding: 20px 40px;
+
     h3 {
       font-size: 25px;
     }
+
     p {
       font-size: 19px;
     }
@@ -96,18 +109,21 @@
   }
   .cloud_box {
     max-width: 90%;
+
     h3 {
       font-size: 30px;
     }
+
     p {
       font-size: 20px;
     }
   }
-  .pricing_box  {
+  .pricing_box {
     h3 {
       font-family: "Roboto", sans-serif;
       font-size: 38px;
     }
+
     p {
       font-size: 30px;
       font-weight: 300;
@@ -116,6 +132,7 @@
   .professional_01 {
     background: url(../img/proffesional-bg.png) center -116px no-repeat;
     background-size: cover;
+
     h1 {
       font-size: clamp(36px, 5vw, 96px);
     }
@@ -125,6 +142,7 @@
   }
   .ready_box {
     padding: 74px 58px;
+
     p {
 
     }
@@ -148,7 +166,7 @@
     line-height: 40px;
     margin-bottom: 20px;
   }
-  .more_article .try_box h3,.comment_section .try_box h3 {
+  .more_article .try_box h3, .comment_section .try_box h3 {
     font-weight: 300;
     font-size: 48px;
   }
@@ -159,8 +177,10 @@
     p {
       font-size: 20px;
     }
+
     ul {
       font-size: 20px;
+
       li {
         margin-bottom: 10px;
       }
@@ -200,6 +220,9 @@
     margin-bottom: 171px;
   }
   .partners_01 {
+    background: url(../img/partner-bg.png) -20px top no-repeat;
+    background-size: 100%;
+
     h1 {
       font-size: clamp(36px, 5vw, 96px);
     }
@@ -207,10 +230,12 @@
   .partner_list {
     li {
       text-align: center;
+
       &:nth-child(odd) {
         height: 153px;
       }
     }
+
     img {
       max-width: 100px;
       display: block;
@@ -225,6 +250,7 @@
     .w-100.d-sm-none.d-md-block {
       display: none;
     }
+
     .w-100.d-sm-block.d-lg-none {
       margin-bottom: 80px;
     }
@@ -423,6 +449,7 @@
   }
   .section_01 {
     margin-bottom: 0;
+
     .row {
       margin-left: 0;
       margin-right: 0;
@@ -473,6 +500,7 @@
   }
   .report_section01 {
     margin-bottom: 0;
+
     .btn_group {
       flex-wrap: wrap;
 
@@ -481,7 +509,7 @@
       }
     }
   }
-  .main_btn,.sec_btn,.bordered_btn {
+  .main_btn, .sec_btn, .bordered_btn {
     font-size: 20px;
   }
   .swiper-button-next {
@@ -516,6 +544,7 @@
   }
   .pricing_box {
     padding: 30px;
+
     .col-lg-6.text-center {
       img {
         display: none;
@@ -591,6 +620,7 @@
   }
   .report_section01 .col-lg-11.mx-auto.text-center .btn_group:last-child {
     flex-direction: row;
+
     .bordered_btn {
       width: 44%;
       height: auto;
@@ -599,6 +629,7 @@
       font-size: 14px;
       padding: 32px 28.5px;
     }
+
     .bordered_btn:last-child {
       width: 100%;
       padding: 0 30px;
@@ -608,9 +639,11 @@
   .colored_btn span {
     margin-right: 5px;
   }
-  .report_card h3 {
-    font-size: 20px;
-    margin-bottom: 40px;
+  .partners_02 {
+    .report_card h3 {
+      font-size: 20px;
+      margin-bottom: 40px;
+    }
   }
   .report_card p {
     font-size: 16px;
@@ -624,6 +657,7 @@
   .report_section03 .video_row {
     margin-bottom: 60px;
     flex-direction: column-reverse !important;
+
     p {
       margin-bottom: 20px;
     }
@@ -637,6 +671,7 @@
     h3 {
       font-size: 16px;
     }
+
     p {
       font-size: 16px;
     }
@@ -649,12 +684,15 @@
     white-space: break-spaces;
     width: fit-content;
     font-weight: 700;
-    &:first-child{
+
+    &:first-child {
       max-width: 128px;
     }
+
     &:nth-child(2) {
       max-width: 84px;
     }
+
     &:last-child {
       max-width: 109px;
     }
@@ -695,29 +733,34 @@
   .try_box {
     .btn_group {
       flex-direction: column;
+
       a:first-child {
         margin-bottom: 20px;
       }
     }
   }
-  .cloud_box  {
+  .cloud_box {
     min-height: unset;
     padding: 24px 14px;
     margin-bottom: 30px;
-    h3,p {
+
+    h3, p {
       font-size: 16px;
     }
+
     img {
       width: 20px;
     }
   }
   .pricing_box {
-    h3,p {
+    h3, p {
       font-size: 16px;
       text-align: center;
     }
+
     .btn_group {
       flex-direction: column;
+
       a:first-child {
         margin-bottom: 20px;
       }
