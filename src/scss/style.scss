@@ -163,6 +163,7 @@ h1 {
     }
     img {
       height: 55px;
+      object-fit: none;
     }
 
     &:after {
@@ -171,10 +172,10 @@ h1 {
       display: block;
       background: url('../img/arrow.svg') center center no-repeat;
       background-size: 100%;
-      width: 65px;
-      height: 66px;
+      width: 55px;
+      height: 55px;
       right: 13px;
-      top: 19px;
+      top: 23px;
       transition: all .5s ease;
     }
 
@@ -274,13 +275,7 @@ h2 {
   margin-bottom: 160px;
   overflow: hidden;
   height: 66px;
-  background: linear-gradient(90deg,
-          #121314 0%,
-          #3a3a3a 6%,
-          #afafaf 48%,
-          #121314 91%,
-          #121314 100%
-  );
+  background: linear-gradient(90deg, rgba(18, 19, 20, 0) 6.75%, rgba(18, 19, 20, 0) 12.02%, rgba(255, 255, 255, 0.72) 48.12%, rgba(18, 19, 20, 0) 85.73%, rgba(18, 19, 20, 0) 93.67%);
   padding: 20px 0;
 
   .swiper-wrapper {
@@ -1684,7 +1679,8 @@ h2 {
 .section_what_we_do {
   .report_card {
     font-family: "Roboto", sans-serif;
-
+    max-width: 600px;
+    padding: 41px 35px;
     h3 {
       font-size: 24px;
       font-weight: 900;
@@ -1699,6 +1695,10 @@ h2 {
       margin-left: auto;
       margin-right: auto;
       display: block;
+    }
+    ul {
+      font-size: 20px;
+      font-weight: 400;
     }
   }
 }
