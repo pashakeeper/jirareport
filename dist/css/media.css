@@ -63,6 +63,7 @@
   }
   .partners_02 .report_card img {
     width: 70px;
+    height: 80px;
   }
   .partners_02 .report_card h3 {
     font-size: 19px;
@@ -392,7 +393,9 @@
     margin-bottom: 40px;
   }
   .review_box {
-    max-width: 100%;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
   }
   .review_slider .swiper-slide {
     width: 100%;
@@ -411,6 +414,7 @@
   }
   .report_section01 {
     margin-bottom: 0;
+    background: url("../img/report-mobile-bg-1.png") center top/100% no-repeat;
   }
   .report_section01 .btn_group {
     flex-wrap: wrap;
@@ -460,6 +464,9 @@
   }
   .form_box {
     padding: 37px 16px;
+    justify-content: center;
+    border-radius: 0;
+    background: url("../img/contact-form-bg.png") center/200% 100% no-repeat;
   }
   .contact-form h2 {
     font-size: 20px;
@@ -554,15 +561,24 @@
   .report_section03 .video_row p {
     margin-bottom: 20px;
   }
+  .report_section04 {
+    padding-top: 104px;
+  }
+  .report_section04_card {
+    padding: 20px 14px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .report_section04_card:last-child {
     height: auto;
     min-height: unset;
   }
   .report_section04_card h3 {
     font-size: 16px;
+    margin-bottom: 42px;
   }
   .report_section04_card p {
-    font-size: 16px;
+    font-size: 14px;
   }
   .video_tab {
     font-size: 14px;
@@ -591,6 +607,310 @@
     font-size: 14px;
     margin: 40px 0;
   }
+  .services_slider a img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+  .section_09 .container {
+    padding: 0;
+  }
+  .section_09 .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .main_btn, .sec_btn, .bordered_btn {
+    height: 50px;
+  }
+  .report_section02 .report_card h3 {
+    font-size: 16px;
+  }
+  .report_section02 .report_card p {
+    font-size: 14px;
+  }
+  .report_section02 .report_card {
+    min-height: 224px;
+    padding: 20px 14px;
+  }
+  .report_section02 {
+    padding-bottom: 123px;
+    background: url("../img/report-mobile-bg-2.png") center center/100% no-repeat;
+  }
+  .try_box {
+    margin-top: 80px;
+  }
+  .jira_cloud {
+    padding-top: 80px;
+    margin-top: 0;
+    background: none;
+  }
+  .trust_signals {
+    background: url("../img/trust_signals-mobile-bg-1.png") center bottom no-repeat;
+  }
+  .trust_signals .w-100 {
+    display: none;
+  }
+  .professional_01 {
+    background: url("../img/proffesional-mobile-bg-1.png") center top/100% no-repeat;
+  }
+  .services_provide {
+    background: url("../img/proffesional-mobile-bg-2.png") center top/100% no-repeat, url("../img/proffesional-mobile-bg-3.png") center bottom/100% no-repeat;
+  }
+  .report_07 {
+    background: url("../img/proffesional-mobile-bg-4.png") center top/100% no-repeat;
+    padding-top: 300px;
+    margin-top: -220px;
+    padding-bottom: 80px;
+  }
+  .footer_logo a img {
+    max-width: 100px;
+    margin-left: 0;
+  }
+  .footer_logo {
+    margin-bottom: 0;
+  }
+  .footer {
+    margin-top: 80px;
+  }
+  .footer .social_list {
+    margin-top: 0;
+    column-gap: unset;
+    justify-content: space-between;
+  }
+  .footer .col-lg-2.col-6 {
+    order: -1;
+  }
+  .footer .footer_list {
+    margin-top: 38px;
+    justify-content: space-between;
+  }
+  .footer .footer_list li {
+    margin-bottom: 20px;
+  }
+  .footer .privacy {
+    margin-top: 12px;
+  }
+  .hands {
+    display: none;
+  }
+  .partners_01 {
+    background: url("../img/partners-mobile-bg-1.png") center top/100% no-repeat;
+    margin-bottom: -620px;
+    padding-bottom: 520px;
+  }
+  .partners_02 {
+    background: none;
+    padding-bottom: 80px;
+  }
+  .partners_03 {
+    background: url("../img/partners-mobile-bg-2.png") center bottom/100% no-repeat;
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 270px;
+    margin-bottom: -270px;
+  }
+  .partners_03 .btn_group {
+    display: none;
+  }
+  .partner_list {
+    justify-content: center;
+    margin-bottom: 0;
+  }
+  .partner_list li:nth-child(odd) {
+    width: 100%;
+    max-width: 332px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 103px;
+  }
+  .partner_list li:last-child {
+    margin-bottom: 0;
+  }
+  .partner_list img {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 103px;
+    transform: rotate(90deg);
+  }
+  .manager_box h2 {
+    text-align: center;
+    font-size: 24px;
+  }
+  .manager_box p {
+    font-size: 14px;
+    text-align: center;
+  }
+  .section_manager {
+    padding-top: 387px;
+    margin-top: -307px;
+  }
+  .manager_image {
+    display: none;
+  }
+  .mobile_manager {
+    max-width: 169px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .manager_box ul img {
+    width: 24px;
+  }
+  .manager_box ul li {
+    display: flex;
+  }
+  .manager_box ul li a {
+    font-size: 15px;
+  }
+  .manager_box .btn_group {
+    flex-wrap: wrap;
+  }
+  .manager_box .btn_group a {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .manager_box .btn_group a:first-child {
+    margin-bottom: 20px;
+  }
+  .manager_box {
+    padding: 32px 19px;
+  }
+  .categories_list {
+    margin-top: 40px;
+    gap: 17px;
+  }
+  .categories_list li a {
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    padding: 15px 14px;
+    align-items: center;
+  }
+  .content_blog_01 {
+    margin-top: 0;
+  }
+  .search_form {
+    height: 50px;
+    max-width: 100%;
+  }
+  .navigation_box {
+    margin-bottom: 40px;
+  }
+  .content_blog_01 h1, .content_blog_01 p {
+    display: none;
+  }
+  .blog_1_card {
+    padding: 36px 18px;
+    position: relative;
+    margin-bottom: 80px;
+  }
+  .blog_1_card .tags_list {
+    position: absolute;
+    top: 43px;
+  }
+  .blog_1_card .text {
+    font-size: 24px;
+  }
+  .blog_info li {
+    font-size: 16px;
+  }
+  .blog_info li span {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+  .more_article h2 {
+    text-align: center;
+  }
+  .more_articles_search .search_form {
+    margin-bottom: 40px;
+  }
+  .more_articles_search .sec_btn {
+    display: none;
+  }
+  .more_article .try_box h3, .comment_section .try_box h3 {
+    font-size: 24px;
+  }
+  .more_article .try_box, .comment_section .try_box {
+    padding: 32px 19px;
+  }
+  .more_article {
+    padding-bottom: 80px;
+  }
+  .cards_article_content {
+    margin-top: 0;
+  }
+  .blog_02 {
+    padding-bottom: 0;
+  }
+  .cards_article_content {
+    background: url("../img/blog-2-mobile-bg.png") center top/100% no-repeat;
+    padding-top: 600px;
+    margin-top: -600px;
+  }
+  .comment_section.blog02 {
+    background: url("../img/blog-2-mobile-bg-2.png") center left/100% no-repeat;
+    padding-top: 2100px;
+    margin-top: -2100px;
+  }
+  .comment_section.blog02 .try_box {
+    margin-bottom: 80px;
+  }
+  .content_blog_3 h1 {
+    display: block;
+  }
+  .content_blog_3 p {
+    display: block;
+  }
+  .content_blog_content img {
+    width: 100%;
+  }
+  .content_blog_3 {
+    background: url("../img/blog-3-mobile-bg-1.png") center top/100% no-repeat, url("../img/blog-3-mobile-bg-2.png") center center/100% no-repeat;
+    padding-top: 500px;
+    margin-top: -500px;
+  }
+  .strategic_card.active .right_side {
+    width: 100%;
+  }
+  .strategic_card.active, .strategic_card.active .strategic_card_content {
+    max-width: 100%;
+  }
+  .strategic_card.active .right_side {
+    padding: 0;
+  }
+  .strategic_card.active {
+    margin-bottom: 0;
+  }
+  .about_section__box p {
+    font-size: 24px;
+  }
+  .about_section__box {
+    margin-bottom: 80px;
+  }
+  .about_section_03 ul {
+    column-count: 1;
+  }
+  .about_section_03 ul li {
+    font-size: 16px;
+    line-height: 29px;
+  }
+  .section_10 {
+    background: url("../img/about-bg-mobile-1.png") center bottom/100% no-repeat;
+    padding-bottom: 80px;
+    margin-bottom: -80px;
+    padding-top: 280px;
+    margin-top: -200px;
+  }
+  .section_10 .btn_group {
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .section_10 .btn_group a:first-child {
+    margin-bottom: 40px;
+  }
 }
 @media (max-width: 500px) {
   .services_slider a {
@@ -598,9 +918,6 @@
   }
   .burger {
     margin-right: 0;
-  }
-  .services_slider a img {
-    width: 27px;
   }
   .report_section05 .video_box {
     min-height: 191px;

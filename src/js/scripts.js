@@ -251,4 +251,12 @@ $(document).ready(function () {
     });
     */
 
+    if ($(window).width() < 991) {
+        $('.text').each(function () {
+            const words = $(this).text().trim().split(' ');
+            const shortText = words.slice(0, 6).join(' ');
+            $(this).text(shortText);
+        });
+    }
+
 });
