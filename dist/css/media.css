@@ -159,6 +159,7 @@
   }
   .about_section__box p {
     font-size: 28px;
+    margin-bottom: 0;
   }
   .about_section h1 {
     font-size: clamp(36px, 5vw, 96px);
@@ -534,7 +535,7 @@
     display: flex;
     flex-wrap: wrap;
     font-size: 14px;
-    padding: 32px 28.5px;
+    padding: 32px 8.5px;
   }
   .report_section01 .col-lg-11.mx-auto.text-center .btn_group:last-child .bordered_btn:last-child {
     width: 100%;
@@ -649,6 +650,7 @@
   }
   .try_box {
     margin-top: 80px;
+    padding: 32px 19px;
   }
   .jira_cloud {
     padding-top: 80px;
@@ -865,7 +867,7 @@
     background: url("../img/blog-2-mobile-bg-2.png") center bottom/100% 100% no-repeat;
     padding-top: 1100px;
     margin-top: -1100px;
-    padding-bottom: 600px;
+    padding-bottom: 800px;
     margin-bottom: -800px;
   }
   .comment_section.blog02 .try_box {
@@ -905,6 +907,7 @@
   }
   .about_section_03 ul {
     column-count: 1;
+    padding-left: 0;
   }
   .about_section_03 ul li {
     font-size: 16px;
@@ -914,8 +917,8 @@
     background: url("../img/about-bg-mobile-1.png") center top/100% 100% no-repeat;
     padding-bottom: 80px;
     margin-bottom: -80px;
-    padding-top: 2400px;
-    margin-top: -2320px;
+    padding-top: 2600px;
+    margin-top: -2520px;
   }
   .section_10 .btn_group {
     flex-wrap: wrap;
@@ -986,6 +989,12 @@
   }
   .blog_01 {
     padding-bottom: 0;
+  }
+  .section_10 p br {
+    display: none;
+  }
+  .report_section01 .col-lg-11.mx-auto.text-center {
+    padding: 0;
   }
 }
 @media (max-width: 500px) {
