@@ -115,6 +115,11 @@ $(document).ready(function () {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
         },
+        breakpoints: {
+            0: {
+                loop: true
+            },
+        },
     });
     $('.faq-question').on('click', function () {
         const $faqItem = $(this).closest('.faq-item');

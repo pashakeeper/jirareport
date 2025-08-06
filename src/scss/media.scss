@@ -119,7 +119,7 @@
     height: 70px;
   }
   .cloud_box {
-    max-width: 90%;
+    max-width: 100%;
 
     h3 {
       font-size: 30px;
@@ -299,11 +299,14 @@
       }
     }
   }
+  .header.scrolled {
+    padding: 10px 0;
+  }
   .menu_box {
     position: fixed;
     width: 85%;
-    left: -110%;
-    top: 110px;
+    right: -110%;
+    top: 65px;
     border-radius: 20px;
     backdrop-filter: blur(15px);
     background: linear-gradient(41.78deg, rgba(11, 11, 11, 0.87) -3.321%, rgba(49, 20, 67, 0.87) 86.054%);
@@ -311,11 +314,10 @@
     transition: all .4s ease-in-out;
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-50%);
     padding: 14px 24px 14px 24px;
 
     &.active {
-      left: 50%;
+      right: 0;
       opacity: 1;
       visibility: visible;
     }
@@ -479,7 +481,7 @@
   }
   .section_05 .number_list {
     justify-content: center;
-
+    margin-bottom: 0;
     li {
       margin-left: auto;
       margin-right: auto;
@@ -749,6 +751,15 @@
   .main_btn, .sec_btn, .bordered_btn {
     height: 50px;
   }
+  .report_section04 {
+    .col-lg-4.col-6 {
+      padding: 0 7.5px;
+    }
+    .report_section04_card {
+      max-width: 100%;
+      border-radius: 32px;
+    }
+  }
   .report_section02 .report_card h3 {
     font-size: 16px;
   }
@@ -758,6 +769,7 @@
   .report_section02 .report_card {
     min-height: 224px;
     padding: 20px 14px;
+    border-radius: 32px;
   }
   .report_section02 {
     padding-bottom: 123px;
@@ -986,9 +998,11 @@
     margin-top: -600px;
   }
   .comment_section.blog02 {
-    background: url("../img/blog-2-mobile-bg-2.png")center left /100% no-repeat;
-    padding-top: 2100px;
-    margin-top: -2100px;
+    background: url("../img/blog-2-mobile-bg-2.png")center bottom /100% 100% no-repeat;
+    padding-top: 1100px;
+    margin-top: -1100px;
+    padding-bottom: 600px;
+    margin-bottom: -800px;
     .try_box {
       margin-bottom: 80px;
     }
@@ -1037,11 +1051,11 @@
     line-height: 29px;
   }
   .section_10 {
-    background: url("../img/about-bg-mobile-1.png")center bottom /100% no-repeat;
+    background: url("../img/about-bg-mobile-1.png")center top /100% 100% no-repeat;
     padding-bottom: 80px;
     margin-bottom: -80px;
-    padding-top: 280px;
-    margin-top: -200px;
+    padding-top: 2400px;
+    margin-top: -2320px;
     .btn_group {
       flex-wrap: wrap;
       margin-bottom: 60px;
@@ -1049,6 +1063,81 @@
         margin-bottom: 40px;
       }
     }
+  }
+  h1 {
+    br {
+      display: none;
+    }
+  }
+  .section_04 h3 {
+    text-align: center;
+    font-size: 36px;
+  }
+  .section_04 p {
+    font-size: 14px;
+  }
+  .section_06 .swiper-button-prev, .section_06 .swiper-button-next {
+    top: 30px;
+  }
+  .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+    opacity: 1;
+  }
+  .faq-text {
+    line-height: inherit;
+  }
+  .contact-form .row {
+    margin-bottom: 0;
+  }
+  .about_section {
+    background: url("../img/about-bg-mobile-2.png")center top /100% no-repeat;
+    padding-bottom: 2500px;
+    margin-bottom: -2420px;
+  }
+  .section_what_we_do {
+    .report_card {
+      img {
+        width: 100px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+  .section_what_we_do .report_card ul {
+    font-size: 16px;
+  }
+  .report_section02 p {
+    font-size: 14px;
+  }
+  .jira_cloud {
+    .col-lg-6.col-6 {
+      padding: 0 7.5px;
+    }
+    .col-lg-10.row.mx-auto {
+      padding: 0;
+    }
+  }
+  .cloud_box h3, .cloud_box p {
+    br {
+      display: none;
+    }
+  }
+  .cloud_box p {
+    font-weight: 200;
+  }
+  .trust_signals {
+    .pricing_box {
+      padding: 32px 17px;
+    }
+  }
+  .strategic_card.active .strategic_card_content {
+    margin-top: 40px;
+  }
+  .partners_02 .report_card img {
+    margin-bottom: 20px;
+  }
+  .blog_01 {
+    padding-bottom: 0;
   }
 }
 
@@ -1115,23 +1204,4 @@
   }
 }
 
-@media (max-width: 1600px) {
-  .container {
-    padding: 0 40px;
-  }
-}
-
-/* До 1440px — 1600x900 ноуты с 125% */
-@media (max-width: 1440px) {
-  .container {
-    padding: 0 30px;
-  }
-}
-
-/* До 1280px — ещё меньше: старые ноуты, масштаб 125% */
-@media (max-width: 1280px) {
-  .container {
-    padding: 0 20px;
-  }
-}
 
