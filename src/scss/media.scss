@@ -1052,6 +1052,9 @@
   .about_section_03 ul li {
     font-size: 16px;
     line-height: 29px;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   .section_10 {
     background: url("../img/about-bg-mobile-1.png")center top /100% 100% no-repeat;

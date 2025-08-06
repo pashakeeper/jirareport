@@ -913,6 +913,9 @@
     font-size: 16px;
     line-height: 29px;
   }
+  .about_section_03 ul li:last-child {
+    margin-bottom: 0;
+  }
   .section_10 {
     background: url("../img/about-bg-mobile-1.png") center top/100% 100% no-repeat;
     padding-bottom: 80px;
