@@ -1595,10 +1595,21 @@ h2 {
 .blog_02 {
   background: transparent;
   height: auto;
+  padding-bottom: 300px;
+  margin-bottom: -220px;
+  background-size: cover;
 }
 
 .cards_article_content {
   margin-top: -300px;
+  background: url("../img/blog-2-bg1.png") center top / 100% 100% no-repeat;
+}
+.comment_section.blog02 {
+  background: url("../img/blog-2-bg2.png")center bottom /100% 100% no-repeat;
+  padding-top: 700px;
+  margin-top: -700px;
+  padding-bottom: 400px;
+  margin-bottom: -400px;
 }
 
 .content_blog_01 {
