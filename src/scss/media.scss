@@ -430,6 +430,7 @@
       transform: translateY(-50px);
     }
   }
+
   .main_menu li:has(ul):hover {
     a {
       &::after {
@@ -458,6 +459,7 @@
 
     }
   }
+
   .footer_logo {
     margin-bottom: 20px;
   }
@@ -555,11 +557,15 @@
     flex-wrap: wrap;
 
     button {
-      margin-bottom: 20px;
     }
   }
   .video_box .play img {
     max-width: 100px;
+  }
+  .video_box {
+    width: 100%;
+    border-radius: 30px;
+    overflow: hidden;
   }
   .pricing_box {
     padding: 30px;
@@ -710,7 +716,7 @@
     padding: 2px 14.5px;
     height: 50px;
     line-height: normal;
-    white-space: break-spaces;
+    white-space: unset;
     width: fit-content;
     font-weight: 700;
 
@@ -755,6 +761,9 @@
   .report_section04 {
     .col-lg-4.col-6 {
       padding: 0 7.5px;
+      &:last-child {
+        width: 100%;
+      }
     }
     .report_section04_card {
       max-width: 100%;
@@ -1153,6 +1162,32 @@
   .report_section01 {
     .col-lg-11.mx-auto.text-center {
       padding: 0;
+    }
+  }
+  .section_04 {
+    padding-bottom: 80px;
+  }
+  .section_05 h2 {
+    margin-bottom: 40px;
+  }
+  .section_05 .number_list li {
+    width: 100%;
+    margin-bottom: 34px;
+    &:last-child {
+      margin-bottom: 40px;
+    }
+  }
+  .form-floating .form-control {
+    font-size: 16px;
+  }
+  .report_section01 h1 {
+    padding: 0 20px;
+  }
+  .section_01 p {
+    padding: 0 20px;
+    text-align: center;
+    br {
+      display: none;
     }
   }
 }

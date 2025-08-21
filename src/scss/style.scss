@@ -725,7 +725,7 @@ h2 {
   background: transparent;
 }
 
-.form-floating > .form-control {
+.form-floating  .form-control {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid #4a5a6a;
   border-radius: 8px;
@@ -2087,4 +2087,7 @@ body {
   margin-bottom: -387px;
   margin-top: -387px;
   background-size: 100%;
+}
+.main_menu li:has(ul) > a.clicked_mobile::after {
+  transform: translateY(-50%) scaleY(-1);
 }
