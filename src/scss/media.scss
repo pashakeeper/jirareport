@@ -261,6 +261,11 @@
 }
 
 @media (max-width: 991px) {
+  .video_box {
+    iframe {
+      height: auto;
+    }
+  }
   .section_03 {
     .w-100.d-sm-none.d-md-block {
       display: none;

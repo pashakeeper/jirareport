@@ -130,6 +130,9 @@ $(document).ready(function() {
                 loop: true,
                 autoHeight: true,
             },
+            991: {
+               autoHeight: false, 
+            }
 
         },
     });
@@ -433,6 +436,7 @@ $(document).ready(function() {
             $(this).closest(".form-floating").find("label").fadeIn(200);
         }
     });
-
+    // Проверяем ширину окна (мобилка условно < 992px)
+    // навешиваем клик на стрелочку (a с подменю)
 
 });
