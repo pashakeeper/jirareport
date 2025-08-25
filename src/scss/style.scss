@@ -343,6 +343,10 @@ h2 {
   p {
     font-size: clamp(20px, 5vw, 40px);
   }
+  iframe,video {
+    border-radius: 30px;
+    overflow: hidden;
+  }
 }
 
 .video_box {
@@ -447,29 +451,22 @@ h2 {
 .review_slider::after {
   content: '';
   position: absolute;
-  top: 0;
+  top: -50%;
   bottom: 0;
   width: 200px;
+  height: 758px;
   z-index: 3;
   pointer-events: none;
 }
 
 .review_slider::before {
   left: 0;
-  background: linear-gradient(90deg,
-          rgba(26, 26, 26, 1) 0%,
-          rgba(26, 26, 26, 0.8) 50%,
-          rgba(26, 26, 26, 0) 100%
-  );
+  background: url('../img/testimonials-left.png') center left / 100% 100% no-repeat;
 }
 
 .review_slider::after {
   right: 0;
-  background: linear-gradient(270deg,
-          rgba(26, 26, 26, 1) 0%,
-          rgba(26, 26, 26, 0.8) 50%,
-          rgba(26, 26, 26, 0) 100%
-  );
+  background: url('../img/testimonials-right.png') center right / 100% 100% no-repeat;
 }
 
 .review_box {
@@ -901,7 +898,7 @@ h2 {
   url("../img/report-bg1.png") center 1px no-repeat;
   padding-bottom: 300px;
   height: auto;
-
+  background-size: 100% 100%;
 }
 .report_section03 {
   background: url("../img/report-bg3.png") left top no-repeat;
@@ -943,9 +940,20 @@ h2 {
 
   .video_box {
     background: #252525;
-    min-height: 808px;
+    min-height: 702px;
+    max-height: 702px;
     width: 100%;
     border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  iframe,video {
+    border-radius: 30px;
+    overflow: hidden;
+  }
+  .play {
+    display: none !important;
   }
 }
 
@@ -1007,7 +1015,14 @@ h2 {
   }
 
   .video_box iframe {
-    height: 479px;
+    height: 378px;
+  }
+  .video_box video {
+    height: 378px;
+  }
+  iframe,video {
+    border-radius: 30px;
+    overflow: hidden;
   }
 }
 
@@ -1772,7 +1787,7 @@ h2 {
   margin-top: 60px;
   .col-lg-4 {
     order: 0;
-    transition: all .5s ease;
+    transition: all 1s ease;
     &.col-lg-12 {
       order: -1;
       background: linear-gradient(76.75deg, rgba(250, 243, 255, 0.05) 3.93%, rgba(187, 78, 255, 0.05) 89.88%);

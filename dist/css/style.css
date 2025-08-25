@@ -340,6 +340,10 @@ h2 {
 .section_04 p {
   font-size: clamp(20px, 5vw, 40px);
 }
+.section_04 iframe, .section_04 video {
+  border-radius: 30px;
+  overflow: hidden;
+}
 
 .video_box {
   position: relative;
@@ -421,21 +425,22 @@ h2 {
 .review_slider::after {
   content: "";
   position: absolute;
-  top: 0;
+  top: -50%;
   bottom: 0;
   width: 200px;
+  height: 758px;
   z-index: 3;
   pointer-events: none;
 }
 
 .review_slider::before {
   left: 0;
-  background: linear-gradient(90deg, rgb(26, 26, 26) 0%, rgba(26, 26, 26, 0.8) 50%, rgba(26, 26, 26, 0) 100%);
+  background: url("../img/testimonials-left.png") center left/100% 100% no-repeat;
 }
 
 .review_slider::after {
   right: 0;
-  background: linear-gradient(270deg, rgb(26, 26, 26) 0%, rgba(26, 26, 26, 0.8) 50%, rgba(26, 26, 26, 0) 100%);
+  background: url("../img/testimonials-right.png") center right/100% 100% no-repeat;
 }
 
 .review_box {
@@ -819,6 +824,7 @@ h2 {
   background: url("../img/report-bg2.png") center 1px no-repeat, url("../img/report-bg1.png") center 1px no-repeat;
   padding-bottom: 300px;
   height: auto;
+  background-size: 100% 100%;
 }
 
 .report_section03 {
@@ -859,9 +865,20 @@ h2 {
 }
 .report_section05 .video_box {
   background: #252525;
-  min-height: 808px;
+  min-height: 702px;
+  max-height: 702px;
   width: 100%;
   border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.report_section05 iframe, .report_section05 video {
+  border-radius: 30px;
+  overflow: hidden;
+}
+.report_section05 .play {
+  display: none !important;
 }
 
 .report_card {
@@ -911,7 +928,14 @@ h2 {
   max-width: 193px;
 }
 .report_section03 .video_box iframe {
-  height: 479px;
+  height: 378px;
+}
+.report_section03 .video_box video {
+  height: 378px;
+}
+.report_section03 iframe, .report_section03 video {
+  border-radius: 30px;
+  overflow: hidden;
 }
 
 .report_section04_card {
@@ -1598,7 +1622,7 @@ h2 {
 }
 .strategic_card_section .col-lg-4 {
   order: 0;
-  transition: all 0.5s ease;
+  transition: all 1s ease;
 }
 .strategic_card_section .col-lg-4.col-lg-12 {
   order: -1;

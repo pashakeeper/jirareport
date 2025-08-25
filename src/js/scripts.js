@@ -131,7 +131,7 @@ $(document).ready(function() {
                 autoHeight: true,
             },
             991: {
-               autoHeight: false, 
+                autoHeight: false
             }
 
         },
@@ -195,7 +195,7 @@ $(document).ready(function() {
                     $('html, body').animate({
                         scrollTop: Math.max(0, targetOffset - 150) // отступ сверху, можно регулировать
                     }, {
-                        duration: 600,
+                        duration: 900,
                         easing: 'swing'
                     });
                 }
@@ -231,7 +231,7 @@ $(document).ready(function() {
                     $('html, body').animate({
                         scrollTop: Math.max(0, targetScroll)
                     }, {
-                        duration: 800,
+                        duration: 900,
                         easing: 'swing'
                     });
 
@@ -324,7 +324,7 @@ const videoObserver = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: .9,
+    threshold: 1,
     rootMargin: '100px 0px'
 });
 
@@ -436,7 +436,16 @@ $(document).ready(function() {
             $(this).closest(".form-floating").find("label").fadeIn(200);
         }
     });
-    // Проверяем ширину окна (мобилка условно < 992px)
-    // навешиваем клик на стрелочку (a с подменю)
+    window.addEventListener("load", () => {
+        if (window.location.hash) {
+            const el = document.querySelector(window.location.hash);
+            if (el) {
+                el.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center" // <-- именно по центру экрана
+                });
+            }
+        }
+    });
 
 });
