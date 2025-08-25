@@ -864,7 +864,7 @@ h2 {
   padding-top: 80px;
 }
 .report_section05 .video_box {
-  background: #252525;
+  background: #121314;
   min-height: 702px;
   max-height: 702px;
   width: 100%;
@@ -1913,4 +1913,17 @@ body .section_404 img {
 
 .main_menu li:has(ul) > a.clicked_mobile::after {
   transform: translateY(-50%) scaleY(-1);
+}
+
+.menu_box .main_menu li.current-menu-parent > a,
+.menu_box .main_menu li.current_page_item > a {
+  background: rgba(97, 94, 99, 0.24);
+  padding: 10.5px 15px;
+  border-radius: 12px;
+}
+
+.menu_box .main_menu li a {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }

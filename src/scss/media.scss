@@ -264,7 +264,7 @@ $font-family_2: "Font Awesome 6 Free";
   }
   .services_slider {
     a {
-      height: auto;
+      height: 187px;
     }
   }
 }
@@ -411,7 +411,7 @@ $font-family_2: "Font Awesome 6 Free";
             font-family: $font-family_2;
             font-weight: 900;
             position: absolute;
-            right: 0;
+            right: -20px;
             top: 50%;
             transform: translateY(-50%);
             font-size: 0.8em;

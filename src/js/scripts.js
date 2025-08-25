@@ -306,61 +306,75 @@ $(document).ready(function() {
 });
 
 
-// Создаём наблюдатель за видео при скролле
+// Определяем мобильное устройство
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+// Настройки для observer
 const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         const $box = $(entry.target);
         const $iframe = $box.find('iframe');
         const $video = $box.find('video');
-        const $placeholder = $box.find('.video_placeholder');
-        const $playBtn = $box.find('.play');
 
         if (entry.isIntersecting) {
-            // Видео попало в поле зрения - запускаем
-            startVideo($box, $iframe, $video, $placeholder, $playBtn);
+            startVideo($box, $iframe, $video);
         } else {
-            // Видео ушло из поля зрения - останавливаем
-            stopVideo($box, $iframe, $video, $placeholder, $playBtn);
+            pauseVideo($iframe, $video); // только пауза, без плейсхолдера
         }
     });
 }, {
-    threshold: 1,
-    rootMargin: '100px 0px'
+    threshold: isMobile ? 0.3 : 0.7, // мягче на мобилке
+    rootMargin: isMobile ? '150px 0px' : '100px 0px'
 });
 
 // Функция запуска видео
-function startVideo($box, $iframe, $video, $placeholder, $playBtn) {
+function startVideo($box, $iframe, $video) {
+    const $placeholder = $box.find('.video_placeholder');
+    const $playBtn = $box.find('.play');
     const videoSrc = $iframe.data('src') || ($video.length ? $video.find('source').attr('src') : '');
 
     if (!videoSrc) return;
 
-    // Скрываем плейсхолдер и кнопку
+    // Скрываем плейсхолдер и кнопку только один раз
     $placeholder.hide();
     $playBtn.hide();
 
     if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
         let embedUrl = getYouTubeEmbedUrl(videoSrc);
-        $iframe.attr('src', embedUrl).show();
+        if ($iframe.attr('src') !== embedUrl) {
+            $iframe.attr('src', embedUrl);
+        }
+        $iframe.show();
         $video.hide();
 
     } else if (videoSrc.includes('vimeo.com')) {
         let embedUrl = getVimeoEmbedUrl(videoSrc);
-        $iframe.attr('src', embedUrl).show();
+        if ($iframe.attr('src') !== embedUrl) {
+            $iframe.attr('src', embedUrl);
+        }
+        $iframe.show();
         $video.hide();
 
     } else {
         // Локальное видео
         if ($video.length) {
             $video.show();
-            $video.prop('muted', true); // <<< ОБЯЗАТЕЛЬНО
+            $video.prop('muted', true);
             $video[0].play().catch(err => {
-                console.warn('Автозапуск не сработал, ждём клик:', err);
+                console.warn('Автозапуск не сработал:', err);
             });
         }
         $iframe.hide();
     }
 }
 
+// Пауза без мигания
+function pauseVideo($iframe, $video) {
+    // iframe не трогаем (не сбрасываем src)
+    if ($video.length && !$video[0].paused) {
+        $video[0].pause();
+    }
+}
 // Функция остановки видео
 function stopVideo($box, $iframe, $video, $placeholder, $playBtn) {
     // Показываем плейсхолдер и кнопку обратно

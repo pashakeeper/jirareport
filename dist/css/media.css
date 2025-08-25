@@ -211,7 +211,7 @@
     margin-right: auto;
   }
   .services_slider a {
-    height: auto;
+    height: 187px;
   }
 }
 @media (max-width: 991px) {
@@ -337,7 +337,7 @@
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     position: absolute;
-    right: 0;
+    right: -20px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 0.8em;
