@@ -1,3 +1,8 @@
+@media (min-width: 1680px) {
+  .content_blog_3 {
+    margin-top: 0;
+  }
+}
 @media (max-width: 1168px) {
   .partner_logo {
     margin-left: 50px;
@@ -212,6 +217,14 @@
   }
   .services_slider a {
     height: 187px;
+  }
+}
+@media (max-width: 1300px) {
+  .swiper-button-prev {
+    left: 0;
+  }
+  .swiper-button-next {
+    right: 0;
   }
 }
 @media (max-width: 991px) {

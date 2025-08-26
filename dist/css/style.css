@@ -1927,3 +1927,9 @@ body .section_404 img {
   padding: 0;
   border-radius: 0;
 }
+
+.section_06 .swiper-button-next.swiper-button-disabled, .section_06 .swiper-button-prev.swiper-button-disabled {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}

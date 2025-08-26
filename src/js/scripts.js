@@ -263,16 +263,29 @@ $(document).ready(function() {
 
                 // Запускаем скачивание через небольшую задержку
                 setTimeout(function() {
-                    window.open(downloadUrl, '_blank');
+                // Создаём невидимую ссылку с атрибутом download
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.setAttribute('download', '');
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
 
-                    // Убираем сообщение через несколько секунд
-                    setTimeout(function() {
-                        $card.find('.download-success-message').fadeOut(500, function() {
-                            $(this).remove();
-                        });
-                    }, 3000);
-                }, 1000);
+                // fallback для Safari (если download не сработал)
+                setTimeout(function() {
+                    window.location.href = downloadUrl;
+                }, 500);
+
+                // Убираем сообщение через 3 сек
+                setTimeout(function() {
+                    $card.find('.download-success-message').fadeOut(500, function() {
+                        $(this).remove();
+                    });
+                }, 3000);
+            }, 1000);
             }
+            
         }
     });
 
