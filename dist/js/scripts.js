@@ -27,11 +27,11 @@ $(document).ready(function() {
         if (
             !$(e.target).closest(".menu_box").length &&
             !$(e.target).closest(".burger").length
-        ) {
+            ) {
             $(".menu_box").removeClass("active");
-            $(".burger").removeClass("active");
-        }
-    });
+        $(".burger").removeClass("active");
+    }
+});
 
     // Табы
     $('.tab-btn').on('click', function() {
@@ -160,48 +160,116 @@ $(document).ready(function() {
         $('.video_content').removeClass('active');
         $('#' + tab_id).addClass('active');
     });
-    // Клик по стрелочке - сворачивание/разворачивание
-    $('.strategic_card h3 a i').on('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+   const $contentBlock = $('<div class="strategic_card_active_block col-lg-12"></div>');
+$('#strategic_card_section .row').prepend($contentBlock);
 
-        const $card = $(this).closest('.strategic_card');
-        const $container = $card.parent();
-        const $icon = $(this).find('.fa');
+let isAnimating = false;
+let pendingCard = null;
 
-        if ($card.hasClass('active')) {
-            // Сворачиваем карточку
-            $card.removeClass('active');
-            $container.removeClass('active col-lg-12');
-            $icon.removeClass('fa-angle-up').addClass('fa-angle-down');
-        } else {
-            // Разворачиваем карточку
-            // Сначала сворачиваем все остальные
-            $('.strategic_card').removeClass('active');
-            $('.strategic_card').parent().removeClass('active col-lg-12');
-            $('.strategic_card .fa').removeClass('fa-angle-up').addClass('fa-angle-down');
+$(document).on('click', '.strategic_card h3 a i', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-            // Разворачиваем текущую
-            $card.addClass('active');
-            $container.addClass('active col-lg-12');
-            $icon.removeClass('fa-angle-down').addClass('fa-angle-up');
+    if (isAnimating) return;
 
-            // Прокручиваем к верху карточки + 300px
-            setTimeout(function() {
-                const $target = $('.col-lg-12:has(h2:contains("Latest Insights and Practical Guides"))');
-                if ($target.length) {
-                    const targetOffset = $target.offset().top;
+    const $icon = $(this);
+    const $card = $icon.closest('.strategic_card');
 
-                    $('html, body').animate({
-                        scrollTop: Math.max(0, targetOffset - 150) // отступ сверху, можно регулировать
-                    }, {
-                        duration: 900,
-                        easing: 'swing'
-                    });
+    // Если карточка уже имеет класс clicked - блокируем повторный клик
+    if ($card.hasClass('clicked')) {
+        return;
+    }
+
+    // Добавляем класс clicked и блокируем карточку
+    $('.strategic_card').removeClass('clicked');
+    $card.addClass('clicked');
+
+    // Если эта карточка уже активна - закрываем
+    if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
+        closeActiveBlock();
+        return;
+    }
+
+    // Если уже открыта другая карточка
+    if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
+        pendingCard = $card;
+        closeActiveBlock();
+        return;
+    }
+
+    // Если ничего не открыто - открываем карточку
+    openCard($card);
+});
+
+// Функция для проверки, та же ли это карточка
+function isSameCard($card, $contentBlock) {
+    const cardTitle = $card.find('h3 a').text().trim();
+    const activeTitle = $contentBlock.find('h3 a').text().trim();
+    return cardTitle === activeTitle;
+}
+
+// Функция для открытия карточки
+function openCard($card) {
+    isAnimating = true;
+    const contentHtml = $card.html();
+    const currentScroll = $(window).scrollTop();
+    
+    // Обновляем контент и показываем блок
+    $contentBlock
+        .html(contentHtml)
+        .addClass('active');
+    
+    // Устанавливаем стрелочку вверх ТОЛЬКО для текущей карточки
+    resetAllIcons();
+    $card.find('h3 a i').removeClass('fa-angle-down').addClass('fa-angle-up');
+    
+    // Ждем пока блок полностью отрендерится
+    setTimeout(function() {
+        const targetPosition = Math.max(0, $contentBlock.offset().top - 150);
+        
+        // Прокрутка только если нужно переместиться значительно
+        if (Math.abs(targetPosition - currentScroll) > 100) {
+            $('html, body').animate({
+                scrollTop: targetPosition
+            }, {
+                duration: 300,
+                easing: 'linear',
+                complete: function() {
+                    isAnimating = false;
                 }
-            }, 50);
+            });
+        } else {
+            isAnimating = false;
         }
-    });
+    }, 20);
+}
+
+// Функция для сброса всех иконок
+function resetAllIcons() {
+    $('.strategic_card:not(.strategic_card_active_block .strategic_card) h3 a i').removeClass('fa-angle-up').addClass('fa-angle-down');
+}
+
+function closeActiveBlock() {
+    isAnimating = true;
+    
+    $contentBlock.removeClass('active').empty();
+    resetAllIcons();
+    
+    setTimeout(function() {
+        isAnimating = false;
+        
+        if (pendingCard) {
+            // Убедимся, что pendingCard все еще существует в DOM
+            if ($.contains(document, pendingCard[0])) {
+                openCard(pendingCard);
+            }
+            pendingCard = null;
+        } else {
+            // Снимаем класс clicked только если нет ожидающей карточки
+            $('.strategic_card').removeClass('clicked');
+        }
+    }, 150);
+}
 
     // Клик по кнопке Download - скролл к форме
     $('.strategic_card_content .btn_group .sec_btn').on('click', function(e) {
@@ -264,47 +332,54 @@ $(document).ready(function() {
                 // Запускаем скачивание через небольшую задержку
                 setTimeout(function() {
                 // Создаём невидимую ссылку с атрибутом download
-                const link = document.createElement('a');
-                link.href = downloadUrl;
-                link.setAttribute('download', '');
-                link.style.display = 'none';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                    const link = document.createElement('a');
+                    link.href = downloadUrl;
+                    link.setAttribute('download', '');
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
 
                 // fallback для Safari (если download не сработал)
-                setTimeout(function() {
-                    window.location.href = downloadUrl;
-                }, 500);
+                    setTimeout(function() {
+                        window.location.href = downloadUrl;
+                    }, 500);
 
                 // Убираем сообщение через 3 сек
-                setTimeout(function() {
-                    $card.find('.download-success-message').fadeOut(500, function() {
-                        $(this).remove();
-                    });
-                }, 3000);
-            }, 1000);
+                    setTimeout(function() {
+                        $card.find('.download-success-message').fadeOut(500, function() {
+                            $(this).remove();
+                        });
+                    }, 3000);
+                }, 1000);
             }
             
         }
     });
-
-    // Клик вне карточек
-    $(document).on('click', function(e) {
-        if (!$(e.target).closest('.strategic_card, .right_side').length) {
-            $('.strategic_card').removeClass('active');
-            $('.strategic_card').parent().removeClass('active col-lg-12');
-            $('.strategic_card .fa').removeClass('fa-angle-up').addClass('fa-angle-down');
+// Клик вне карточек и активного блока
+$(document).on('click', function(e) {
+    if (isAnimating) return;
+    
+    const $target = $(e.target);
+    
+    if (!$target.closest('.strategic_card, .strategic_card_active_block').length) {
+        closeActiveBlock();
+    }
+});
+    //  Обработка нажатия Escape
+    $(document).on('keydown', function(e) {
+        if (isAnimating) return;
+        
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            closeActiveBlock();
         }
     });
 
-    // Обработка нажатия Escape
-    $(document).on('keydown', function(e) {
-        if (e.key === 'Escape' || e.keyCode === 27) {
-            $('.strategic_card').removeClass('active');
-            $('.strategic_card').parent().removeClass('active col-lg-12');
-            $('.strategic_card .fa').removeClass('fa-angle-up').addClass('fa-angle-down');
-        }
+// Дополнительная обработка для клика по стрелочке внутри активного блока
+    $(document).on('click', '.strategic_card_active_block h3 a i', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeActiveBlock();
     });
 
     // Обрезка текста для мобильных устройств
