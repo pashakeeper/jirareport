@@ -180,6 +180,7 @@ $font-family_2: "Font Awesome 6 Free";
     width: 100%;
     line-height: 40px;
     margin-bottom: 20px;
+    padding-right: 20px;
   }
   .more_article {
     .try_box {
@@ -283,6 +284,24 @@ $font-family_2: "Font Awesome 6 Free";
   }
 }
 @media (max-width: 991px) {
+  .strategic_card_active_block .strategic_card.clicked .right_side {
+    width: 100%;
+    padding: 0;
+  }
+  .strategic_card_active_block .strategic_card.clicked .strategic_card_content {
+    max-width: 100%;
+  }
+  .categories_list {
+    padding-right: 0 !important;
+  }
+  .strategic_card_active_block .strategic_card.clicked .right_side .form-row {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    .form-group {
+      flex: 0 0 calc(50% - 5px);
+    }
+  }
   .strategic_card.active {
     .strategic_card_content {
       li {
