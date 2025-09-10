@@ -196,6 +196,7 @@
   }
   .article_card .tags_list {
     margin-bottom: 171px;
+    gap: 24px 10px;
   }
   .partners_01 {
     background: url(../img/partner-bg.png) -20px top no-repeat;

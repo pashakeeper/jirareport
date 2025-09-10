@@ -1654,9 +1654,6 @@ h2 {
   opacity: 0.3;
   pointer-events: none;
 }
-.strategic_card.clicked h3 a i {
-  cursor: not-allowed;
-}
 .strategic_card .strategic_card_content {
   display: none;
 }
@@ -1945,4 +1942,15 @@ body .section_404 img {
 }
 .strategic_card_active_block .strategic_card.clicked .right_side {
   width: 45%;
+}
+
+.strategic_active_spacer {
+  width: 100%;
+  will-change: height;
+}
+
+.highlight-form {
+  outline: 2px solid #28a745;
+  outline-offset: 4px;
+  transition: outline-color 0.6s;
 }

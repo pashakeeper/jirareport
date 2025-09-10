@@ -1818,7 +1818,7 @@ h2 {
     opacity: .3;
     pointer-events: none;
     h3 a i {
-      cursor: not-allowed;
+     
     }
   }
   .strategic_card_content {
@@ -2150,3 +2150,6 @@ body {
       width: 45%;
     }
   }
+
+  .strategic_active_spacer { width: 100%; will-change: height; }
+.highlight-form { outline: 2px solid #28a745; outline-offset: 4px; transition: outline-color .6s; }

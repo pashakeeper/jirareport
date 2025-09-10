@@ -10,16 +10,17 @@ $(document).ready(function() {
         e.preventDefault();
 
         let href = this.getAttribute('href');
-
-        // Пропускаем пустой или просто "#"
         if (!href || href === '#') return;
 
-        let target = $(href);
-        if (target.length) {
-            let headerHeight = $('header').outerHeight() || 110; // высота фиксированной шапки
-            $('html, body').animate({
-                scrollTop: target.offset().top - headerHeight
-            }, 800);
+        let target = document.querySelector(href);
+        if (target) {
+            let headerHeight = $('header').outerHeight() || 110;
+            let targetPos = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+            window.scrollTo({
+                top: targetPos,
+                behavior: 'smooth' // ← плавно
+            });
         }
     });
 
@@ -28,11 +29,11 @@ $(document).ready(function() {
         if (
             !$(e.target).closest(".menu_box").length &&
             !$(e.target).closest(".burger").length
-            ) {
+        ) {
             $(".menu_box").removeClass("active");
-        $(".burger").removeClass("active");
-    }
-});
+            $(".burger").removeClass("active");
+        }
+    });
 
     // Табы
     $('.tab-btn').on('click', function() {
@@ -161,21 +162,32 @@ $(document).ready(function() {
         $('.video_content').removeClass('active');
         $('#' + tab_id).addClass('active');
     });
-    // ===== Активный блок один раз =====
-    const $contentBlock = $('<div class="strategic_card_active_block col-lg-12"></div>');
+    // ===== Настройки
+    const SCROLL_PAD = 50;
+    const HEADER_SEL = 'header';
+
+    // ===== Активный блок один на секцию
+    const $contentBlock = $('<div class="strategic_card_active_block col-lg-12" aria-live="polite"></div>');
     $('#strategic_card_section .row').prepend($contentBlock);
 
     let isAnimating = false;
     let pendingCard = null;
 
-    // ===== Утилиты =====
+    // ===== Утилиты
+    function getHeaderHeight() {
+        const $h = $(HEADER_SEL);
+        return $h.length ? $h.outerHeight() : 0;
+    }
+
+    function scrollToY(y) {
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    }
+
     function getCardId($card) {
-        // Лучше иметь data-card-id на карточке
         return $card.data('card-id') || $card.find('h3 a').first().text().trim();
     }
 
     function isSameCard($card, $activeBlock) {
-        // Сравниваем по ID (или заголовку как фолбэк)
         const id1 = getCardId($card);
         const id2 = getCardId($activeBlock.find('.strategic_card'));
         return id1 === id2;
@@ -183,73 +195,104 @@ $(document).ready(function() {
 
     function resetAllIcons() {
         $('.strategic_card:not(.strategic_card_active_block .strategic_card) h3 a i')
-        .removeClass('fa-angle-up')
-        .addClass('fa-angle-down');
+            .removeClass('fa-angle-up')
+            .addClass('fa-angle-down');
     }
 
-    // ===== Открытие карточки =====
+    // ===== Скролл к форме в активном блоке
+    function scrollToFormTitleInActiveBlock() {
+        const $formTitle = $contentBlock.find('.right_side .form-title');
+        if (!$formTitle.length) return;
+        const offsetTop = $formTitle.offset().top - getHeaderHeight() - SCROLL_PAD;
+        scrollToY(offsetTop);
+        $formTitle.addClass('highlight-form');
+        setTimeout(() => $formTitle.removeClass('highlight-form'), 2000);
+    }
+
+    // ===== Инициализация CF7 в активном блоке (без таймаутов)
+    function reinitCF7In($root) {
+        if (!window.wpcf7) return;
+        const $forms = $root.find('.wpcf7 > form, form.wpcf7-form');
+        if (!$forms.length) return;
+        if (typeof window.wpcf7.init === 'function') {
+            $forms.each(function() { window.wpcf7.init(this); });
+        } else if (typeof window.wpcf7.initForm === 'function') {
+            $forms.each(function() { window.wpcf7.initForm(this); });
+        } else {
+            // форс-событие, если требуется
+            $forms.each(function() { this.dispatchEvent(new Event('wpcf7init')); });
+        }
+    }
+
+    // ===== Открытие карточки
     function openCard($card) {
+        if (isAnimating) return;
         isAnimating = true;
-        const currentScroll = $(window).scrollTop();
 
-        // Вставляем всю карточку (outerHTML) в активный блок
-        const outer = $card.prop('outerHTML');
-        $contentBlock.html(outer).addClass('active');
+        // Вставляем клон карточки
+        const $clone = $($card.prop('outerHTML'));
+        $contentBlock.html($clone).addClass('active');
 
-        // Стрелка вверх для активной карточки
+        // Обновляем иконку
         resetAllIcons();
         $contentBlock.find('h3 a i').removeClass('fa-angle-down').addClass('fa-angle-up');
 
-        // Реинициализация CF7 внутри активного блока
-        setTimeout(function() {
-            if (window.wpcf7) {
-                if (typeof window.wpcf7.init === 'function') {
-                    $contentBlock.find('.wpcf7 > form').each(function() { window.wpcf7.init(this); });
-                } else if (typeof window.wpcf7.initForm === 'function') {
-                    $contentBlock.find('form.wpcf7-form').each(function() { window.wpcf7.initForm(this); });
-                }
-            }
-        }, 0);
+        // Переинициализация форм
+        reinitCF7In($contentBlock);
 
-        // Скролл к активному блоку
-        setTimeout(function() {
-            const target = Math.max(0, $contentBlock.offset().top - 150);
-            if (Math.abs(target - currentScroll) > 100) {
-                $('html, body').animate({ scrollTop: target }, {
-                    duration: 300,
-                    easing: 'linear',
-                    complete: () => { isAnimating = false; }
-                });
-            } else {
-                isAnimating = false;
-            }
-        }, 20);
+        // Скролл к верху активного блока — без задержек
+        const y = $contentBlock.offset().top - getHeaderHeight() - SCROLL_PAD;
+        // Скроллим только если нужно заметно сдвинуться
+        if (Math.abs(window.pageYOffset - y) > 20) {
+            scrollToY(y);
+            // даём браузеру начать скролл, но не ставим таймеров
+            requestAnimationFrame(() => { isAnimating = false; });
+        } else {
+            isAnimating = false;
+        }
     }
 
-    // ===== Закрытие активного блока =====
+    // ===== Закрытие активного блока без «прыжка»
     function closeActiveBlock() {
+        if (isAnimating || !$contentBlock.hasClass('active')) return;
         isAnimating = true;
 
+        // Spacer той же высоты → плавно схлопываем
+        const activeHeight = $contentBlock.outerHeight(true) || 0;
+        const mb = $contentBlock.css('margin-bottom');
+        const $spacer = $('<div class="strategic_active_spacer"></div>').css({
+            height: activeHeight,
+            marginBottom: mb,
+            transition: 'height 180ms linear'
+        });
+
+        $contentBlock.after($spacer);
         $contentBlock.removeClass('active').empty();
         resetAllIcons();
 
-        setTimeout(function() {
-            isAnimating = false;
+        // Запуск схлопывания без таймаутов — через rAF
+        requestAnimationFrame(() => {
+            $spacer.css('height', 0);
 
-            if (pendingCard) {
-                // Переключаемся на новую карточку
-                $('.strategic_card').removeClass('clicked');
-                pendingCard.addClass('clicked');
-                openCard(pendingCard);
-                pendingCard = null;
-            } else {
-                // Если просто закрыли — очищаем clicked
-                $('.strategic_card').removeClass('clicked');
-            }
-        }, 150);
+            // Один раз слушаем окончание перехода
+            $spacer.one('transitionend', () => {
+                $spacer.remove();
+                isAnimating = false;
+
+                if (pendingCard) {
+                    const $next = pendingCard;
+                    pendingCard = null;
+                    $('.strategic_card').removeClass('clicked');
+                    $next.addClass('clicked');
+                    openCard($next);
+                } else {
+                    $('.strategic_card').removeClass('clicked');
+                }
+            });
+        });
     }
 
-    // ===== Клик по стрелочке в карточке (открытие/переключение) =====
+    // ===== Клики по стрелке в карточке (в гриде)
     $(document).on('click', '.strategic_card h3 a i', function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -257,28 +300,23 @@ $(document).ready(function() {
 
         const $card = $(this).closest('.strategic_card');
 
-        // НЕЛЬЗЯ повторно нажать на активную (клик просто игнорируем)
         if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
-            // Заодно убеждаемся, что у активной есть класс clicked в гриде
             const id = getCardId($card);
             $('.strategic_card').each(function() {
-                const $c = $(this);
-                $c.toggleClass('clicked', getCardId($c) === id);
+                $(this).toggleClass('clicked', getCardId($(this)) === id);
             });
+            scrollToFormTitleInActiveBlock();
             return;
         }
 
-        // Если открыта другая — переключаемся
         if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
             pendingCard = $card;
-            // помечаем новую «кликнутой», старую — снимаем
             $('.strategic_card').removeClass('clicked');
             $card.addClass('clicked');
             closeActiveBlock();
             return;
         }
 
-        // Если ничего не открыто — открываем
         if (!$contentBlock.hasClass('active')) {
             $('.strategic_card').removeClass('clicked');
             $card.addClass('clicked');
@@ -286,83 +324,50 @@ $(document).ready(function() {
         }
     });
 
-    // ===== Download: делегирование + скролл к .form-title =====
-    $(document).on('click', '.strategic_card_content .btn_group .sec_btn', function(e) {
-        const $btn = $(this);
-        const isDownload = $btn.text().toLowerCase().includes('download');
-        if (!isDownload) return;
+    // ===== Клик по карточке (кроме интерактивных элементов)
+    $(document).on('click', '.strategic_card, .strategic_card h3', function(e) {
+        if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
+        if (isAnimating) return;
 
-        e.preventDefault();
+        const $card = $(e.target).closest('.strategic_card');
 
-        // область — либо карточка в гриде, либо активный блок
-        const $scope = $btn.closest('.strategic_card').length ?
-        $btn.closest('.strategic_card') :
-        $btn.closest('.strategic_card_active_block');
-
-        const $form = $scope.find('.right_side');
-        const $formTitle = $form.find('.form-title');
-        if (!$form.length || !$formTitle.length) return;
-
-        // если активный блок не открыт этой карточкой — открыть
-        if (!$contentBlock.hasClass('active') || !isSameCard($scope, $contentBlock)) {
-            // находим оригинал по ID/заголовку
-            const id = getCardId($scope);
-            const $original = $('.strategic_card').filter(function() {
-                return getCardId($(this)) === id;
-            }).first();
-            if ($original.length) {
-                $('.strategic_card').removeClass('clicked');
-                $original.addClass('clicked');
-                openCard($original);
-            }
+        if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
+            const id = getCardId($card);
+            $('.strategic_card').each(function() {
+                $(this).toggleClass('clicked', getCardId($(this)) === id);
+            });
+            scrollToFormTitleInActiveBlock();
+            return;
         }
 
-        // скроллим к заголовку формы
-        setTimeout(function() {
-            const target = Math.max(0, $formTitle.offset().top - 150);
-            $('html, body').animate({ scrollTop: target }, { duration: 900, easing: 'swing' });
-            $formTitle.addClass('highlight-form');
-            setTimeout(() => { $formTitle.removeClass('highlight-form'); }, 2000);
-        }, 300);
-    });
+        if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
+            pendingCard = $card;
+            $('.strategic_card').removeClass('clicked');
+            $card.addClass('clicked');
+            closeActiveBlock();
+            return;
+        }
 
-    // ===== CF7: успешная отправка → скачать файл =====
-    $(document).on('wpcf7mailsent', function(event) {
-        const $form = $(event.target);
-        const $scope = $form.closest('.strategic_card').length ?
-        $form.closest('.strategic_card') :
-        $form.closest('.strategic_card_active_block');
-
-        const $downloadBtn = $scope.find('.strategic_card_content .btn_group .sec_btn');
-        if (!$downloadBtn.length) return;
-
-        if ($downloadBtn.text().toLowerCase().includes('download')) {
-            const downloadUrl = $downloadBtn.data('download-url') || $downloadBtn.attr('href');
-            if (!downloadUrl) return;
-
-            $scope.find('.right_side').append(
-                '<div class="download-success-message" style="color:#28a745;margin-top:15px;font-weight:bold;">Thank you! Download will start automatically...</div>'
-                );
-            
-
-            setTimeout(function() {
-                const link = document.createElement('a');
-                link.href = downloadUrl;
-            link.setAttribute('target', '_blank'); // <-- откроется в новой вкладке
-            link.click();
-
-            setTimeout(function() {
-                $scope.find('.download-success-message').fadeOut(500, function() { $(this).remove(); });
-            }, 3000);
-        }, 1000);
+        if (!$contentBlock.hasClass('active')) {
+            $('.strategic_card').removeClass('clicked');
+            $card.addClass('clicked');
+            openCard($card);
         }
     });
 
-    // ===== Вне карточек / ESC — закрыть =====
+    // ===== Повторный клик по .clicked
+    $(document).on('click', '.strategic_card.clicked', function(e) {
+        if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
+        if (isAnimating) return;
+        if ($contentBlock.hasClass('active') && isSameCard($(this), $contentBlock)) {
+            scrollToFormTitleInActiveBlock();
+        }
+    });
+
+    // ===== Вне карточек / ESC — закрыть
     $(document).on('click', function(e) {
         if (isAnimating) return;
-        const $t = $(e.target);
-        if (!$t.closest('.strategic_card, .strategic_card_active_block').length) {
+        if (!$(e.target).closest('.strategic_card, .strategic_card_active_block').length) {
             closeActiveBlock();
         }
     });
@@ -373,15 +378,134 @@ $(document).ready(function() {
         }
     });
 
-    // ===== Стрелка внутри активного блока — закрыть =====
+    // ===== Стрелка внутри активного блока — закрыть
     $(document).on('click', '.strategic_card_active_block h3 a i', function(e) {
         e.preventDefault();
         e.stopPropagation();
         closeActiveBlock();
     });
+    let CURRENT_RESOURCE_ID = null;
+
+    // дополни openCard:
+    function openCard($card) {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        // Запоминаем id ресурса
+        CURRENT_RESOURCE_ID = $card.data('resource-id') || null;
+
+        const $clone = $($card.prop('outerHTML'));
+        $contentBlock.html($clone).addClass('active');
+
+        resetAllIcons();
+        $contentBlock.find('h3 a i').removeClass('fa-angle-down').addClass('fa-angle-up');
+
+        // Вставим hidden поле в CF7 с resource_id (если формы есть)
+        const $cf7form = $contentBlock.find('.wpcf7 form.wpcf7-form');
+        if ($cf7form.length && CURRENT_RESOURCE_ID) {
+            // если у тебя в CF7 сделано поле [hidden resource_id] – просто заполним его
+            let $hidden = $cf7form.find('input[name="resource_id"]');
+            if (!$hidden.length) {
+                $hidden = $('<input type="hidden" name="resource_id">').appendTo($cf7form);
+            }
+            $hidden.val(CURRENT_RESOURCE_ID);
+        }
+
+        reinitCF7In($contentBlock);
+
+        const y = $contentBlock.offset().top - getHeaderHeight() - SCROLL_PAD;
+        if (Math.abs(window.pageYOffset - y) > 20) {
+            scrollToY(y);
+            requestAnimationFrame(() => { isAnimating = false; });
+        } else {
+            isAnimating = false;
+        }
+    }
+    // Клик по кнопке Download в карточке/активном блоке
+    $(document).on('click', '.strategic_card_content .btn_group .download-btn, .strategic_card_content .btn_group .sec_btn.download-btn', function(e) {
+        e.preventDefault();
+
+        const $btn = $(this);
+        const downloadUrl = $btn.data('download-url') || $btn.attr('href');
+        const isGated = String($btn.data('gated')).toLowerCase() === 'true';
+
+        // Область карточки (оригинал в гриде или активная копия)
+        const $scope = $btn.closest('.strategic_card').length ?
+            $btn.closest('.strategic_card') :
+            $btn.closest('.strategic_card_active_block').find('.strategic_card');
+
+        // Если не требуется форма — сразу открыть в новой вкладке
+        if (!isGated) {
+            if (downloadUrl) {
+                window.open(downloadUrl, '_blank', 'noopener');
+            }
+            return;
+        }
+
+        // Если gated: убедиться, что активен нужный ресурс и открыта его форма
+        // 1) если активен другой — переключаемся
+        if (!$contentBlock.hasClass('active') || !isSameCard($scope, $contentBlock)) {
+            const id = getCardId($scope);
+            const $original = $('.strategic_card').filter(function() {
+                return getCardId($(this)) === id;
+            }).first();
+
+            if ($original.length) {
+                $('.strategic_card').removeClass('clicked');
+                $original.addClass('clicked');
+                openCard($original);
+            }
+        }
+
+        // 2) проскроллить к заголовку формы и сфокусировать первый инпут
+        requestAnimationFrame(() => {
+            scrollToFormTitleInActiveBlock();
+            const $firstInput = $contentBlock.find('.wpcf7 form.wpcf7-form input, .wpcf7 form.wpcf7-form textarea, .wpcf7 form.wpcf7-form select').filter(':visible:enabled').first();
+            if ($firstInput.length) $firstInput.trigger('focus');
+        });
+
+        // 3) Сохраним URL в data активного блока, чтобы потом забрать при mailsent
+        if (downloadUrl) {
+            $contentBlock.data('pending-download-url', downloadUrl);
+        }
+    });
+    // CF7: успешная отправка — открыть download в новой вкладке
+    $(document).on('wpcf7mailsent', function(event) {
+        // событие отдаётся на form element
+        const $form = $(event.target);
+
+        // Проверим, действительно ли это форма в нашем активном блоке
+        if (!$form.closest($contentBlock).length) return;
+
+        // Если есть hidden resource_id – сверим
+        const sentResourceId = $form.find('input[name="resource_id"]').val();
+        if (CURRENT_RESOURCE_ID && sentResourceId && String(sentResourceId) !== String(CURRENT_RESOURCE_ID)) {
+            return; // чужая форма — игнор
+        }
+
+        // Достаём URL
+        const downloadUrl = $contentBlock.data('pending-download-url') ||
+            $contentBlock.find('.strategic_card_content .btn_group .download-btn').data('download-url') ||
+            $contentBlock.find('.strategic_card_content .btn_group .download-btn').attr('href');
+
+        if (downloadUrl) {
+            // Сообщение пользователю (опционально)
+            const $msg = $('<div class="download-success-message" style="color:#28a745;margin-top:15px;font-weight:bold;">Thank you! Your download will open in a new tab...</div>');
+            $contentBlock.find('.right_side').append($msg);
+
+            // Открываем в новой вкладке
+            window.open(downloadUrl, '_blank', 'noopener');
+
+            // Уберём сообщение через 3 сек.
+            setTimeout(() => $msg.fadeOut(400, () => $msg.remove()), 3000);
+
+            // Сбросим запомненный URL
+            $contentBlock.removeData('pending-download-url');
+        }
+    });
 
 
-    // Обрезка текста для мобильных устройств
+    // ====== mobile обрезка текста (как было) ======
     if ($(window).width() < 991) {
         $('.text').each(function() {
             const words = $(this).text().trim().split(' ');
