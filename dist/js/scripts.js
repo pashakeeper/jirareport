@@ -162,9 +162,9 @@ $(document).ready(function() {
         $('.video_content').removeClass('active');
         $('#' + tab_id).addClass('active');
     });
-    
+
     // ===== Настройки
-    const SCROLL_PAD = 50;
+    const SCROLL_PAD = 150;
     const HEADER_SEL = 'header';
 
     // ===== Активный блок один на секцию
@@ -251,6 +251,7 @@ $(document).ready(function() {
         } else {
             isAnimating = false;
         }
+        setTimeout(function() { if (window.wpcf7) { if (typeof window.wpcf7.init === 'function') { $contentBlock.find('.wpcf7 > form').each(function() { window.wpcf7.init(this); }); } else if (typeof window.wpcf7.initForm === 'function') { $contentBlock.find('form.wpcf7-form').each(function() { window.wpcf7.initForm(this); }); } } }, 0);
     }
 
     // ===== Закрытие активного блока без «прыжка»
@@ -295,77 +296,75 @@ $(document).ready(function() {
 
     // ===== Клики по стрелке в карточке (в гриде)
     $(document).on('click', '.strategic_card h3 a i', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (isAnimating) return;
+        e.preventDefault();
+        e.stopPropagation();
+        if (isAnimating) return;
 
-    const $card = $(this).closest('.strategic_card');
+        const $card = $(this).closest('.strategic_card');
 
-    // по .clicked в гриде стрелка тоже ничего не делает (чтобы не схлопывалось)
-    if ($card.hasClass('clicked')) return;
+        if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
+            const id = getCardId($card);
+            $('.strategic_card').each(function() {
+                $(this).toggleClass('clicked', getCardId($(this)) === id);
+            });
+            scrollToFormTitleInActiveBlock();
+            return;
+        }
 
-    if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
-        // вместо закрытия — просто скролл к форме (если нужно), ИЛИ вообще ничего
-        scrollToFormTitleInActiveBlock();
-        return;
-    }
+        if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
+            pendingCard = $card;
+            $('.strategic_card').removeClass('clicked');
+            $card.addClass('clicked');
+            closeActiveBlock();
+            return;
+        }
 
-    if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
-        pendingCard = $card;
-        $('.strategic_card').removeClass('clicked');
-        $card.addClass('clicked');
-        closeActiveBlock();
-        return;
-    }
-
-    if (!$contentBlock.hasClass('active')) {
-        $('.strategic_card').removeClass('clicked');
-        $card.addClass('clicked');
-        openCard($card);
-    }
-});
-
+        if (!$contentBlock.hasClass('active')) {
+            $('.strategic_card').removeClass('clicked');
+            $card.addClass('clicked');
+            openCard($card);
+        }
+    });
 
     // ===== Клик по карточке (кроме интерактивных элементов)
     $(document).on('click', '.strategic_card, .strategic_card h3', function(e) {
-    if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
-    if (isAnimating) return;
+        if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
+        if (isAnimating) return;
 
-    const $card = $(e.target).closest('.strategic_card');
+        const $card = $(e.target).closest('.strategic_card');
 
-    // ← новая защита: по .clicked карточке клики не реагируют
-    if ($card.hasClass('clicked')) {
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-    }
+        if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
+            const id = getCardId($card);
+            $('.strategic_card').each(function() {
+                $(this).toggleClass('clicked', getCardId($(this)) === id);
+            });
+            scrollToFormTitleInActiveBlock();
+            return;
+        }
 
-    // была открыта другая — переключаемся
-    if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
-        pendingCard = $card;
-        $('.strategic_card').removeClass('clicked');
-        $card.addClass('clicked');
-        closeActiveBlock();
-        return;
-    }
+        if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
+            pendingCard = $card;
+            $('.strategic_card').removeClass('clicked');
+            $card.addClass('clicked');
+            closeActiveBlock();
+            return;
+        }
 
-    // ничего не открыто — открыть
-    if (!$contentBlock.hasClass('active')) {
-        $('.strategic_card').removeClass('clicked');
-        $card.addClass('clicked');
-        openCard($card);
-    }
-});
-
+        if (!$contentBlock.hasClass('active')) {
+            $('.strategic_card').removeClass('clicked');
+            $card.addClass('clicked');
+            openCard($card);
+        }
+    });
 
     // ===== Повторный клик по .clicked
-    // $(document).on('click', '.strategic_card.clicked', function(e) {
-    //     if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
-    //     if (isAnimating) return;
-    //     if ($contentBlock.hasClass('active') && isSameCard($(this), $contentBlock)) {
-    //         scrollToFormTitleInActiveBlock();
-    //     }
-    // });
+    $(document).on('click', '.strategic_card.clicked', function(e) {
+        if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
+        if (isAnimating) return;
+        if ($contentBlock.hasClass('active') && isSameCard($(this), $contentBlock)) {
+            scrollToFormTitleInActiveBlock();
+        }
+    });
 
     // ===== Вне карточек / ESC — закрыть
     $(document).on('click', function(e) {
@@ -381,19 +380,13 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('click', '.strategic_card.clicked', function(e) {
-    // игнор любых кликов по уже активной карточке
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        return false;
-    });
     // ===== Стрелка внутри активного блока — закрыть
     $(document).on('click', '.strategic_card_active_block h3 a i', function(e) {
         e.preventDefault();
         e.stopPropagation();
         closeActiveBlock();
     });
+
     let CURRENT_RESOURCE_ID = null;
 
     // дополни openCard:
@@ -431,6 +424,7 @@ $(document).ready(function() {
             isAnimating = false;
         }
     }
+
     // Клик по кнопке Download в карточке/активном блоке
     $(document).on('click', '.strategic_card_content .btn_group .download-btn, .strategic_card_content .btn_group .sec_btn.download-btn', function(e) {
         e.preventDefault();
