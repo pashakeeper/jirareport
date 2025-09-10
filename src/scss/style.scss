@@ -1816,7 +1816,6 @@ h2 {
   cursor: pointer;
   &.clicked {
     opacity: .3;
-    pointer-events: none;
     h3 a i {
      
     }
@@ -2152,4 +2151,7 @@ body {
   }
 
   .strategic_active_spacer { width: 100%; will-change: height; }
-.highlight-form { outline: 2px solid #28a745; outline-offset: 4px; transition: outline-color .6s; }
+
+.col-lg-4 .strategic_card.clicked {
+  z-index: -2;
+}
