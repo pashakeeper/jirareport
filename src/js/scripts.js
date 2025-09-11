@@ -123,6 +123,7 @@ $(document).ready(function() {
         centeredSlides: true,
         loop: true,
         spaceBetween: 40,
+        grabCursor: true,
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
@@ -515,6 +516,38 @@ $(document).on('click', '.strategic_card_active_block h3 a i', function(e) {
 
 });
 
+// === Управление плеерами во фреймах ===
+function pauseIframe($iframe) {
+  if (!$iframe || !$iframe.length) return;
+  const src = $iframe.attr('src') || '';
+  try {
+    if (src.includes('youtube.com')) {
+      $iframe[0].contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'pauseVideo',
+        args: []
+      }), '*');
+    } else if (src.includes('player.vimeo.com')) {
+      $iframe[0].contentWindow.postMessage({ method: 'pause' }, '*');
+    }
+  } catch (e) { /* ignore */ }
+}
+
+function playIframe($iframe) {
+  if (!$iframe || !$iframe.length) return;
+  const src = $iframe.attr('src') || '';
+  try {
+    if (src.includes('youtube.com')) {
+      $iframe[0].contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'playVideo',
+        args: []
+      }), '*');
+    } else if (src.includes('player.vimeo.com')) {
+      $iframe[0].contentWindow.postMessage({ method: 'play' }, '*');
+    }
+  } catch (e) { /* ignore */ }
+}
 
 // Определяем мобильное устройство
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
@@ -539,52 +572,64 @@ const videoObserver = new IntersectionObserver((entries) => {
 
 // Функция запуска видео
 function startVideo($box, $iframe, $video) {
-    const $placeholder = $box.find('.video_placeholder');
-    const $playBtn = $box.find('.play');
-    const videoSrc = $iframe.data('src') || ($video.length ? $video.find('source').attr('src') : '');
+  const $placeholder = $box.find('.video_placeholder');
+  const $playBtn = $box.find('button.play, .play'); // кнопку не удаляем
+  const videoSrc = $iframe.data('src') || ($video.length ? $video.find('source').attr('src') : '');
 
-    if (!videoSrc) return;
+  if (!videoSrc) return;
 
-    // Скрываем плейсхолдер и кнопку только один раз
-    $placeholder.hide();
-    $playBtn.hide();
+  // Прячем плейсхолдер только один раз
+  $placeholder.hide();
+  $playBtn.hide();
 
-    if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
-        let embedUrl = getYouTubeEmbedUrl(videoSrc);
-        if ($iframe.attr('src') !== embedUrl) {
-            $iframe.attr('src', embedUrl);
-        }
-        $iframe.show();
-        $video.hide();
-
-    } else if (videoSrc.includes('vimeo.com')) {
-        let embedUrl = getVimeoEmbedUrl(videoSrc);
-        if ($iframe.attr('src') !== embedUrl) {
-            $iframe.attr('src', embedUrl);
-        }
-        $iframe.show();
-        $video.hide();
-
-    } else {
-        // Локальное видео
-        if ($video.length) {
-            $video.show();
-            $video.prop('muted', true);
-            $video[0].play().catch(err => {
-                console.warn('Автозапуск не сработал:', err);
-            });
-        }
-        $iframe.hide();
+  if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
+    // Если src уже стоит → просто play
+    if ($iframe.attr('src')) {
+      $iframe.show();
+      $video.hide();
+      playIframe($iframe);
+      return;
     }
+    // Иначе задаём embed и показываем
+    const embedUrl = getYouTubeEmbedUrl(videoSrc);
+    $iframe.attr('src', embedUrl).show();
+    $video.hide();
+
+  } else if (videoSrc.includes('vimeo.com')) {
+    if ($iframe.attr('src')) {
+      $iframe.show();
+      $video.hide();
+      playIframe($iframe);
+      return;
+    }
+    const embedUrl = getVimeoEmbedUrl(videoSrc);
+    $iframe.attr('src', embedUrl).show();
+    $video.hide();
+
+  } else {
+    // Локальное видео
+    if ($video.length) {
+      $video.show();
+      $video.prop('muted', true);
+      $video[0].play().catch(() => {});
+    }
+    $iframe.hide();
+  }
 }
+
 
 // Пауза без мигания
 function pauseVideo($iframe, $video) {
-    // iframe не трогаем (не сбрасываем src)
-    if ($video.length && !$video[0].paused) {
-        $video[0].pause();
-    }
+  // Останавливаем iframe (YouTube/Vimeo) без мигания
+  if ($iframe && $iframe.length && $iframe.attr('src')) {
+    pauseIframe($iframe);
+  }
+  // Ставим на паузу локальное видео
+  if ($video && $video.length && !$video[0].paused) {
+    $video[0].pause();
+  }
 }
+
 // Функция остановки видео
 function stopVideo($box, $iframe, $video, $placeholder, $playBtn) {
     // Показываем плейсхолдер и кнопку обратно
@@ -606,23 +651,34 @@ function stopVideo($box, $iframe, $video, $placeholder, $playBtn) {
 
 // Вспомогательные функции для URL
 function getYouTubeEmbedUrl(videoSrc) {
-    if (videoSrc.includes('watch?v=')) {
-        const videoId = videoSrc.split('watch?v=')[1].split('&')[0];
-        return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&mute=1`;
-    } else if (videoSrc.includes('youtu.be/')) {
-        const videoId = videoSrc.split('youtu.be/')[1].split('?')[0];
-        return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&mute=1`;
-    }
-    return videoSrc + (videoSrc.includes('?') ? '&' : '?') + 'autoplay=1&mute=1';
+  let id = '';
+  if (videoSrc.includes('watch?v=')) {
+    id = videoSrc.split('watch?v=')[1].split('&')[0];
+  } else if (videoSrc.includes('youtu.be/')) {
+    id = videoSrc.split('youtu.be/')[1].split('?')[0];
+  } else if (videoSrc.includes('/embed/')) {
+    // уже embed — вытащим id как есть
+    id = videoSrc.split('/embed/')[1].split(/[?&]/)[0];
+  }
+  const base = `https://www.youtube.com/embed/${id}`;
+  // enablejsapi=1 — чтобы pause/play через postMessage работал
+  const params = 'autoplay=1&mute=1&rel=0&enablejsapi=1&playsinline=1';
+  return `${base}?${params}`;
+}
+function getVimeoEmbedUrl(videoSrc) {
+  let id = '';
+  if (videoSrc.includes('vimeo.com/') && !videoSrc.includes('/embed/')) {
+    id = videoSrc.split('vimeo.com/')[1].split('/')[0];
+  } else if (videoSrc.includes('/video/')) {
+    id = videoSrc.split('/video/')[1].split(/[?&]/)[0];
+  }
+  const base = `https://player.vimeo.com/video/${id}`;
+  // controls API работает по postMessage без доп. параметров,
+  // но добавим полезные по умолчанию
+  const params = 'autoplay=1&muted=1&background=0';
+  return `${base}?${params}`;
 }
 
-function getVimeoEmbedUrl(videoSrc) {
-    if (videoSrc.includes('vimeo.com/') && !videoSrc.includes('/embed/')) {
-        const videoId = videoSrc.split('vimeo.com/')[1].split('/')[0];
-        return `https://player.vimeo.com/video/${videoId}?autoplay=1&muted=1`;
-    }
-    return videoSrc + (videoSrc.includes('?') ? '&' : '?') + 'autoplay=1&muted=1';
-}
 
 // Инициализация при загрузке страницы
 $(document).ready(function() {

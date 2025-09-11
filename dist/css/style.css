@@ -291,6 +291,9 @@ h2 {
   position: relative;
   align-items: center;
 }
+.logos-slider a {
+  cursor: default !important;
+}
 
 .logos-slider .swiper-slide {
   width: auto;
@@ -710,7 +713,7 @@ h2 {
 
 .form-floating textarea.form-control {
   min-height: 120px;
-  resize: vertical;
+  resize: none;
 }
 
 .form-floating textarea.form-control::placeholder {
@@ -749,8 +752,8 @@ h2 {
   background: url("../img/contact-form-bg.png") center/100% 100% no-repeat;
   padding: 100px 125px;
   border-radius: 60px;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px); /* Safari поддержка */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   color: #fff; /* если нужен белый текст на тёмном фоне */
 }
 
@@ -842,9 +845,11 @@ h2 {
 
 .colored_btn {
   border-color: #D48BFF;
+  cursor: default !important;
 }
 .colored_btn span {
   font-weight: 900;
+  cursor: default;
 }
 .colored_btn:hover {
   background: transparent;
@@ -900,6 +905,7 @@ h2 {
 }
 .report_card img {
   margin-bottom: 42px;
+  height: 81px;
 }
 .report_card h3 {
   font-size: 32px;
@@ -1385,7 +1391,7 @@ h2 {
 
 .tags_list {
   justify-content: flex-end;
-  column-gap: 18px;
+  gap: 27px 18px;
 }
 .tags_list a {
   font-size: 16px;
@@ -1395,6 +1401,10 @@ h2 {
   padding: 8px 15px 8px 15px;
   border-radius: 42px;
   background: rgb(229, 237, 255);
+}
+.tags_list a.active {
+  background: #6902A9;
+  color: white;
 }
 
 .content_blog_01 {
@@ -1500,7 +1510,7 @@ h2 {
 }
 
 .blog_03_page {
-  background: url("../img/blog-3-bg.png") center left no-repeat;
+  background: url("../img/blog-3-bg.png") center left/100% 100% no-repeat;
 }
 
 .content_blog_content p {
@@ -1718,8 +1728,7 @@ body .section_404 img {
   transform: translateY(-50%) scaleY(-1);
 }
 
-.menu_box .main_menu li.current-menu-parent > a,
-.menu_box .main_menu li.current_page_item > a {
+.menu_box .main_menu li.current-menu-parent > a, .menu_box .main_menu li.current-menu-ancestor > a .menu_box .main_menu li.current_page_item > a {
   background: rgba(97, 94, 99, 0.24);
   padding: 10.5px 15px;
   border-radius: 12px;
@@ -1950,4 +1959,8 @@ body .section_404 img {
 
 .col-lg-4 .strategic_card.clicked {
   z-index: -2;
+}
+
+.wpcf7-spinner {
+  display: none !important;
 }

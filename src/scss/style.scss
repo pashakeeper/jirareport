@@ -285,6 +285,9 @@ h2 {
     position: relative;
     align-items: center;
   }
+  a {
+    cursor: default !important;
+  }
 }
 
 .logos-slider .swiper-slide {
@@ -759,7 +762,7 @@ h2 {
 
 .form-floating textarea.form-control {
   min-height: 120px;
-  resize: vertical;
+  resize: none;
 }
 
 .form-floating textarea.form-control::placeholder {
@@ -802,8 +805,8 @@ h2 {
   background: url("../img/contact-form-bg.png") center/100% 100% no-repeat;
   padding: 100px 125px;
   border-radius: 60px;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px); /* Safari поддержка */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   color: #fff; /* если нужен белый текст на тёмном фоне */
 }
 
@@ -914,9 +917,11 @@ h2 {
 
 .colored_btn {
   border-color: #D48BFF;
+  cursor: default !important;
 
   span {
     font-weight: 900;
+    cursor: default;
   }
 
   &:hover {
@@ -977,6 +982,7 @@ h2 {
 
   img {
     margin-bottom: 42px;
+    height: 81px;
   }
 
   h3 {
@@ -1526,7 +1532,8 @@ h2 {
 
 .tags_list {
   justify-content: flex-end;
-  column-gap: 18px;
+  gap: 27px 18px;
+
 
   a {
     font-size: 16px;
@@ -1536,6 +1543,10 @@ h2 {
     padding: 8px 15px 8px 15px;
     border-radius: 42px;
     background: rgb(229, 237, 255);
+    &.active {
+      background: #6902A9;
+      color: white;
+    }
   }
 }
 
@@ -1652,7 +1663,7 @@ h2 {
 }
 
 .blog_03_page {
-  background: url("../img/blog-3-bg.png") center left no-repeat;
+  background: url("../img/blog-3-bg.png") center left / 100% 100% no-repeat;
 }
 
 .content_blog_content {
@@ -1889,7 +1900,7 @@ body {
   transform: translateY(-50%) scaleY(-1);
 }
 
-.menu_box .main_menu li.current-menu-parent > a,
+.menu_box .main_menu li.current-menu-parent > a,.menu_box .main_menu li.current-menu-ancestor > a
 .menu_box .main_menu li.current_page_item > a {
   background: rgba(97, 94, 99, 0.24);
   padding: 10.5px 15px;
@@ -2154,4 +2165,8 @@ body {
 
 .col-lg-4 .strategic_card.clicked {
   z-index: -2;
+}
+
+.wpcf7-spinner {
+  display: none !important;
 }

@@ -123,6 +123,7 @@ $(document).ready(function() {
         centeredSlides: true,
         loop: true,
         spaceBetween: 40,
+        grabCursor: true,
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
@@ -164,228 +165,223 @@ $(document).ready(function() {
     });
 
     // ===== Настройки
-    const SCROLL_PAD = 150;
-    const HEADER_SEL = 'header';
+const SCROLL_PAD = 150;
+const HEADER_SEL = 'header';
 
-    // ===== Активный блок один на секцию
-    const $contentBlock = $('<div class="strategic_card_active_block col-lg-12" aria-live="polite"></div>');
-    $('#strategic_card_section .row').prepend($contentBlock);
+// ===== Активный блок один на секцию
+const $contentBlock = $('<div class="strategic_card_active_block col-lg-12" aria-live="polite"></div>');
+$('#strategic_card_section .row').prepend($contentBlock);
 
-    let isAnimating = false;
-    let pendingCard = null;
+let isAnimating = false;
+let pendingCard = null;
 
-    // ===== Утилиты
-    function getHeaderHeight() {
-        const $h = $(HEADER_SEL);
-        return $h.length ? $h.outerHeight() : 0;
-    }
+// ===== Утилиты
+function getHeaderHeight() {
+  const $h = $(HEADER_SEL);
+  return $h.length ? $h.outerHeight() : 0;
+}
+function scrollToY(y) {
+  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+}
+function getCardId($card) {
+  return $card.data('card-id') || $card.find('h3 a').first().text().trim();
+}
+function isSameCard($card, $activeBlock) {
+  const id1 = getCardId($card);
+  const id2 = getCardId($activeBlock.find('.strategic_card'));
+  return id1 === id2;
+}
+function resetAllIcons() {
+  $('.strategic_card:not(.strategic_card_active_block .strategic_card) h3 a i')
+    .removeClass('fa-angle-up')
+    .addClass('fa-angle-down');
+}
 
-    function scrollToY(y) {
-        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-    }
+// ===== Скролл к форме в активном блоке
+function scrollToFormTitleInActiveBlock() {
+  const $formTitle = $contentBlock.find('.right_side .form-title');
+  if (!$formTitle.length) return;
+  const offsetTop = $formTitle.offset().top - getHeaderHeight() - SCROLL_PAD;
+  scrollToY(offsetTop);
+  $formTitle.addClass('highlight-form');
+  setTimeout(() => $formTitle.removeClass('highlight-form'), 2000);
+}
 
-    function getCardId($card) {
-        return $card.data('card-id') || $card.find('h3 a').first().text().trim();
-    }
+// ===== Инициализация CF7 в активном блоке (без таймаутов)
+function reinitCF7In($root) {
+  if (!window.wpcf7) return;
+  const $forms = $root.find('.wpcf7 > form, form.wpcf7-form');
+  if (!$forms.length) return;
+  if (typeof window.wpcf7.init === 'function') {
+    $forms.each(function() { window.wpcf7.init(this); });
+  } else if (typeof window.wpcf7.initForm === 'function') {
+    $forms.each(function() { window.wpcf7.initForm(this); });
+  } else {
+    // форс-событие, если требуется
+    $forms.each(function() { this.dispatchEvent(new Event('wpcf7init')); });
+  }
+}
 
-    function isSameCard($card, $activeBlock) {
-        const id1 = getCardId($card);
-        const id2 = getCardId($activeBlock.find('.strategic_card'));
-        return id1 === id2;
-    }
+// ===== Открытие карточки
+function openCard($card) {
+  if (isAnimating) return;
+  isAnimating = true;
 
-    function resetAllIcons() {
-        $('.strategic_card:not(.strategic_card_active_block .strategic_card) h3 a i')
-            .removeClass('fa-angle-up')
-            .addClass('fa-angle-down');
-    }
+  // Вставляем клон карточки
+  const $clone = $($card.prop('outerHTML'));
+  $contentBlock.html($clone).addClass('active');
 
-    // ===== Скролл к форме в активном блоке
-    function scrollToFormTitleInActiveBlock() {
-        const $formTitle = $contentBlock.find('.right_side .form-title');
-        if (!$formTitle.length) return;
-        const offsetTop = $formTitle.offset().top - getHeaderHeight() - SCROLL_PAD;
-        scrollToY(offsetTop);
-        $formTitle.addClass('highlight-form');
-        setTimeout(() => $formTitle.removeClass('highlight-form'), 2000);
-    }
+  // Обновляем иконку
+  resetAllIcons();
+  $contentBlock.find('h3 a i').removeClass('fa-angle-down').addClass('fa-angle-up');
 
-    // ===== Инициализация CF7 в активном блоке (без таймаутов)
-    function reinitCF7In($root) {
-        if (!window.wpcf7) return;
-        const $forms = $root.find('.wpcf7 > form, form.wpcf7-form');
-        if (!$forms.length) return;
-        if (typeof window.wpcf7.init === 'function') {
-            $forms.each(function() { window.wpcf7.init(this); });
-        } else if (typeof window.wpcf7.initForm === 'function') {
-            $forms.each(function() { window.wpcf7.initForm(this); });
-        } else {
-            // форс-событие, если требуется
-            $forms.each(function() { this.dispatchEvent(new Event('wpcf7init')); });
-        }
-    }
+  // Переинициализация форм
+  reinitCF7In($contentBlock);
 
-    // ===== Открытие карточки
-    function openCard($card) {
-        if (isAnimating) return;
-        isAnimating = true;
+  // Скролл к верху активного блока — без задержек
+  const y = $contentBlock.offset().top - getHeaderHeight() - SCROLL_PAD;
+  // Скроллим только если нужно заметно сдвинуться
+  if (Math.abs(window.pageYOffset - y) > 20) {
+    scrollToY(y);
+    // даём браузеру начать скролл, но не ставим таймеров
+    requestAnimationFrame(() => { isAnimating = false; });
+  } else {
+    isAnimating = false;
+  }
+}
 
-        // Вставляем клон карточки
-        const $clone = $($card.prop('outerHTML'));
-        $contentBlock.html($clone).addClass('active');
+// ===== Закрытие активного блока без «прыжка»
+function closeActiveBlock() {
+  if (isAnimating || !$contentBlock.hasClass('active')) return;
+  isAnimating = true;
 
-        // Обновляем иконку
-        resetAllIcons();
-        $contentBlock.find('h3 a i').removeClass('fa-angle-down').addClass('fa-angle-up');
+  // Spacer той же высоты → плавно схлопываем
+  const activeHeight = $contentBlock.outerHeight(true) || 0;
+  const mb = $contentBlock.css('margin-bottom');
+  const $spacer = $('<div class="strategic_active_spacer"></div>').css({
+    height: activeHeight,
+    marginBottom: mb,
+    transition: 'height 180ms linear'
+  });
 
-        // Переинициализация форм
-        reinitCF7In($contentBlock);
+  $contentBlock.after($spacer);
+  $contentBlock.removeClass('active').empty();
+  resetAllIcons();
 
-        // Скролл к верху активного блока — без задержек
-        const y = $contentBlock.offset().top - getHeaderHeight() - SCROLL_PAD;
-        // Скроллим только если нужно заметно сдвинуться
-        if (Math.abs(window.pageYOffset - y) > 20) {
-            scrollToY(y);
-            // даём браузеру начать скролл, но не ставим таймеров
-            requestAnimationFrame(() => { isAnimating = false; });
-        } else {
-            isAnimating = false;
-        }
-        setTimeout(function() { if (window.wpcf7) { if (typeof window.wpcf7.init === 'function') { $contentBlock.find('.wpcf7 > form').each(function() { window.wpcf7.init(this); }); } else if (typeof window.wpcf7.initForm === 'function') { $contentBlock.find('form.wpcf7-form').each(function() { window.wpcf7.initForm(this); }); } } }, 0);
-    }
+  // Запуск схлопывания без таймаутов — через rAF
+  requestAnimationFrame(() => {
+    $spacer.css('height', 0);
 
-    // ===== Закрытие активного блока без «прыжка»
-    function closeActiveBlock() {
-        if (isAnimating || !$contentBlock.hasClass('active')) return;
-        isAnimating = true;
+    // Один раз слушаем окончание перехода
+    $spacer.one('transitionend', () => {
+      $spacer.remove();
+      isAnimating = false;
 
-        // Spacer той же высоты → плавно схлопываем
-        const activeHeight = $contentBlock.outerHeight(true) || 0;
-        const mb = $contentBlock.css('margin-bottom');
-        const $spacer = $('<div class="strategic_active_spacer"></div>').css({
-            height: activeHeight,
-            marginBottom: mb,
-            transition: 'height 180ms linear'
-        });
-
-        $contentBlock.after($spacer);
-        $contentBlock.removeClass('active').empty();
-        resetAllIcons();
-
-        // Запуск схлопывания без таймаутов — через rAF
-        requestAnimationFrame(() => {
-            $spacer.css('height', 0);
-
-            // Один раз слушаем окончание перехода
-            $spacer.one('transitionend', () => {
-                $spacer.remove();
-                isAnimating = false;
-
-                if (pendingCard) {
-                    const $next = pendingCard;
-                    pendingCard = null;
-                    $('.strategic_card').removeClass('clicked');
-                    $next.addClass('clicked');
-                    openCard($next);
-                } else {
-                    $('.strategic_card').removeClass('clicked');
-                }
-            });
-        });
-    }
-
-    // ===== Клики по стрелке в карточке (в гриде)
-    $(document).on('click', '.strategic_card h3 a i', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (isAnimating) return;
-
-        const $card = $(this).closest('.strategic_card');
-
-        if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
-            const id = getCardId($card);
-            $('.strategic_card').each(function() {
-                $(this).toggleClass('clicked', getCardId($(this)) === id);
-            });
-            scrollToFormTitleInActiveBlock();
-            return;
-        }
-
-        if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
-            pendingCard = $card;
-            $('.strategic_card').removeClass('clicked');
-            $card.addClass('clicked');
-            closeActiveBlock();
-            return;
-        }
-
-        if (!$contentBlock.hasClass('active')) {
-            $('.strategic_card').removeClass('clicked');
-            $card.addClass('clicked');
-            openCard($card);
-        }
+      if (pendingCard) {
+        const $next = pendingCard;
+        pendingCard = null;
+        $('.strategic_card').removeClass('clicked');
+        $next.addClass('clicked');
+        openCard($next);
+      } else {
+        $('.strategic_card').removeClass('clicked');
+      }
     });
+  });
+}
 
-    // ===== Клик по карточке (кроме интерактивных элементов)
-    $(document).on('click', '.strategic_card, .strategic_card h3', function(e) {
-        if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
-        if (isAnimating) return;
+// ===== Клики по стрелке в карточке (в гриде)
+$(document).on('click', '.strategic_card h3 a i', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  if (isAnimating) return;
 
-        const $card = $(e.target).closest('.strategic_card');
+  const $card = $(this).closest('.strategic_card');
 
-        if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
-            const id = getCardId($card);
-            $('.strategic_card').each(function() {
-                $(this).toggleClass('clicked', getCardId($(this)) === id);
-            });
-            scrollToFormTitleInActiveBlock();
-            return;
-        }
-
-        if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
-            pendingCard = $card;
-            $('.strategic_card').removeClass('clicked');
-            $card.addClass('clicked');
-            closeActiveBlock();
-            return;
-        }
-
-        if (!$contentBlock.hasClass('active')) {
-            $('.strategic_card').removeClass('clicked');
-            $card.addClass('clicked');
-            openCard($card);
-        }
+  if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
+    const id = getCardId($card);
+    $('.strategic_card').each(function() {
+      $(this).toggleClass('clicked', getCardId($(this)) === id);
     });
+    scrollToFormTitleInActiveBlock();
+    return;
+  }
 
-    // ===== Повторный клик по .clicked
-    $(document).on('click', '.strategic_card.clicked', function(e) {
-        if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
-        if (isAnimating) return;
-        if ($contentBlock.hasClass('active') && isSameCard($(this), $contentBlock)) {
-            scrollToFormTitleInActiveBlock();
-        }
-    });
+  if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
+    pendingCard = $card;
+    $('.strategic_card').removeClass('clicked');
+    $card.addClass('clicked');
+    closeActiveBlock();
+    return;
+  }
 
-    // ===== Вне карточек / ESC — закрыть
-    $(document).on('click', function(e) {
-        if (isAnimating) return;
-        if (!$(e.target).closest('.strategic_card, .strategic_card_active_block').length) {
-            closeActiveBlock();
-        }
-    });
-    $(document).on('keydown', function(e) {
-        if (isAnimating) return;
-        if (e.key === 'Escape' || e.keyCode === 27) {
-            closeActiveBlock();
-        }
-    });
+  if (!$contentBlock.hasClass('active')) {
+    $('.strategic_card').removeClass('clicked');
+    $card.addClass('clicked');
+    openCard($card);
+  }
+});
 
-    // ===== Стрелка внутри активного блока — закрыть
-    $(document).on('click', '.strategic_card_active_block h3 a i', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeActiveBlock();
+// ===== Клик по карточке (кроме интерактивных элементов)
+$(document).on('click', '.strategic_card, .strategic_card h3', function(e) {
+  if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
+  if (isAnimating) return;
+
+  const $card = $(e.target).closest('.strategic_card');
+
+  if ($contentBlock.hasClass('active') && isSameCard($card, $contentBlock)) {
+    const id = getCardId($card);
+    $('.strategic_card').each(function() {
+      $(this).toggleClass('clicked', getCardId($(this)) === id);
     });
+    scrollToFormTitleInActiveBlock();
+    return;
+  }
+
+  if ($contentBlock.hasClass('active') && !isSameCard($card, $contentBlock)) {
+    pendingCard = $card;
+    $('.strategic_card').removeClass('clicked');
+    $card.addClass('clicked');
+    closeActiveBlock();
+    return;
+  }
+
+  if (!$contentBlock.hasClass('active')) {
+    $('.strategic_card').removeClass('clicked');
+    $card.addClass('clicked');
+    openCard($card);
+  }
+});
+
+// ===== Повторный клик по .clicked
+$(document).on('click', '.strategic_card.clicked', function(e) {
+  if ($(e.target).closest('a, button, .btn, .sec_btn, input, select, textarea, label, .wpcf7, .wpcf7-form').length) return;
+  if (isAnimating) return;
+  if ($contentBlock.hasClass('active') && isSameCard($(this), $contentBlock)) {
+    scrollToFormTitleInActiveBlock();
+  }
+});
+
+// ===== Вне карточек / ESC — закрыть
+$(document).on('click', function(e) {
+  if (isAnimating) return;
+  if (!$(e.target).closest('.strategic_card, .strategic_card_active_block').length) {
+    closeActiveBlock();
+  }
+});
+$(document).on('keydown', function(e) {
+  if (isAnimating) return;
+  if (e.key === 'Escape' || e.keyCode === 27) {
+    closeActiveBlock();
+  }
+});
+
+// ===== Стрелка внутри активного блока — закрыть
+$(document).on('click', '.strategic_card_active_block h3 a i', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  closeActiveBlock();
+});
 
     let CURRENT_RESOURCE_ID = null;
 
@@ -520,6 +516,38 @@ $(document).ready(function() {
 
 });
 
+// === Управление плеерами во фреймах ===
+function pauseIframe($iframe) {
+  if (!$iframe || !$iframe.length) return;
+  const src = $iframe.attr('src') || '';
+  try {
+    if (src.includes('youtube.com')) {
+      $iframe[0].contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'pauseVideo',
+        args: []
+      }), '*');
+    } else if (src.includes('player.vimeo.com')) {
+      $iframe[0].contentWindow.postMessage({ method: 'pause' }, '*');
+    }
+  } catch (e) { /* ignore */ }
+}
+
+function playIframe($iframe) {
+  if (!$iframe || !$iframe.length) return;
+  const src = $iframe.attr('src') || '';
+  try {
+    if (src.includes('youtube.com')) {
+      $iframe[0].contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'playVideo',
+        args: []
+      }), '*');
+    } else if (src.includes('player.vimeo.com')) {
+      $iframe[0].contentWindow.postMessage({ method: 'play' }, '*');
+    }
+  } catch (e) { /* ignore */ }
+}
 
 // Определяем мобильное устройство
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
@@ -544,52 +572,64 @@ const videoObserver = new IntersectionObserver((entries) => {
 
 // Функция запуска видео
 function startVideo($box, $iframe, $video) {
-    const $placeholder = $box.find('.video_placeholder');
-    const $playBtn = $box.find('.play');
-    const videoSrc = $iframe.data('src') || ($video.length ? $video.find('source').attr('src') : '');
+  const $placeholder = $box.find('.video_placeholder');
+  const $playBtn = $box.find('button.play, .play'); // кнопку не удаляем
+  const videoSrc = $iframe.data('src') || ($video.length ? $video.find('source').attr('src') : '');
 
-    if (!videoSrc) return;
+  if (!videoSrc) return;
 
-    // Скрываем плейсхолдер и кнопку только один раз
-    $placeholder.hide();
-    $playBtn.hide();
+  // Прячем плейсхолдер только один раз
+  $placeholder.hide();
+  $playBtn.hide();
 
-    if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
-        let embedUrl = getYouTubeEmbedUrl(videoSrc);
-        if ($iframe.attr('src') !== embedUrl) {
-            $iframe.attr('src', embedUrl);
-        }
-        $iframe.show();
-        $video.hide();
-
-    } else if (videoSrc.includes('vimeo.com')) {
-        let embedUrl = getVimeoEmbedUrl(videoSrc);
-        if ($iframe.attr('src') !== embedUrl) {
-            $iframe.attr('src', embedUrl);
-        }
-        $iframe.show();
-        $video.hide();
-
-    } else {
-        // Локальное видео
-        if ($video.length) {
-            $video.show();
-            $video.prop('muted', true);
-            $video[0].play().catch(err => {
-                console.warn('Автозапуск не сработал:', err);
-            });
-        }
-        $iframe.hide();
+  if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
+    // Если src уже стоит → просто play
+    if ($iframe.attr('src')) {
+      $iframe.show();
+      $video.hide();
+      playIframe($iframe);
+      return;
     }
+    // Иначе задаём embed и показываем
+    const embedUrl = getYouTubeEmbedUrl(videoSrc);
+    $iframe.attr('src', embedUrl).show();
+    $video.hide();
+
+  } else if (videoSrc.includes('vimeo.com')) {
+    if ($iframe.attr('src')) {
+      $iframe.show();
+      $video.hide();
+      playIframe($iframe);
+      return;
+    }
+    const embedUrl = getVimeoEmbedUrl(videoSrc);
+    $iframe.attr('src', embedUrl).show();
+    $video.hide();
+
+  } else {
+    // Локальное видео
+    if ($video.length) {
+      $video.show();
+      $video.prop('muted', true);
+      $video[0].play().catch(() => {});
+    }
+    $iframe.hide();
+  }
 }
+
 
 // Пауза без мигания
 function pauseVideo($iframe, $video) {
-    // iframe не трогаем (не сбрасываем src)
-    if ($video.length && !$video[0].paused) {
-        $video[0].pause();
-    }
+  // Останавливаем iframe (YouTube/Vimeo) без мигания
+  if ($iframe && $iframe.length && $iframe.attr('src')) {
+    pauseIframe($iframe);
+  }
+  // Ставим на паузу локальное видео
+  if ($video && $video.length && !$video[0].paused) {
+    $video[0].pause();
+  }
 }
+
 // Функция остановки видео
 function stopVideo($box, $iframe, $video, $placeholder, $playBtn) {
     // Показываем плейсхолдер и кнопку обратно
@@ -611,23 +651,34 @@ function stopVideo($box, $iframe, $video, $placeholder, $playBtn) {
 
 // Вспомогательные функции для URL
 function getYouTubeEmbedUrl(videoSrc) {
-    if (videoSrc.includes('watch?v=')) {
-        const videoId = videoSrc.split('watch?v=')[1].split('&')[0];
-        return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&mute=1`;
-    } else if (videoSrc.includes('youtu.be/')) {
-        const videoId = videoSrc.split('youtu.be/')[1].split('?')[0];
-        return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&mute=1`;
-    }
-    return videoSrc + (videoSrc.includes('?') ? '&' : '?') + 'autoplay=1&mute=1';
+  let id = '';
+  if (videoSrc.includes('watch?v=')) {
+    id = videoSrc.split('watch?v=')[1].split('&')[0];
+  } else if (videoSrc.includes('youtu.be/')) {
+    id = videoSrc.split('youtu.be/')[1].split('?')[0];
+  } else if (videoSrc.includes('/embed/')) {
+    // уже embed — вытащим id как есть
+    id = videoSrc.split('/embed/')[1].split(/[?&]/)[0];
+  }
+  const base = `https://www.youtube.com/embed/${id}`;
+  // enablejsapi=1 — чтобы pause/play через postMessage работал
+  const params = 'autoplay=1&mute=1&rel=0&enablejsapi=1&playsinline=1';
+  return `${base}?${params}`;
+}
+function getVimeoEmbedUrl(videoSrc) {
+  let id = '';
+  if (videoSrc.includes('vimeo.com/') && !videoSrc.includes('/embed/')) {
+    id = videoSrc.split('vimeo.com/')[1].split('/')[0];
+  } else if (videoSrc.includes('/video/')) {
+    id = videoSrc.split('/video/')[1].split(/[?&]/)[0];
+  }
+  const base = `https://player.vimeo.com/video/${id}`;
+  // controls API работает по postMessage без доп. параметров,
+  // но добавим полезные по умолчанию
+  const params = 'autoplay=1&muted=1&background=0';
+  return `${base}?${params}`;
 }
 
-function getVimeoEmbedUrl(videoSrc) {
-    if (videoSrc.includes('vimeo.com/') && !videoSrc.includes('/embed/')) {
-        const videoId = videoSrc.split('vimeo.com/')[1].split('/')[0];
-        return `https://player.vimeo.com/video/${videoId}?autoplay=1&muted=1`;
-    }
-    return videoSrc + (videoSrc.includes('?') ? '&' : '?') + 'autoplay=1&muted=1';
-}
 
 // Инициализация при загрузке страницы
 $(document).ready(function() {
