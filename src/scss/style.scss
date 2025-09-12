@@ -735,6 +735,27 @@ h2 {
   padding: 0.75rem;
   height: auto;
   min-height: 48px;
+  &::-webkit-scrollbar {
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    width: 4px;
+    height: 12px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #7F34AD;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #7F34AD;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: #7F34AD;
+  }
+  &::placeholder {
+    color: white;
+  }
 }
 
 .form-floating > textarea:focus ~ label::after, .form-floating > textarea:not(:placeholder-shown) ~ label::after {
@@ -1471,6 +1492,9 @@ h2 {
     outline: 0;
     color: white;
     padding-left: 16px;
+    &::placeholder {
+      color: white;
+    }
   }
 
   input::placeholder {
@@ -1900,22 +1924,21 @@ body {
   transform: translateY(-50%) scaleY(-1);
 }
 
-.menu_box .main_menu li.current-menu-parent > a,.menu_box .main_menu li.current-menu-ancestor > a
-.menu_box .main_menu li.current_page_item > a {
-  background: rgba(97, 94, 99, 0.24);
-  padding: 10.5px 15px;
-  border-radius: 12px;
+/* 1) База — без подсветки */
+.menu_box .main_menu li > a {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 
+/* 2) Подсветка current/parent/ancestor (исправлена запятая + добавлен current-menu-item) */
+.menu_box .main_menu li.current_page_item > a,
+.menu_box .main_menu li.current-menu-item > a,
+.menu_box .main_menu li.current-menu-parent > a,
 .menu_box .main_menu li.current-menu-ancestor > a {
   background: rgba(97, 94, 99, 0.24);
   padding: 10.5px 15px;
   border-radius: 12px;
-}
-.menu_box .main_menu li a {
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
 }
 
 .section_06 {
@@ -2174,4 +2197,12 @@ body {
 
 .wpcf7-spinner {
   display: none !important;
+}
+
+.wpcf7 form .wpcf7-form-control-wrap .wpcf7-not-valid-tip ~ .wpcf7-not-valid-tip {
+  display: none !important;
+}
+.search-loader {
+  position: absolute;
+  left: 76%;
 }

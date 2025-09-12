@@ -687,6 +687,27 @@ h2 {
   height: auto;
   min-height: 48px;
 }
+.form-floating .form-control::-webkit-scrollbar {
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: thin;
+  width: 4px;
+  height: 12px;
+}
+.form-floating .form-control::-webkit-scrollbar-track {
+  background: transparent;
+}
+.form-floating .form-control::-webkit-scrollbar-thumb {
+  background: #7F34AD;
+}
+.form-floating .form-control::-webkit-scrollbar-thumb:hover {
+  background: #7F34AD;
+}
+.form-floating .form-control::-webkit-scrollbar-thumb:active {
+  background: #7F34AD;
+}
+.form-floating .form-control::placeholder {
+  color: white;
+}
 
 .form-floating > textarea:focus ~ label::after, .form-floating > textarea:not(:placeholder-shown) ~ label::after {
   background: transparent;
@@ -1340,6 +1361,9 @@ h2 {
   padding-left: 16px;
 }
 .search_form input::placeholder {
+  color: white;
+}
+.search_form input::placeholder {
   color: rgba(255, 255, 255, 0.1);
   font-size: 17px;
   font-weight: 400;
@@ -1728,22 +1752,21 @@ body .section_404 img {
   transform: translateY(-50%) scaleY(-1);
 }
 
-.menu_box .main_menu li.current-menu-parent > a, .menu_box .main_menu li.current-menu-ancestor > a .menu_box .main_menu li.current_page_item > a {
-  background: rgba(97, 94, 99, 0.24);
-  padding: 10.5px 15px;
-  border-radius: 12px;
+/* 1) База — без подсветки */
+.menu_box .main_menu li > a {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 
+/* 2) Подсветка current/parent/ancestor (исправлена запятая + добавлен current-menu-item) */
+.menu_box .main_menu li.current_page_item > a,
+.menu_box .main_menu li.current-menu-item > a,
+.menu_box .main_menu li.current-menu-parent > a,
 .menu_box .main_menu li.current-menu-ancestor > a {
   background: rgba(97, 94, 99, 0.24);
   padding: 10.5px 15px;
   border-radius: 12px;
-}
-
-.menu_box .main_menu li a {
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
 }
 
 .section_06 .swiper-button-next.swiper-button-disabled, .section_06 .swiper-button-prev.swiper-button-disabled {
@@ -1969,4 +1992,13 @@ body .section_404 img {
 
 .wpcf7-spinner {
   display: none !important;
+}
+
+.wpcf7 form .wpcf7-form-control-wrap .wpcf7-not-valid-tip ~ .wpcf7-not-valid-tip {
+  display: none !important;
+}
+
+.search-loader {
+  position: absolute;
+  left: 76%;
 }
