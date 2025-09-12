@@ -1907,6 +1907,11 @@ body {
   border-radius: 12px;
 }
 
+.menu_box .main_menu li.current-menu-ancestor > a {
+  background: rgba(97, 94, 99, 0.24);
+  padding: 10.5px 15px;
+  border-radius: 12px;
+}
 .menu_box .main_menu li a {
   background: transparent;
   padding: 0;
