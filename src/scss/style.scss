@@ -741,18 +741,23 @@ h2 {
     scrollbar-width: thin;
     width: 4px;
     height: 12px;
+    cursor: default;
   }
   &::-webkit-scrollbar-track {
     background: transparent;
+    cursor: default;
   }
   &::-webkit-scrollbar-thumb {
     background: #7F34AD;
+    cursor: default;
   }
   &::-webkit-scrollbar-thumb:hover {
     background: #7F34AD;
+    cursor: default;
   }
   &::-webkit-scrollbar-thumb:active {
     background: #7F34AD;
+    cursor: default;
   }
   &::placeholder {
     color: white;
@@ -1485,6 +1490,7 @@ h2 {
 
   .fa-search {
     margin-left: 12px;
+    cursor: pointer;
   }
 
   input {

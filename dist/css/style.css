@@ -692,18 +692,23 @@ h2 {
   scrollbar-width: thin;
   width: 4px;
   height: 12px;
+  cursor: default;
 }
 .form-floating .form-control::-webkit-scrollbar-track {
   background: transparent;
+  cursor: default;
 }
 .form-floating .form-control::-webkit-scrollbar-thumb {
   background: #7F34AD;
+  cursor: default;
 }
 .form-floating .form-control::-webkit-scrollbar-thumb:hover {
   background: #7F34AD;
+  cursor: default;
 }
 .form-floating .form-control::-webkit-scrollbar-thumb:active {
   background: #7F34AD;
+  cursor: default;
 }
 .form-floating .form-control::placeholder {
   color: white;
@@ -1352,6 +1357,7 @@ h2 {
 }
 .search_form .fa-search {
   margin-left: 12px;
+  cursor: pointer;
 }
 .search_form input {
   background: transparent;
