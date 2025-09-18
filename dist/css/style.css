@@ -248,31 +248,31 @@ h2 {
   display: none;
 }
 
-.swiper-button-next {
+body .swiper-button-next {
   top: 45%;
   right: -20px;
   color: white;
   transition: all 0.5s ease;
 }
-.swiper-button-next i {
+body .swiper-button-next i {
   transition: all 0.5s ease;
   font-size: 40px;
 }
-.swiper-button-next:hover i {
+body .swiper-button-next:hover i {
   color: #743A99;
 }
 
-.swiper-button-prev {
+body .swiper-button-prev {
   top: 45%;
   left: -20px;
   color: white;
   transition: all 0.5s ease;
 }
-.swiper-button-prev i {
+body .swiper-button-prev i {
   transition: all 0.5s ease;
   font-size: 40px;
 }
-.swiper-button-prev:hover i {
+body .swiper-button-prev:hover i {
   color: #743A99;
 }
 
@@ -2001,4 +2001,8 @@ body .section_404 img {
 .search-loader {
   position: absolute;
   left: 76%;
+}
+
+.admin-bar .header.scrolled {
+  top: 32px;
 }
