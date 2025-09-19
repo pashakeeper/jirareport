@@ -235,7 +235,8 @@ h2 {
   }
 }
 
-.swiper-button-next {
+body {
+  .swiper-button-next {
   top: 45%;
   right: -20px;
   color: white;
@@ -252,7 +253,9 @@ h2 {
     }
   }
 }
+}
 
+body {
 .swiper-button-prev {
   top: 45%;
   left: -20px;
@@ -269,6 +272,7 @@ h2 {
       color: #743A99;
     }
   }
+}
 }
 
 .logos-slider {
@@ -2212,4 +2216,7 @@ body {
 .search-loader {
   position: absolute;
   left: 76%;
+}
+.admin-bar .header.scrolled {
+  top: 32px;
 }
