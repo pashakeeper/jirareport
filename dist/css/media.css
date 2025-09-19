@@ -960,10 +960,6 @@
   }
   .navigation_box {
     margin-bottom: 40px;
-    flex-wrap: wrap;
-  }
-  .form-floating > label {
-    font-size: 16px;
   }
   .blog_1_card {
     padding: 36px 18px;

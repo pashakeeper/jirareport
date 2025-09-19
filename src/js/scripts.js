@@ -123,6 +123,7 @@ $(document).ready(function() {
         centeredSlides: true,
         loop: true,
         spaceBetween: 40,
+        centeredSlidesBounds: true,
         grabCursor: true,
         navigation: {
             nextEl: ".swiper-button-next",
