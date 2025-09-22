@@ -960,6 +960,7 @@
   }
   .navigation_box {
     margin-bottom: 40px;
+    flex-wrap: wrap;
   }
   .blog_1_card {
     padding: 36px 18px;
