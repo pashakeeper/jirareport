@@ -253,6 +253,9 @@
   }
 }
 @media (max-width: 991px) {
+  .content_blog_01.content_blog_3 .row {
+    justify-content: center;
+  }
   .strategic_card_active_block .strategic_card.clicked .right_side {
     width: 100%;
     padding: 0;
@@ -609,6 +612,12 @@
   }
   body .swiper-button-prev {
     left: 20px;
+  }
+  body .swiper-button-next.swiper-button-disabled {
+    opacity: 1;
+  }
+  body .swiper-button-prev.swiper-button-disabled {
+    opacity: 1;
   }
   .report_section02 {
     margin-top: 0;
@@ -1086,12 +1095,6 @@
   }
   h1 br {
     display: none;
-  }
-  body .swiper-button-next.swiper-button-disabled {
-    opacity: 1;
-  }
-  body .swiper-button-prev.swiper-button-disabled {
-    opacity: 1;
   }
   .faq-text {
     line-height: inherit;
