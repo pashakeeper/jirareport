@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @media (min-width: 1680px) {
   .content_blog_3 {
     margin-top: 0;
@@ -8,15 +9,20 @@
     margin-left: 50px;
   }
 }
-@media (max-width: 1750px) {
-  body .swiper-button-prev {
-    left: 5px;
-  }
-  body .swiper-button-next {
-    right: 5px;
-  }
-}
 @media (max-width: 1600px) {
+  .content_blog_3 {
+    margin-top: 0;
+  }
+  .section_02 .swiper-button-prev {
+    left: -25px;
+    top: 45%;
+    transform: translateY(-50%);
+  }
+  .section_02 .swiper-button-next {
+    right: -25px;
+    top: 45%;
+    transform: translateY(-50%);
+  }
   .container {
     max-width: 1400px;
   }
@@ -252,7 +258,33 @@
     margin-bottom: 50px;
   }
 }
+@media (max-width: 1088px) {
+  .colored_btn {
+    font-size: 14px;
+  }
+}
 @media (max-width: 991px) {
+  .more_mobile {
+    display: block;
+  }
+  .more_mobile a {
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @supports (-webkit-touch-callout: none) {
+    input,
+    select,
+    textarea {
+      font-size: 16px; /* ключ! не меньше */
+    }
+  }
+  .section_01.partners_01 .text-start {
+    text-align: center !important;
+  }
+  .section_01 {
+    background-size: 100%;
+  }
   .content_blog_01.content_blog_3 .row {
     justify-content: center;
   }
@@ -392,7 +424,7 @@
     align-items: center;
   }
   .main_menu li:has(ul) > a::after {
-    content: "\f106";
+    content: "\f107";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     position: absolute;
@@ -615,9 +647,21 @@
   }
   body .swiper-button-next.swiper-button-disabled {
     opacity: 1;
+    pointer-events: auto;
   }
   body .swiper-button-prev.swiper-button-disabled {
     opacity: 1;
+    pointer-events: auto;
+  }
+  .section_02 .swiper-button-prev {
+    left: 40px;
+    top: 54%;
+    transform: translateY(-50%);
+  }
+  .section_02 .swiper-button-next {
+    right: 40px;
+    top: 54%;
+    transform: translateY(-50%);
   }
   .report_section02 {
     margin-top: 0;
@@ -699,7 +743,13 @@
     padding: 37px 16px;
     justify-content: center;
     border-radius: 0;
-    background: url("../img/contact-form-bg.png") center/200% 100% no-repeat;
+    background: url("../img/form-bg-mobile.png") center/100% 100% no-repeat;
+  }
+  .name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .contact-form h2 {
     font-size: 20px;
@@ -863,7 +913,7 @@
     display: none;
   }
   .partners_01 {
-    background: url("../img/partners-mobile-bg-1.png") center top/100% no-repeat;
+    background: url("../img/partners-mobile-bg-1.png") center top/100% 100% no-repeat;
     margin-bottom: -620px;
     padding-bottom: 520px;
   }
@@ -880,6 +930,7 @@
   .partner_list {
     justify-content: center;
     margin-bottom: 0;
+    flex-direction: column;
   }
   .partner_list li:nth-child(odd) {
     width: 100%;

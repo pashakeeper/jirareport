@@ -152,7 +152,7 @@ h2 {
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 5;
   padding-top: 60px;
   transition: all 0.5s ease-in-out;
 }
@@ -165,6 +165,9 @@ h2 {
 
 .partner_logo {
   margin-left: 88px;
+}
+.partner_logo img {
+  max-width: 192px;
 }
 
 .menu_box .main_menu {
@@ -954,9 +957,12 @@ h1 span {
   border-color: #D48BFF;
   cursor: default !important;
 }
-.colored_btn span {
+.colored_btn .badge_main {
   font-weight: 900;
   cursor: default;
+}
+.colored_btn .badge_secondary {
+  font-weight: normal;
 }
 .colored_btn:hover {
   background: transparent;
@@ -2026,4 +2032,14 @@ h1 span {
     padding: 16px;
     font-size: 16px;
   }
+}
+@supports (-webkit-touch-callout: none) {
+  a, a * {
+    -webkit-touch-callout: none; /* выключает превью/контекстное меню */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+.more_mobile {
+  display: none;
 }
