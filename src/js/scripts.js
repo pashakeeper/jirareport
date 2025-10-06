@@ -102,35 +102,24 @@ $(document).ready(function () {
     // Review
     window._swipers.review = new Swiper(".review_slider", {
       direction: "horizontal",
-      slidesPerView: "auto",
+      slidesPerView: 2.2,
       centeredSlides: true,
-      centeredSlidesBounds: true,
       loop: true,
-      // главное — дать запас слайдов и устойчивость к "рывку" влево
-      loopAdditionalSlides: 6,
-      watchSlidesProgress: true,
       spaceBetween: 40,
+      slidesPerGroup: 1,
+      centeredSlidesBounds: true,
+      loopAdditionalSlides: 5,
+      centeredSlidesBounds: true,
       grabCursor: true,
-
-      // более дружелюбное тач-поведение
-      touchStartPreventDefault: false,
-      passiveListeners: true,
-      touchAngle: 30,
-      threshold: 8,
-      resistanceRatio: 0.65,
-      touchReleaseOnEdges: true,
-      nested: true,
-
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
       breakpoints: {
-        0: { autoHeight: true },
+        0: { loop: true, autoHeight: true,slidesPerView: 1, },
         991: { autoHeight: false },
       },
     });
-
     whenImagesLoaded($(".logos-slider"), function () {
       if (window._swipers.logos && !window._swipers.logos.destroyed) {
         try {
@@ -172,31 +161,13 @@ $(document).ready(function () {
   $(function () {
     initSwipers();
   });
-  // === Жёсткий резюм автоплея логотипов при любом взаимодействии ===
-  function resumeLogosAutoplay() {
+  $(document).on("mousedown touchstart click", ".logos-slider", function () {
     var s = window._swipers && window._swipers.logos;
     if (s && !s.destroyed && s.autoplay) {
       try {
-        // На разных версиях Swiper есть start()/resume()
-        if (typeof s.autoplay.resume === "function") s.autoplay.resume();
         s.autoplay.start();
       } catch (_) {}
     }
-  }
-
-  // Резюм на любые указательные/клавишные события внутри слайдера
-  $(document).on(
-    "pointerdown pointerup mousedown mouseup mouseenter mouseleave click touchstart touchend keydown",
-    ".logos-slider, .logos-slider *",
-    function () {
-      resumeLogosAutoplay();
-    }
-  );
-
-  // На всякий случай — после потери/возврата фокуса окна
-  $(window).on("focus", resumeLogosAutoplay);
-  document.addEventListener("visibilitychange", function () {
-    if (!document.hidden) resumeLogosAutoplay();
   });
 
   // ===== Возврат со страницы (Safari bfcache)
