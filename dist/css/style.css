@@ -2043,3 +2043,7 @@ h1 span {
 .more_mobile {
   display: none;
 }
+
+.logos-slider .swiper-slide {
+  pointer-events: none;
+}

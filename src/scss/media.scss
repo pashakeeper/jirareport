@@ -2,11 +2,26 @@ $color_1: #fff;
 $font-family_1: "Roboto",
 sans-serif;
 $font-family_2: "Font Awesome 6 Free";
-
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+    opacity: 1;
+    pointer-events: auto;
+    cursor: pointer;
+}
+@media (max-width: 1780px) {
+    body {
+        .swiper-button-next {
+            right: 10px;
+        }
+        .swiper-button-prev {
+            left: 10px;
+        }
+    }
+}
 @media (min-width: 1680px) {
     .content_blog_3 {
         margin-top: 0;
     }
+
 }
 
 @media (max-width: 1168px) {
@@ -87,6 +102,7 @@ $font-family_2: "Font Awesome 6 Free";
             .btn_group {
                 &:last-child {
                     justify-content: space-between;
+                    align-items: flex-start;
                 }
             }
         }
@@ -392,7 +408,7 @@ $font-family_2: "Font Awesome 6 Free";
     }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
     .colored_btn {
         font-size: 14px;
     }
@@ -400,8 +416,14 @@ $font-family_2: "Font Awesome 6 Free";
 }
 
 @media (max-width: 991px) {
+   .more_article {
+       .col-lg-12.mx-auto.text-center {
+        order: 2;
+       }
+   }
     .more_mobile {
         display: block;
+        order: 1;
         a {
             max-width: 260px;
             margin-left: auto;
@@ -1791,6 +1813,19 @@ $font-family_2: "Font Awesome 6 Free";
                 font-size: 16px;
                 margin-bottom: 0;
             }
+        }
+    }
+}
+@media (max-width: 600px) {
+   .footer .social_list {
+        column-gap: 20px;
+        justify-content: flex-end;
+    }
+     .social_list a {
+        width: 24px;
+        height: 24px;
+        i {
+            font-size: 12px;
         }
     }
 }
