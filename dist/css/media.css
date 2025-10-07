@@ -817,17 +817,19 @@
     padding-bottom: 80px;
   }
   .partners_02 .report_card h3 {
-    font-size: 20px;
-    margin-bottom: 40px;
-  }
-  .partners_02 .report_card img {
+    font-size: 16px;
     margin-bottom: 20px;
   }
-  .report_card p {
-    font-size: 16px;
+  .partners_02 .report_card img {
+    margin-bottom: 42px;
+    max-width: 52px;
+    height: auto;
   }
-  .report_card img {
-    width: 38px;
+  .report_card {
+    margin-bottom: 32px;
+  }
+  .report_card p {
+    font-size: 14px;
   }
   .report_section04 {
     padding-top: 104px;
