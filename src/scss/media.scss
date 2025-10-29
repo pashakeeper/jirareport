@@ -377,13 +377,15 @@ $font-family_2: "Font Awesome 6 Free";
 }
 
 @media (max-width: 1300px) {
-    body {
+    .section_02 {
         .swiper-button-prev {
             left: 0;
+            top: 48%;
         }
 
         .swiper-button-next {
             right: 0;
+            top: 48%;
         }
     }
 
@@ -407,7 +409,17 @@ $font-family_2: "Font Awesome 6 Free";
         }
     }
 }
+// @media (max-width: 1270px) {
+//      .section_02 {
+//         .swiper-button-prev {
+//             left: 10px;
+//         }
 
+//         .swiper-button-next {
+//             right: 0;
+//         }
+//     }
+// }
 @media (max-width: 1200px) {
     .colored_btn {
         font-size: 14px;

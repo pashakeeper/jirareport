@@ -254,11 +254,13 @@
   }
 }
 @media (max-width: 1300px) {
-  body .swiper-button-prev {
+  .section_02 .swiper-button-prev {
     left: 0;
+    top: 48%;
   }
-  body .swiper-button-next {
+  .section_02 .swiper-button-next {
     right: 0;
+    top: 48%;
   }
   .section_04 h3 {
     font-size: clamp(60px, 10vw, 87px);
