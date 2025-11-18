@@ -5,6 +5,7 @@ $(document).ready(function () {
     $(".menu_box").toggleClass("active");
     $(this).toggleClass("active");
   });
+
   $('a[href^="#"]').on("click", function (e) {
     e.preventDefault();
 
@@ -19,7 +20,7 @@ $(document).ready(function () {
 
       window.scrollTo({
         top: targetPos,
-        behavior: "smooth", // ← плавно
+        behavior: "smooth",
       });
     }
   });
@@ -45,10 +46,12 @@ $(document).ready(function () {
     $("#" + tabId).addClass("active");
     Fancybox.bind('[data-fancybox="gallery"]', {});
   });
+
   Fancybox.bind('[data-fancybox="gallery"]', {
-    // Your custom options for a specific gallery
+    // кастомные опции если нужно
   });
-  // ===== jQuery версия =====
+
+  // ===== Swiper =====
   window._swipers = window._swipers || {};
 
   function initSwipers() {
@@ -91,7 +94,7 @@ $(document).ready(function () {
         delay: 1,
         disableOnInteraction: false,
         pauseOnMouseEnter: false,
-      }, // iOS: не 0!
+      },
       loop: true,
       slidesPerView: "auto",
       allowTouchMove: false,
@@ -109,17 +112,17 @@ $(document).ready(function () {
       slidesPerGroup: 1,
       centeredSlidesBounds: true,
       loopAdditionalSlides: 5,
-      centeredSlidesBounds: true,
       grabCursor: true,
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
       breakpoints: {
-        0: { loop: true, autoHeight: true,slidesPerView: 1, },
+        0: { loop: true, autoHeight: true, slidesPerView: 1 },
         991: { autoHeight: false },
       },
     });
+
     whenImagesLoaded($(".logos-slider"), function () {
       if (window._swipers.logos && !window._swipers.logos.destroyed) {
         try {
@@ -157,10 +160,11 @@ $(document).ready(function () {
     });
   }
 
-  // ===== Первая инициализация
+  // Первая инициализация
   $(function () {
     initSwipers();
   });
+
   $(document).on("mousedown touchstart click", ".logos-slider", function () {
     var s = window._swipers && window._swipers.logos;
     if (s && !s.destroyed && s.autoplay) {
@@ -170,12 +174,10 @@ $(document).ready(function () {
     }
   });
 
-  // ===== Возврат со страницы (Safari bfcache)
+  // Возврат со страницы (Safari bfcache)
   $(window).on("pageshow", function (e) {
     var ev = e.originalEvent;
     if (ev && ev.persisted) {
-      // Страница из кеша: либо полностью переинициализируем,
-      // либо “будим” уже существующие
       if (!window._swipers.logos || window._swipers.logos.destroyed) {
         initSwipers();
       } else {
@@ -191,7 +193,7 @@ $(document).ready(function () {
     }
   });
 
-  // ===== Уход со страницы — подчистить
+  // Уход со страницы — подчистить
   $(window).on("pagehide", function () {
     if (!window._swipers) return;
     $.each(window._swipers, function (_, sw) {
@@ -201,7 +203,7 @@ $(document).ready(function () {
     });
   });
 
-  // ===== При возврате из background — восстановить автоплей
+  // При возврате из background — восстановить автоплей
   $(document).on("visibilitychange", function () {
     var s = window._swipers;
     if (!s) return;
@@ -219,7 +221,7 @@ $(document).ready(function () {
     }
   });
 
-  // Скролл хедера с улучшениями для macOS
+  // Скролл хедера
   let ticking = false;
   $(window).on("scroll", function () {
     if (!ticking) {
@@ -235,23 +237,22 @@ $(document).ready(function () {
     }
   });
 
+  // FAQ
   $(".faq-question").on("click", function () {
     const $faqItem = $(this).closest(".faq-item");
     const $answer = $faqItem.find(".faq-answer");
 
     if ($faqItem.hasClass("active")) {
-      // Если уже открыт — закрываем
       $faqItem.removeClass("active");
       $answer.slideUp(300);
     } else {
-      // Если закрыт — открываем
       $faqItem.addClass("active");
       $answer.slideDown(300);
     }
   });
   $(".faq-item:first-child .faq-question").trigger("click");
 
-  // Обработчик клика на табы
+  // Видео-табы
   $(".video_tab").on("click", function () {
     const tab_id = $(this).data("tab");
     $(".video_tab").removeClass("active");
@@ -260,11 +261,10 @@ $(document).ready(function () {
     $("#" + tab_id).addClass("active");
   });
 
-  // ===== Настройки
+  // ===== Настройки для карточек
   const SCROLL_PAD = 150;
   const HEADER_SEL = "header";
 
-  // ===== Активный блок один на секцию
   const $contentBlock = $(
     '<div class="strategic_card_active_block col-lg-12" aria-live="polite"></div>'
   );
@@ -273,7 +273,6 @@ $(document).ready(function () {
   let isAnimating = false;
   let pendingCard = null;
 
-  // ===== Утилиты
   function getHeaderHeight() {
     const $h = $(HEADER_SEL);
     return $h.length ? $h.outerHeight() : 0;
@@ -301,7 +300,6 @@ $(document).ready(function () {
       .addClass("fa-angle-down");
   }
 
-  // ===== Скролл к форме в активном блоке
   function scrollToFormTitleInActiveBlock() {
     const $formTitle = $contentBlock.find(".right_side .form-title");
     if (!$formTitle.length) return;
@@ -311,7 +309,6 @@ $(document).ready(function () {
     setTimeout(() => $formTitle.removeClass("highlight-form"), 2000);
   }
 
-  // ===== Инициализация CF7 в активном блоке (без таймаутов)
   function reinitCF7In($root) {
     if (!window.wpcf7) return;
     const $forms = $root.find(".wpcf7 > form, form.wpcf7-form");
@@ -325,38 +322,45 @@ $(document).ready(function () {
         window.wpcf7.initForm(this);
       });
     } else {
-      // форс-событие, если требуется
       $forms.each(function () {
         this.dispatchEvent(new Event("wpcf7init"));
       });
     }
   }
 
-  // ===== Открытие карточки
+  let CURRENT_RESOURCE_ID = null;
+
   function openCard($card) {
     if (isAnimating) return;
     isAnimating = true;
 
-    // Вставляем клон карточки
+    CURRENT_RESOURCE_ID = $card.data("resource-id") || null;
+
     const $clone = $($card.prop("outerHTML"));
     $contentBlock.html($clone).addClass("active");
 
-    // Обновляем иконку
     resetAllIcons();
     $contentBlock
       .find("h3 a i")
       .removeClass("fa-angle-down")
       .addClass("fa-angle-up");
 
-    // Переинициализация форм
+    const $cf7form = $contentBlock.find(".wpcf7 form.wpcf7-form");
+    if ($cf7form.length && CURRENT_RESOURCE_ID) {
+      let $hidden = $cf7form.find('input[name="resource_id"]');
+      if (!$hidden.length) {
+        $hidden = $('<input type="hidden" name="resource_id">').appendTo(
+          $cf7form
+        );
+      }
+      $hidden.val(CURRENT_RESOURCE_ID);
+    }
+
     reinitCF7In($contentBlock);
 
-    // Скролл к верху активного блока — без задержек
     const y = $contentBlock.offset().top - getHeaderHeight() - SCROLL_PAD;
-    // Скроллим только если нужно заметно сдвинуться
     if (Math.abs(window.pageYOffset - y) > 20) {
       scrollToY(y);
-      // даём браузеру начать скролл, но не ставим таймеров
       requestAnimationFrame(() => {
         isAnimating = false;
       });
@@ -365,12 +369,10 @@ $(document).ready(function () {
     }
   }
 
-  // ===== Закрытие активного блока без «прыжка»
   function closeActiveBlock() {
     if (isAnimating || !$contentBlock.hasClass("active")) return;
     isAnimating = true;
 
-    // Spacer той же высоты → плавно схлопываем
     const activeHeight = $contentBlock.outerHeight(true) || 0;
     const mb = $contentBlock.css("margin-bottom");
     const $spacer = $('<div class="strategic_active_spacer"></div>').css({
@@ -383,11 +385,8 @@ $(document).ready(function () {
     $contentBlock.removeClass("active").empty();
     resetAllIcons();
 
-    // Запуск схлопывания без таймаутов — через rAF
     requestAnimationFrame(() => {
       $spacer.css("height", 0);
-
-      // Один раз слушаем окончание перехода
       $spacer.one("transitionend", () => {
         $spacer.remove();
         isAnimating = false;
@@ -405,7 +404,7 @@ $(document).ready(function () {
     });
   }
 
-  // ===== Клики по стрелке в карточке (в гриде)
+  // Клик по стрелке в карточке (в гриде)
   $(document).on("click", ".strategic_card h3 a i", function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -437,7 +436,7 @@ $(document).ready(function () {
     }
   });
 
-  // ===== Клик по карточке (кроме интерактивных элементов)
+  // Клик по карточке (кроме интерактивных элементов)
   $(document).on("click", ".strategic_card, .strategic_card h3", function (e) {
     if (
       $(e.target).closest(
@@ -473,7 +472,7 @@ $(document).ready(function () {
     }
   });
 
-  // ===== Повторный клик по .clicked
+  // Повторный клик по .clicked
   $(document).on("click", ".strategic_card.clicked", function (e) {
     if (
       $(e.target).closest(
@@ -490,7 +489,7 @@ $(document).ready(function () {
     }
   });
 
-  // ===== Вне карточек / ESC — закрыть
+  // Вне карточек / ESC — закрыть
   $(document).on("click", function (e) {
     if (isAnimating) return;
     if (
@@ -500,6 +499,7 @@ $(document).ready(function () {
       closeActiveBlock();
     }
   });
+
   $(document).on("keydown", function (e) {
     if (isAnimating) return;
     if (e.key === "Escape" || e.keyCode === 27) {
@@ -507,59 +507,14 @@ $(document).ready(function () {
     }
   });
 
-  // ===== Стрелка внутри активного блока — закрыть
+  // Стрелка внутри активного блока — закрыть
   $(document).on("click", ".strategic_card_active_block h3 a i", function (e) {
     e.preventDefault();
     e.stopPropagation();
     closeActiveBlock();
   });
 
-  let CURRENT_RESOURCE_ID = null;
-
-  // дополни openCard:
-  function openCard($card) {
-    if (isAnimating) return;
-    isAnimating = true;
-
-    // Запоминаем id ресурса
-    CURRENT_RESOURCE_ID = $card.data("resource-id") || null;
-
-    const $clone = $($card.prop("outerHTML"));
-    $contentBlock.html($clone).addClass("active");
-
-    resetAllIcons();
-    $contentBlock
-      .find("h3 a i")
-      .removeClass("fa-angle-down")
-      .addClass("fa-angle-up");
-
-    // Вставим hidden поле в CF7 с resource_id (если формы есть)
-    const $cf7form = $contentBlock.find(".wpcf7 form.wpcf7-form");
-    if ($cf7form.length && CURRENT_RESOURCE_ID) {
-      // если у тебя в CF7 сделано поле [hidden resource_id] – просто заполним его
-      let $hidden = $cf7form.find('input[name="resource_id"]');
-      if (!$hidden.length) {
-        $hidden = $('<input type="hidden" name="resource_id">').appendTo(
-          $cf7form
-        );
-      }
-      $hidden.val(CURRENT_RESOURCE_ID);
-    }
-
-    reinitCF7In($contentBlock);
-
-    const y = $contentBlock.offset().top - getHeaderHeight() - SCROLL_PAD;
-    if (Math.abs(window.pageYOffset - y) > 20) {
-      scrollToY(y);
-      requestAnimationFrame(() => {
-        isAnimating = false;
-      });
-    } else {
-      isAnimating = false;
-    }
-  }
-
-  // Клик по кнопке Download в карточке/активном блоке
+  // Клик по кнопке Download
   $(document).on(
     "click",
     ".strategic_card_content .btn_group .download-btn, .strategic_card_content .btn_group .sec_btn.download-btn",
@@ -570,12 +525,10 @@ $(document).ready(function () {
       const downloadUrl = $btn.data("download-url") || $btn.attr("href");
       const isGated = String($btn.data("gated")).toLowerCase() === "true";
 
-      // Область карточки (оригинал в гриде или активная копия)
       const $scope = $btn.closest(".strategic_card").length
         ? $btn.closest(".strategic_card")
         : $btn.closest(".strategic_card_active_block").find(".strategic_card");
 
-      // Если не требуется форма — сразу открыть в новой вкладке
       if (!isGated) {
         if (downloadUrl) {
           window.open(downloadUrl, "_blank", "noopener");
@@ -583,8 +536,6 @@ $(document).ready(function () {
         return;
       }
 
-      // Если gated: убедиться, что активен нужный ресурс и открыта его форма
-      // 1) если активен другой — переключаемся
       if (
         !$contentBlock.hasClass("active") ||
         !isSameCard($scope, $contentBlock)
@@ -603,7 +554,6 @@ $(document).ready(function () {
         }
       }
 
-      // 2) проскроллить к заголовку формы и сфокусировать первый инпут
       requestAnimationFrame(() => {
         scrollToFormTitleInActiveBlock();
         const $firstInput = $contentBlock
@@ -615,13 +565,12 @@ $(document).ready(function () {
         if ($firstInput.length) $firstInput.trigger("focus");
       });
 
-      // 3) Сохраним URL в data активного блока, чтобы потом забрать при mailsent
       if (downloadUrl) {
         $contentBlock.data("pending-download-url", downloadUrl);
       }
     }
   );
-  // детект iOS Safari
+
   function isIOSSafari() {
     var ua = navigator.userAgent;
     var iOS =
@@ -637,7 +586,6 @@ $(document).ready(function () {
     var $block = $form.closest(".strategic_card_active_block");
     if (!$block.length) return;
 
-    // если у тебя есть сверка resource_id — оставь, иначе убери
     var sentResourceId = $form.find('input[name="resource_id"]').val();
     if (
       window.CURRENT_RESOURCE_ID &&
@@ -646,7 +594,6 @@ $(document).ready(function () {
     )
       return;
 
-    // получаем URL
     var downloadUrl =
       $block.data("pending-download-url") ||
       $block
@@ -658,22 +605,19 @@ $(document).ready(function () {
 
     if (!downloadUrl) return;
 
-    // iOS Safari — переходим в этой же вкладке (самый надёжный способ)
     if (isIOSSafari()) {
       try {
-        window.location.href = downloadUrl; // ← работает стабильно
+        window.location.href = downloadUrl;
         return;
       } catch (e) {}
     }
 
-    // остальные браузеры — новая вкладка
     var opened = null;
     try {
       opened = window.open(downloadUrl, "_blank", "noopener");
     } catch (e) {}
     if (opened) return;
 
-    // жёсткий фолбэк: скрытый iframe (для тех случаев, когда _blank заблокирован)
     try {
       var ifr = document.createElement("iframe");
       ifr.style.display = "none";
@@ -687,7 +631,7 @@ $(document).ready(function () {
     } catch (e) {}
   });
 
-  // ====== mobile обрезка текста (как было) ======
+  // mobile обрезка текста
   if ($(window).width() < 991) {
     $(".text").each(function () {
       const words = $(this).text().trim().split(" ");
@@ -714,9 +658,7 @@ function pauseIframe($iframe) {
     } else if (src.includes("player.vimeo.com")) {
       $iframe[0].contentWindow.postMessage({ method: "pause" }, "*");
     }
-  } catch (e) {
-    /* ignore */
-  }
+  } catch (e) {}
 }
 
 function playIframe($iframe) {
@@ -735,15 +677,11 @@ function playIframe($iframe) {
     } else if (src.includes("player.vimeo.com")) {
       $iframe[0].contentWindow.postMessage({ method: "play" }, "*");
     }
-  } catch (e) {
-    /* ignore */
-  }
+  } catch (e) {}
 }
 
-// Определяем мобильное устройство
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-// Настройки для observer
 const videoObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -754,39 +692,35 @@ const videoObserver = new IntersectionObserver(
       if (entry.isIntersecting) {
         startVideo($box, $iframe, $video);
       } else {
-        pauseVideo($iframe, $video); // только пауза, без плейсхолдера
+        pauseVideo($iframe, $video);
       }
     });
   },
   {
-    threshold: isMobile ? 0.3 : 0.7, // мягче на мобилке
+    threshold: isMobile ? 0.3 : 0.7,
     rootMargin: isMobile ? "150px 0px" : "100px 0px",
   }
 );
 
-// Функция запуска видео
 function startVideo($box, $iframe, $video) {
   const $placeholder = $box.find(".video_placeholder");
-  const $playBtn = $box.find("button.play, .play"); // кнопку не удаляем
+  const $playBtn = $box.find("button.play, .play");
   const videoSrc =
     $iframe.data("src") ||
     ($video.length ? $video.find("source").attr("src") : "");
 
   if (!videoSrc) return;
 
-  // Прячем плейсхолдер только один раз
   $placeholder.hide();
   $playBtn.hide();
 
   if (videoSrc.includes("youtube.com") || videoSrc.includes("youtu.be")) {
-    // Если src уже стоит → просто play
     if ($iframe.attr("src")) {
       $iframe.show();
       $video.hide();
       playIframe($iframe);
       return;
     }
-    // Иначе задаём embed и показываем
     const embedUrl = getYouTubeEmbedUrl(videoSrc);
     $iframe.attr("src", embedUrl).show();
     $video.hide();
@@ -801,7 +735,6 @@ function startVideo($box, $iframe, $video) {
     $iframe.attr("src", embedUrl).show();
     $video.hide();
   } else {
-    // Локальное видео
     if ($video.length) {
       $video.show();
       $video.prop("muted", true);
@@ -811,30 +744,23 @@ function startVideo($box, $iframe, $video) {
   }
 }
 
-// Пауза без мигания
 function pauseVideo($iframe, $video) {
-  // Останавливаем iframe (YouTube/Vimeo) без мигания
   if ($iframe && $iframe.length && $iframe.attr("src")) {
     pauseIframe($iframe);
   }
-  // Ставим на паузу локальное видео
   if ($video && $video.length && !$video[0].paused) {
     $video[0].pause();
   }
 }
 
-// Функция остановки видео
 function stopVideo($box, $iframe, $video, $placeholder, $playBtn) {
-  // Показываем плейсхолдер и кнопку обратно
   $placeholder.show();
   $playBtn.show();
 
-  // Останавливаем iframe (YouTube/Vimeo)
   if ($iframe.length && $iframe.attr("src")) {
     $iframe.attr("src", "").hide();
   }
 
-  // Останавливаем локальное видео
   if ($video.length && !$video[0].paused) {
     $video[0].pause();
     $video[0].currentTime = 0;
@@ -842,7 +768,6 @@ function stopVideo($box, $iframe, $video, $placeholder, $playBtn) {
   }
 }
 
-// Вспомогательные функции для URL
 function getYouTubeEmbedUrl(videoSrc) {
   let id = "";
   if (videoSrc.includes("watch?v=")) {
@@ -850,11 +775,9 @@ function getYouTubeEmbedUrl(videoSrc) {
   } else if (videoSrc.includes("youtu.be/")) {
     id = videoSrc.split("youtu.be/")[1].split("?")[0];
   } else if (videoSrc.includes("/embed/")) {
-    // уже embed — вытащим id как есть
     id = videoSrc.split("/embed/")[1].split(/[?&]/)[0];
   }
   const base = `https://www.youtube.com/embed/${id}`;
-  // enablejsapi=1 — чтобы pause/play через postMessage работал
   const params = "autoplay=1&mute=1&rel=0&enablejsapi=1&playsinline=1";
   return `${base}?${params}`;
 }
@@ -867,20 +790,15 @@ function getVimeoEmbedUrl(videoSrc) {
     id = videoSrc.split("/video/")[1].split(/[?&]/)[0];
   }
   const base = `https://player.vimeo.com/video/${id}`;
-  // controls API работает по postMessage без доп. параметров,
-  // но добавим полезные по умолчанию
   const params = "autoplay=1&muted=1&background=0";
   return `${base}?${params}`;
 }
 
-// Инициализация при загрузке страницы
 $(document).ready(function () {
-  // Добавляем все видео в наблюдатель
   $(".video_box").each(function () {
     videoObserver.observe(this);
   });
 
-  // Оставляем старый обработчик клика для ручного запуска
   $(".video_box .play").on("click", function (e) {
     e.preventDefault();
     const $box = $(this).closest(".video_box");
@@ -891,123 +809,34 @@ $(document).ready(function () {
 
     startVideo($box, $iframe, $video, $placeholder, $playBtn);
   });
-  // Проверка на заполненные поля при загрузке (например, автозаполнение)
+
   $(".form-floating input, .form-floating textarea").each(function () {
     if ($(this).val().trim() !== "") {
       $(this).closest(".form-floating").find("label").hide();
     }
   });
 
-  // Фокус → прячем label
   $(".form-floating input, .form-floating textarea").on("focus", function () {
     $(this).closest(".form-floating").find("label").fadeOut(200);
   });
 
-  // Потеря фокуса → показываем label, если пусто
   $(".form-floating input, .form-floating textarea").on("blur", function () {
     if ($(this).val().trim() === "") {
       $(this).closest(".form-floating").find("label").fadeIn(200);
     }
   });
+
   window.addEventListener("load", () => {
     if (window.location.hash) {
       const el = document.querySelector(window.location.hash);
       if (el) {
         el.scrollIntoView({
           behavior: "smooth",
-          block: "center", // <-- именно по центру экрана
+          block: "center",
         });
       }
     }
   });
-  var LONG_MS = 550;
-  var SEL = ".services_slider .swiper-slide a";
-
-  // Помечаем longpress (когда держим дольше LONG_MS)
-  $(document).on("touchstart", SEL, function (e) {
-    var $a = $(this);
-    // очень важно: разрешить предотвратить дефолт (jQuery делает passive=false)
-    var t = setTimeout(function () {
-      $a.data("longpress", true);
-    }, LONG_MS);
-    $a.data("lpTimer", t);
-  });
-
-  $(document).on("touchend touchcancel", SEL, function (e) {
-    var $a = $(this);
-    clearTimeout($a.data("lpTimer"));
-    if ($a.data("longpress")) {
-      // Был долгий тап → блокируем переход; покажется контекстное меню Safari
-      $a.removeData("longpress");
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      return false;
-    }
-  });
-
-  // Если Safari всё-таки бросил contextmenu — тоже блокируем автоклик после него
-  $(document).on("contextmenu", SEL, function () {
-    $(this).data("cmenu", true);
-  });
-
-  $(document).on("click", SEL, function (e) {
-    var $a = $(this);
-    if ($a.data("cmenu")) {
-      $a.removeData("cmenu");
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      return false;
-    }
-  });
-
-  // На случай “быстрых” обработчиков где-то выше (антипаттерн):
-  // не даём всплывать клику, если был longpress
-  $(document).on("click", ".services_slider .swiper-slide", function (e) {
-    var $a = $(e.target).closest("a");
-    if ($a.length && ($a.data("longpress") || $a.data("cmenu"))) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      return false;
-    }
-  });
-
-  // Глушим контекстное меню и long-press на всех ссылках
-  document.addEventListener(
-    "contextmenu",
-    function (e) {
-      if (e.target.closest("a")) e.preventDefault();
-    },
-    { capture: true }
-  );
-
-  // Доп. защита от долгого тапа
-  (function () {
-    var timer = null,
-      long = false;
-    document.addEventListener(
-      "touchstart",
-      function (e) {
-        var a = e.target.closest("a");
-        if (!a) return;
-        long = false;
-        timer = setTimeout(function () {
-          long = true;
-        }, 450);
-      },
-      { passive: true }
-    );
-    document.addEventListener("touchend", function (e) {
-      var a = e.target.closest("a");
-      if (!a) return;
-      clearTimeout(timer);
-      if (long) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-      }
-    });
-    document.addEventListener("touchcancel", function () {
-      clearTimeout(timer);
-    });
-  })();
 });
+
+

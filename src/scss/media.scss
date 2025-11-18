@@ -24,14 +24,6 @@ $font-family_2: "Font Awesome 6 Free";
 
 }
 
-@media (max-width: 1168px) {
-    .partner_logo {
-        margin-left: 50px;
-    }
-}
-
-
-
 @media (max-width: 1600px) {
     .content_blog_3 {
         margin-top: 0;
@@ -376,6 +368,26 @@ $font-family_2: "Font Awesome 6 Free";
     }
 }
 
+
+@media (min-width: 1351px) and (max-width: 1400px) {
+    .section_02 {
+        .swiper-button-prev {
+            left: 10px;
+            top: 48%;
+        }
+
+        .swiper-button-next {
+            right: 10px;
+            top: 48%;
+        }
+    }
+    .section_06 {
+        .swiper-button-prev,.swiper-button-next {
+            // top: 48%;
+        }
+    }
+}
+
 @media (max-width: 1300px) {
     .section_02 {
         .swiper-button-prev {
@@ -409,22 +421,18 @@ $font-family_2: "Font Awesome 6 Free";
         }
     }
 }
-// @media (max-width: 1270px) {
-//      .section_02 {
-//         .swiper-button-prev {
-//             left: 10px;
-//         }
 
-//         .swiper-button-next {
-//             right: 0;
-//         }
-//     }
-// }
-@media (max-width: 1200px) {
+
+
+@media (min-width: 1200px) and (max-width: 1290px) {
     .colored_btn {
         font-size: 14px;
     }
-
+}
+@media (max-width: 1168px) {
+    .partner_logo {
+        margin-left: 50px;
+    }
 }
 
 @media (max-width: 991px) {

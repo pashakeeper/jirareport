@@ -2033,17 +2033,30 @@ h1 span {
     font-size: 16px;
   }
 }
-@supports (-webkit-touch-callout: none) {
-  a, a * {
-    -webkit-touch-callout: none; /* выключает превью/контекстное меню */
-    -webkit-user-select: none;
-    user-select: none;
-  }
-}
 .more_mobile {
   display: none;
 }
 
 .logos-slider .swiper-slide {
   pointer-events: none;
+}
+
+/* Жёстко показать, что Safari точно должен рисовать лого */
+#logos_slider,
+#logos_slider .swiper-wrapper,
+#logos_slider .swiper-slide,
+#logos_slider img {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#logos_slider {
+  position: relative;
+  z-index: 9999; /* чтобы ничего сверху не лежало */
+}
+
+#logos_slider img {
+  display: block !important;
+  max-width: 100%;
+  height: auto;
 }
